@@ -1,6 +1,8 @@
-package controller;
+package view;
 
-public interface ViewController {
+import controller.Controller;
+
+public interface View {
 
     void startMenu();
 
