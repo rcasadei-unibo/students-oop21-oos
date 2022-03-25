@@ -1,6 +1,4 @@
-package view;
-
-import controller.Controller;
+package controller;
 
 public interface ViewController {
 
