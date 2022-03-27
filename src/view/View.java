@@ -2,7 +2,7 @@ package view;
 
 import controller.Controller;
 
-public interface ViewController {
+public interface View {
 
     void startMenu();
 
