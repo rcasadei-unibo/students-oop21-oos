@@ -25,7 +25,7 @@ public interface EntityGenerator {
     /**
      * Remove entity from the list, if it isn't empty and the entity is out of the screen.
      */
-    void removeElement();
+    void removeEntity();
 
     /**
      * 
