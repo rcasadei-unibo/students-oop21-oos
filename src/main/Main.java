@@ -1,7 +1,7 @@
 package main;
 
 import javafx.application.Application;
-import view.ViewImpl;
+import main.view.ViewImpl;
 
 public class Main {
 

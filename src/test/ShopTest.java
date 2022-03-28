@@ -5,8 +5,8 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Test;
 
-import model.shop.Shop;
-import model.shop.ShopImpl;
+import main.model.shop.Shop;
+import main.model.shop.ShopImpl;
 
 public class ShopTest {
 

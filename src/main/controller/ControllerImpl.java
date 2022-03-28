@@ -1,7 +1,7 @@
-package controller;
+package main.controller;
 
-import model.Model;
-import view.View;
+import main.model.Model;
+import main.view.View;
 
 public class ControllerImpl implements Controller {
 

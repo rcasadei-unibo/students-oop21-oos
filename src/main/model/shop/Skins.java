@@ -1,4 +1,4 @@
-package model.shop;
+package main.model.shop;
 
 /**
  * Lists all of the prices
