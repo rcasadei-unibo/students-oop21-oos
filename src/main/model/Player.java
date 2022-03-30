@@ -23,6 +23,11 @@ public interface Player {
      * @return the Y coordinate of the player
      */
     int getY();
+    
+    /**
+     * @return the high of the jumps of the player
+     */
+    int getJumpHigh();
 
     /**
      * @return the number of lifes of the player

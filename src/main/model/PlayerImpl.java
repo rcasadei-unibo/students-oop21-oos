@@ -1,9 +1,7 @@
 package main.model;
 
 public class PlayerImpl implements Player {
-    
-    //decido quanto � lungo un passo
-    public static final int STEP = 60;
+
     //decido quanto � lungo un salto, quanto deve passare tra un salto e l'altro
     public static final int JUMP_TIME = 30;
     public static final int WAIT_JUMP_TIME = 10;
@@ -18,6 +16,7 @@ public class PlayerImpl implements Player {
     private boolean isJumping = false;
     private int jumpTime = 0;
     private int waitTime;
+    private int jumpHigh = 60;
     
     //numero di vite
     private int numLifes;
@@ -44,7 +43,7 @@ public class PlayerImpl implements Player {
                 isJumping = true;
                 jumpTime++;
                 int newY = y;
-                newY -= STEP;
+                newY -= jumpHigh;
                 moveTo(x, newY);
             }
         } else {
@@ -67,7 +66,12 @@ public class PlayerImpl implements Player {
 
     @Override
     public int getY() {
-            return this.y;
+        return this.y;
+    }
+
+    @Override
+    public int getJumpHigh() {
+        return this.jumpHigh;
     }
 
     @Override
