@@ -5,7 +5,7 @@ import javafx.scene.canvas.GraphicsContext;
 public interface PlayerView {
 
     /**
-     * @param gc the GrapicsContext where to show the player
+     * Render method.
      */
-    void render(GraphicsContext gc);
+    void render();
 }

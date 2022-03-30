@@ -24,4 +24,9 @@ public interface Player {
      */
     int getY();
 
+    /**
+     * @return the number of lifes of the player
+     */
+    int getLifes();
+
 }

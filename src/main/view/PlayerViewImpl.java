@@ -45,7 +45,7 @@ public class PlayerViewImpl implements PlayerView {
     }
 
     @Override
-    public void render(final GraphicsContext gc) {
+    public void render()) {
         gc.drawImage(spriteImage, spriteX, spriteY, MAIN_CHARACTER_WIDTH, MAIN_CHARACTER_HEIGHT, 
                 player.getX(), player.getY(), MAIN_CHARACTER_WIDTH, MAIN_CHARACTER_HEIGHT);
 }

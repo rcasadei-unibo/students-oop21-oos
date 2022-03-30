@@ -18,11 +18,15 @@ public class PlayerImpl implements Player {
     private boolean isJumping = false;
     private int jumpTime = 0;
     private int waitTime;
+    
+    //numero di vite
+    private int numLifes;
 
     public PlayerImpl() {
         this.x = INITIAL_X;
         this.y = INITIAL_Y;
         this.waitTime = WAIT_JUMP_TIME;
+        this.numLifes = 0;
     }
 
     @Override
@@ -65,8 +69,10 @@ public class PlayerImpl implements Player {
     public int getY() {
             return this.y;
     }
-    
-    
 
+    @Override
+    public int getLifes() {
+        return this.numLifes;
+    }
 
 }
