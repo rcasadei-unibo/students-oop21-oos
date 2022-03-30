@@ -1,6 +1,10 @@
 package main.model.shop;
 
-public class ShopItemImpl implements ShopItem{
+/**
+ * Implements the ShopItem, which is an object sold by the Shop and wearable by the main character.
+ *
+ */
+public class ShopItemImpl implements ShopItem {
 
     private final String itemName; 
     private final int price; 
