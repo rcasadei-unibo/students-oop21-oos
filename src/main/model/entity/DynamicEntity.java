@@ -1,6 +1,7 @@
 package main.model.entity;
 
 import javafx.geometry.Rectangle2D;
+import javafx.scene.image.Image;
 
 public interface DynamicEntity {
 
@@ -25,5 +26,23 @@ public interface DynamicEntity {
      * @return true if the entity is out of the screen, false otherwise 
      */
     boolean isOutofScreen();
+
+    /**
+     * Set the entity's image. 
+     * @param image the image associated to the entity 
+     */
+    void setImage(Image image);
+
+    /**
+     * Get the image related with the entity.
+     * @return the image corresponding to the entity
+     */
+    Image getImage();
+
+    /**
+     * 
+     * @return the level in which the entity is placed. 
+     */
+    EntityLevelType getLevelType();
 
 }
