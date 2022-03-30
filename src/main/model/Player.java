@@ -23,15 +23,38 @@ public interface Player {
      * @return the Y coordinate of the player
      */
     int getY();
-    
+
     /**
-     * @return the high of the jumps of the player
+     * @return the height of the jumps of the player
      */
-    int getJumpHigh();
+    int getJumpHeight();
 
     /**
      * @return the number of lifes of the player
      */
     int getLifes();
+
+    /**
+     * @return true if the shield is active
+     */
+    boolean isShieldActive();
+
+    /**
+     * Sets the height of the jumps.
+     * @param h the new height of the jump
+     */
+    void setJumpHeight(int h);
+
+    /**
+     * Sets the number of lifes of the player.
+     * @param lifes the new number of lifes
+     */
+    void setNumberOfLifes(int lifes);
+
+    /**
+     * Sets the shield.
+     * @param active true if the shield is active
+     */
+    void setShield(boolean active);
 
 }

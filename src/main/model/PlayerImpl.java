@@ -1,6 +1,6 @@
 package main.model;
 
-public class PlayerImpl implements Player {
+public final class PlayerImpl implements Player {
 
     //decido quanto � lungo un salto, quanto deve passare tra un salto e l'altro
     public static final int JUMP_TIME = 30;
@@ -11,21 +11,23 @@ public class PlayerImpl implements Player {
     //coordinate nello schermo
     private int x;
     private int y;
-    
+
     //se sta saltando, da quanto e se deve aspettare
     private boolean isJumping = false;
     private int jumpTime = 0;
     private int waitTime;
-    private int jumpHigh = 60;
-    
-    //numero di vite
+    private int jumpHeight = 60;
+
+    //numero di vite e scudo
     private int numLifes;
+    private boolean shieldActive;
 
     public PlayerImpl() {
         this.x = INITIAL_X;
         this.y = INITIAL_Y;
         this.waitTime = WAIT_JUMP_TIME;
         this.numLifes = 0;
+        this.shieldActive = false;
     }
 
     @Override
@@ -43,7 +45,7 @@ public class PlayerImpl implements Player {
                 isJumping = true;
                 jumpTime++;
                 int newY = y;
-                newY -= jumpHigh;
+                newY -= jumpHeight;
                 moveTo(x, newY);
             }
         } else {
@@ -70,13 +72,33 @@ public class PlayerImpl implements Player {
     }
 
     @Override
-    public int getJumpHigh() {
-        return this.jumpHigh;
+    public int getJumpHeight() {
+        return this.jumpHeight;
     }
 
     @Override
     public int getLifes() {
         return this.numLifes;
+    }
+
+    @Override
+    public boolean isShieldActive() {
+        return shieldActive;
+    }
+
+    @Override
+    public void setJumpHeight(final int h) {
+        this.jumpHeight = h;
+    }
+
+    @Override
+    public void setNumberOfLifes(final int lifes) {
+        this.numLifes = lifes;
+    }
+
+    @Override
+    public void setShield(final boolean active) {
+        this.shieldActive = active;
     }
 
 }
