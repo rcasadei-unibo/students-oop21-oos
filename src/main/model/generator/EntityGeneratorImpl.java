@@ -21,6 +21,7 @@ public final class EntityGeneratorImpl implements EntityGenerator {
     private final List<DynamicEntity> entityList;
     private int entityCount;
     private final Dimension2D worldDimension;
+    private final Random rand = new Random();
 
     public EntityGeneratorImpl(final Dimension2D worldDimension) {
         this.entityList = new ArrayList<>();
@@ -56,7 +57,6 @@ public final class EntityGeneratorImpl implements EntityGenerator {
     }
 
     private void addEntity() {
-        final Random rand = new Random();
         final int random = rand.nextInt(MAX_CASE);
         switch (this.entityList.get(entityList.size() - 1).getLevelType()) {
         case LEVEL_ZERO:
@@ -151,8 +151,7 @@ public final class EntityGeneratorImpl implements EntityGenerator {
     }
 
     private boolean checkPosition() {
-        // TODO Auto-generated method stub
-        return false;
+        return entityList.get(entityList.size() - 1).getBounds().getMinX() < entityList.get(entityList.size() - 1).getDistance();
     }
 
     private enum Case {
