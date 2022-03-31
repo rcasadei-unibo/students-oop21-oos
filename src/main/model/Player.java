@@ -25,14 +25,9 @@ public interface Player {
     int getY();
 
     /**
-     * @return the height of the jumps of the player
-     */
-    int getJumpHeight();
-
-    /**
      * @return the number of lifes of the player
      */
-    int getLifes();
+    int getLives();
 
     /**
      * @return true if the shield is active
@@ -49,7 +44,7 @@ public interface Player {
      * Sets the number of lifes of the player.
      * @param lifes the new number of lifes
      */
-    void setNumberOfLifes(int lifes);
+    void setNumberOfLives(int lifes);
 
     /**
      * Sets the shield.

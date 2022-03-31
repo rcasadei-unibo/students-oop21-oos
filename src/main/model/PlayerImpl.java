@@ -8,6 +8,7 @@ public final class PlayerImpl implements Player {
     //posizione di default di partenza
     public static final int INITIAL_X = 380;
     public static final int INITIAL_Y = 375;
+    public static final int JUMP_HEIGHT = 60;
     //coordinate nello schermo
     private int x;
     private int y;
@@ -16,17 +17,18 @@ public final class PlayerImpl implements Player {
     private boolean isJumping = false;
     private int jumpTime = 0;
     private int waitTime;
-    private int jumpHeight = 60;
+    private int jumpHeight;
 
     //numero di vite e scudo
-    private int numLifes;
+    private int numLives;
     private boolean shieldActive;
 
     public PlayerImpl() {
         this.x = INITIAL_X;
         this.y = INITIAL_Y;
         this.waitTime = WAIT_JUMP_TIME;
-        this.numLifes = 0;
+        this.jumpHeight = JUMP_HEIGHT;
+        this.numLives = 1;
         this.shieldActive = false;
     }
 
@@ -72,13 +74,8 @@ public final class PlayerImpl implements Player {
     }
 
     @Override
-    public int getJumpHeight() {
-        return this.jumpHeight;
-    }
-
-    @Override
-    public int getLifes() {
-        return this.numLifes;
+    public int getLives() {
+        return this.numLives;
     }
 
     @Override
@@ -92,8 +89,8 @@ public final class PlayerImpl implements Player {
     }
 
     @Override
-    public void setNumberOfLifes(final int lifes) {
-        this.numLifes = lifes;
+    public void setNumberOfLives(final int lives) {
+        this.numLives = lives;
     }
 
     @Override
