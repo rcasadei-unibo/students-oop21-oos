@@ -7,11 +7,12 @@ import java.util.Random;
 
 import javafx.geometry.Dimension2D;
 import main.model.entity.Coin;
+import main.model.entity.CollectibleEntityImpl;
 import main.model.entity.DynamicEntity;
 import main.model.entity.EntityLevelType;
 import main.model.entity.Obstacle;
 import main.model.entity.Platform;
-import main.view.EntityImages;
+import main.view.entity.EntityImages;
 
 public final class EntityGeneratorImpl implements EntityGenerator {
 
@@ -45,7 +46,12 @@ public final class EntityGeneratorImpl implements EntityGenerator {
             }
 
         }
-        this.entityList.forEach(e -> e.updatePosition());
+        this.entityList.forEach(e -> {
+            e.updatePosition();
+            if (e instanceof CollectibleEntityImpl && ((CollectibleEntityImpl) e).wasCollected() && !entityList.isEmpty()) {
+                entityList.remove(e);
+            }
+        });
 
     }
 
