@@ -1,7 +1,6 @@
 package main.model.entity;
 
 import java.awt.geom.Point2D;
-import java.awt.geom.Point2D.Double;
 
 import javafx.geometry.Dimension2D;
 import javafx.geometry.Rectangle2D;
@@ -14,13 +13,14 @@ public abstract class DynamicEntityImpl implements DynamicEntity {
     private final Dimension2D dimensions;
     private double speedX;
     private double distance; 
-    private Image image;
-    private final EntityLevelType levelType;
+    private final Image image;
+    private final EntityLevelType level;
 
-    public DynamicEntityImpl(final Double coordinates, final Dimension2D dimensions, final EntityLevelType levelType) {
-        this.coordinates = coordinates;
-        this.dimensions = dimensions;
-        this.levelType = levelType;
+    public DynamicEntityImpl(final Dimension2D worldDimensions, final Image image, final EntityLevelType level) {
+        this.level = level;
+        this.image = image;
+        this.coordinates = this.generatePoint(worldDimensions);
+        this.dimensions = this.generateDimension();
         this.speedX = INITIAL_SPEEDX;
     }
 
@@ -45,18 +45,13 @@ public abstract class DynamicEntityImpl implements DynamicEntity {
     }
 
     @Override
-    public final void setImage(final Image image) {
-        this.image = image;
-    }
-
-    @Override
     public final Image getImage() {
         return this.image;
     }
 
     @Override
     public final EntityLevelType getLevelType() {
-        return this.levelType;
+        return this.level;
     }
 
     @Override
@@ -67,5 +62,15 @@ public abstract class DynamicEntityImpl implements DynamicEntity {
     @Override
     public final void setDistance(final double distance) {
         this.distance = distance;
+    }
+
+    private Point2D.Double generatePoint(final Dimension2D worldDimenion) {
+        final double x = worldDimenion.getWidth() * level.getSpawnX();
+        final double y = worldDimenion.getHeight() * level.getSpawnY() - image.getHeight();
+        return new Point2D.Double(x, y);
+    }
+
+    private Dimension2D generateDimension() {
+        return new Dimension2D(image.getWidth(), image.getHeight());
     }
 }

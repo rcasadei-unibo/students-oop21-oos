@@ -28,12 +28,6 @@ public interface DynamicEntity {
     boolean isOutofScreen();
 
     /**
-     * Set the entity's image. 
-     * @param image the image associated to the entity 
-     */
-    void setImage(Image image);
-
-    /**
      * Get the image related with the entity.
      * @return the image corresponding to the entity
      */
