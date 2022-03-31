@@ -13,4 +13,11 @@ public interface CollectibleEntity {
      * @return true if the entity was collected, false otherwise
      */
     boolean wasCollected();
+
+    /**
+     * Activate the effect of the collectible entity.
+     * @param 
+     */
+    void activateEffect(/*Model ? Controller ?*/);
+
 }

@@ -23,4 +23,7 @@ public abstract class CollectibleEntityImpl extends DynamicEntityImpl implements
         return this.collected;
     }
 
+    @Override
+    public abstract void activateEffect();
+
 }

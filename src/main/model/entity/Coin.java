@@ -22,4 +22,11 @@ public final class Coin extends CollectibleEntityImpl {
         return new Dimension2D(image.getWidth(), image.getHeight());
     }
 
+    @Override
+    public void activateEffect() {
+        /*
+         * Aumento il valore delle monete contenuto nelle statistiche 
+         * */
+    }
+
 }
