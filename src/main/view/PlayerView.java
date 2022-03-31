@@ -1,11 +1,12 @@
 package main.view;
 
-import javafx.scene.canvas.GraphicsContext;
+import main.model.Player;
 
 public interface PlayerView {
 
     /**
      * Render method.
+     * @param pl the Player
      */
-    void render();
+    void render(Player pl);
 }

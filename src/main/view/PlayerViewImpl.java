@@ -4,14 +4,15 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
 import main.model.Player;
 
 public class PlayerViewImpl implements PlayerView {
 
     //MANCA TUTTA L'ANIMAZIONE
 
+    private final Pane pane; 
     /**
      * Width of the sprite.
      */
@@ -30,24 +31,25 @@ public class PlayerViewImpl implements PlayerView {
     private int spriteY;
 
     //il png
-    private Image spriteImage;
+    private ImageView spriteImage;
 
     //il player
     private Player player;
 
-    public PlayerViewImpl(final Player player) {
-        this.player = player;
-        try {
-            this.spriteImage = new Image(Files.newInputStream(Paths.get(IMAGE_PATH)));
+    public PlayerViewImpl(final Pane pane) {
+        this.pane = pane;
+        /*try {
+            this.spriteImage = spriteImage; //mettere l'immagine;
         } catch (IOException e) {
             e.printStackTrace();
-        }
+        }*/
     }
 
     @Override
-    public void render()) {
-        gc.drawImage(spriteImage, spriteX, spriteY, MAIN_CHARACTER_WIDTH, MAIN_CHARACTER_HEIGHT, 
-                player.getX(), player.getY(), MAIN_CHARACTER_WIDTH, MAIN_CHARACTER_HEIGHT);
-}
+    public void render(final Player pl) {
+        this.pane.getChildren().remove(spriteImage);
+        //dire quale è la sprite imagine da mettere
+        this.pane.getChildren().add(spriteImage);
+    }
 
 }
