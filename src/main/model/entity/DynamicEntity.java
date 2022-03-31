@@ -45,4 +45,16 @@ public interface DynamicEntity {
      */
     EntityLevelType getLevelType();
 
+    /**
+     * 
+     * @return the distance of the next entity
+     */
+    double getDistance();
+
+    /**
+     * Set the field distance. 
+     * @param distance distance of the next entity
+     */
+    void setDistance(double distance);
+
 }

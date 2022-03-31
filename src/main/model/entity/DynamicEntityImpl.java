@@ -13,6 +13,7 @@ public abstract class DynamicEntityImpl implements DynamicEntity {
     private final Point2D.Double coordinates;
     private final Dimension2D dimensions;
     private double speedX;
+    private double distance; 
     private Image image;
     private final EntityLevelType levelType;
 
@@ -56,5 +57,15 @@ public abstract class DynamicEntityImpl implements DynamicEntity {
     @Override
     public final EntityLevelType getLevelType() {
         return this.levelType;
+    }
+
+    @Override
+    public final double getDistance() {
+       return this.distance;
+    }
+
+    @Override
+    public final void setDistance(final double distance) {
+        this.distance = distance;
     }
 }
