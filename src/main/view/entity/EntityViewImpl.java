@@ -20,8 +20,6 @@ public final class EntityViewImpl implements EntityView {
         this.entities = entities;
     }
 
-
-
     @Override
     public void render() {
         this.pane.getChildren().removeAll(listImages);
