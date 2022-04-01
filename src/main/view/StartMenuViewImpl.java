@@ -1,9 +1,10 @@
 package main.view;
 
+import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
-public class StartMenuViewImpl implements StartMenuView {
+public final class StartMenuViewImpl implements StartMenuView {
 
     private final View view;
     private final Stage stage;
@@ -18,7 +19,20 @@ public class StartMenuViewImpl implements StartMenuView {
 
     @Override
     public void render() {
-        // TODO Auto-generated method stub
+        Button start = new Button();
+
+        start.setOnAction(e -> {
+            pane.getChildren().clear();
+            this.view.getController().start();
+        });
+
+        Button exit = new Button();
+
+        exit.setOnAction(e -> {
+            stage.close();
+        });
+
+        Button shop = new Button();
 
     }
 
