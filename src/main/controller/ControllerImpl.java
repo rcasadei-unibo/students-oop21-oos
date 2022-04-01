@@ -17,7 +17,7 @@ public class ControllerImpl implements Controller {
 
     @Override
     public void setup() {
-        //this.model = new Model();
+        //this.model = new ModelImpl();
         //this.view.game();
 
     }
@@ -52,6 +52,11 @@ public class ControllerImpl implements Controller {
     public void stop() {
         this.timer.stop();
         this.view.gameOver();
+    }
+
+    @Override
+    public Model getModel() {
+        return this.model;
     }
 
 }
