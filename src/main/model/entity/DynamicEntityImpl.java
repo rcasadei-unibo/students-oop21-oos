@@ -12,15 +12,18 @@ public abstract class DynamicEntityImpl implements DynamicEntity {
     private final Point2D.Double coordinates;
     private final Dimension2D dimensions;
     private double speedX;
-    private double distance; 
+    private double nextDistance; 
+    private final double previousDistance;
     private final Image image;
     private final EntityLevelType level;
 
-    public DynamicEntityImpl(final Dimension2D worldDimensions, final Image image, final EntityLevelType level) {
+
+    public DynamicEntityImpl(final Dimension2D worldDimensions, final Image image, final EntityLevelType level, final double previousDistance) {
         this.level = level;
         this.image = image;
         this.coordinates = this.generatePoint(worldDimensions);
         this.dimensions = this.generateDimension();
+        this.previousDistance = previousDistance;
         this.speedX = INITIAL_SPEEDX;
     }
 
@@ -56,16 +59,16 @@ public abstract class DynamicEntityImpl implements DynamicEntity {
 
     @Override
     public final double getDistance() {
-       return this.distance;
+       return this.nextDistance;
     }
 
     @Override
     public final void setDistance(final double distance) {
-        this.distance = distance;
+        this.nextDistance = distance;
     }
 
     private Point2D.Double generatePoint(final Dimension2D worldDimenion) {
-        final double x = worldDimenion.getWidth() * level.getSpawnX();
+        final double x = worldDimenion.getWidth() * level.getSpawnX() + previousDistance;
         final double y = worldDimenion.getHeight() * level.getSpawnY() - image.getHeight();
         return new Point2D.Double(x, y);
     }
