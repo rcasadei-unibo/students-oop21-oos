@@ -36,8 +36,9 @@ public class PlayerViewImpl implements PlayerView {
     //il player
     private Player player;
 
-    public PlayerViewImpl(final Pane pane) {
+    public PlayerViewImpl(final Pane pane, final Player pl) {
         this.pane = pane;
+        this.player = pl;
         /*try {
             this.spriteImage = spriteImage; //mettere l'immagine;
         } catch (IOException e) {
@@ -46,7 +47,7 @@ public class PlayerViewImpl implements PlayerView {
     }
 
     @Override
-    public void render(final Player pl) {
+    public void render() {
         this.pane.getChildren().remove(spriteImage);
         //dire quale è la sprite imagine da mettere
         this.pane.getChildren().add(spriteImage);
