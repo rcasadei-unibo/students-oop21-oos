@@ -13,7 +13,7 @@ public class GameViewImpl implements GameView {
     private final Stage stage;
     private final Pane pane;
     private final PlayerView playerView;
-    private EntityView entityView;
+    private final EntityView entityView;
     private final GameState gameState;
     private final Statistics statistics;
 
@@ -31,6 +31,8 @@ public class GameViewImpl implements GameView {
 
     @Override
     public void render() {
+        this.playerView.render();
+        this.entityView.render();
 
     }
 
