@@ -12,16 +12,18 @@ public final class EntityViewImpl implements EntityView {
 
     private final Pane pane; 
     private final List<ImageView> listImages;
+    private final List<DynamicEntity> entities;
 
-    public EntityViewImpl(final Pane pane) {
+    public EntityViewImpl(final Pane pane, final List<DynamicEntity> entities) {
         this.pane = pane;
         this.listImages = new ArrayList<>();
+        this.entities = entities;
     }
 
 
 
     @Override
-    public void render(final List<DynamicEntity> entities) {
+    public void render() {
         this.pane.getChildren().removeAll(listImages);
         this.listImages.clear();
         final List<DynamicEntity> im = Collections.unmodifiableList(entities);
