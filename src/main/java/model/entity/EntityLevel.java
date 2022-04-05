@@ -4,17 +4,17 @@ public enum EntityLevel {
     /**
      * Level in which obstacles spawn.
      */
-    LEVEL_ZERO(1.0, 1.0), 
+    ZERO(1.0, 1.0), 
 
     /**
      * Level in which platform of the second level, coin or PowerUps spawn.
      */
-    LEVEL_ONE(1.0, 0.75),
+    ONE(1.0, 0.75),
 
     /**
      * Level in which platform of the second level.
      */
-    LEVEL_TWO(1.0, 0.5);
+    TWO(1.0, 0.5);
 
     private final double spawnX;
     private final double spawnY;
