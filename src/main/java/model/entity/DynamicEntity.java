@@ -16,12 +16,6 @@ public interface DynamicEntity {
     Rectangle2D getBounds();
 
     /**
-     * Set the speed of the entity.
-     * @param speedX 
-     */
-    void setSpeedX(double speedX);
-
-    /**
      * Check if the entity is out of the screen.
      * @return true if the entity is out of the screen, false otherwise 
      */
@@ -37,7 +31,13 @@ public interface DynamicEntity {
      * 
      * @return the level in which the entity is placed. 
      */
-    EntityLevelType getLevelType();
+    EntityLevel getLevelType();
+
+    /**
+     * 
+     * @return the type of entity created.
+     */
+    EntityType getType();
 
     /**
      * 
