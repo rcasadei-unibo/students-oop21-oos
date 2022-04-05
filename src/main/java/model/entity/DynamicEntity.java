@@ -2,6 +2,7 @@ package model.entity;
 
 import javafx.geometry.Rectangle2D;
 import javafx.scene.image.Image;
+import model.Model;
 
 public interface DynamicEntity {
 
@@ -50,5 +51,11 @@ public interface DynamicEntity {
      * @param distance distance of the next entity
      */
     void setDistance(double distance);
+
+    /**
+     * Activate the effect of the collectible entity.
+     * @param model actual state of the model. 
+     */
+    void activateEffect(Model model);
 
 }

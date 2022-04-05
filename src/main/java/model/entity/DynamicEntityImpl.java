@@ -5,6 +5,7 @@ import java.awt.geom.Point2D;
 import javafx.geometry.Dimension2D;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.image.Image;
+import model.Model;
 
 public class DynamicEntityImpl implements DynamicEntity {
 
@@ -29,42 +30,47 @@ public class DynamicEntityImpl implements DynamicEntity {
     }
 
     @Override
-    public void updatePosition() {
+    public final void updatePosition() {
         this.coordinates.setLocation(coordinates.getX() - speedX, coordinates.getY());
     }
 
     @Override
-    public Rectangle2D getBounds() {
+    public final Rectangle2D getBounds() {
         return new Rectangle2D(coordinates.getX(), coordinates.getY(), dimensions.getWidth(), dimensions.getHeight());
     }
 
     @Override
-    public boolean isOutofScreen() {
+    public final boolean isOutofScreen() {
         return this.coordinates.getX() < -this.dimensions.getWidth(); 
     }
 
     @Override
-    public Image getImage() {
+    public final Image getImage() {
         return this.image;
     }
 
     @Override
-    public EntityLevel getLevelType() {
+    public final  EntityLevel getLevelType() {
         return this.level;
     }
 
-    public EntityType getType() {
+    public final EntityType getType() {
         return this.type;
     }
 
     @Override
-    public double getDistance() {
+    public final double getDistance() {
        return this.nextDistance;
     }
 
     @Override
-    public void setDistance(final double distance) {
+    public final void setDistance(final double distance) {
         this.nextDistance = distance;
+    }
+
+    @Override
+    public void activateEffect(final Model model) {
+        // TODO Auto-generated method stub
     }
 
     public static final class Builder {
@@ -114,4 +120,5 @@ public class DynamicEntityImpl implements DynamicEntity {
         }
 
     }
+
 }
