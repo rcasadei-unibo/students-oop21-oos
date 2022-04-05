@@ -53,9 +53,8 @@ public interface DynamicEntity {
     void setDistance(double distance);
 
     /**
-     * Activate the effect of the collectible entity.
-     * @param model actual state of the model. 
+     * Activate the effect related to the entity, when it gets hit. 
+     * @param model 
      */
     void activateEffect(Model model);
-
 }
