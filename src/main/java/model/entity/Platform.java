@@ -4,9 +4,9 @@ import java.awt.geom.Point2D.Double;
 import javafx.scene.image.Image;
 import model.Model;
 
-public final class Coin extends DynamicEntityImpl {
+public final class Platform extends DynamicEntityImpl {
 
-    Coin(final Double coordinates, final Image image, final EntityLevel level, final EntityType type, final double speedX) {
+    Platform(final Double coordinates, final Image image, final EntityLevel level, final EntityType type, final double speedX) {
         super(coordinates, image, level, type, speedX);
     }
 
