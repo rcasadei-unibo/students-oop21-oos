@@ -25,7 +25,7 @@ public class PlayerViewImpl implements PlayerView {
     /**
      * Where to find the image with all the png.
      */
-    public static final String IMAGE_PATH = "res/Player.png";
+    public static final String IMAGE_PATH = "src/main/resources/Player.png";
 
     //coordinate dello sprite nel png per scegliere l'orso che mi serve
     private int spriteX;
