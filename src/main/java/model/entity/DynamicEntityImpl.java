@@ -5,26 +5,28 @@ import java.awt.geom.Point2D;
 import javafx.geometry.Dimension2D;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.image.Image;
+import model.Model;
 
 public abstract class DynamicEntityImpl implements DynamicEntity {
 
-    private static final  double INITIAL_SPEEDX = 2.5;
     private final Point2D.Double coordinates;
     private final Dimension2D dimensions;
-    private double speedX;
-    private double nextDistance; 
-    private final double previousDistance;
+    private final double speedX;
+    private double nextDistance;
     private final Image image;
-    private final EntityLevelType level;
+    private final EntityLevel level;
+    private final EntityType type;
 
 
-    public DynamicEntityImpl(final Dimension2D worldDimensions, final Image image, final EntityLevelType level, final double previousDistance) {
-        this.level = level;
+    public DynamicEntityImpl(final Point2D.Double coordinates, final Image image, final EntityLevel level, final EntityType type, final double speedX) {
+
+        this.coordinates = coordinates;
         this.image = image;
-        this.coordinates = this.generatePoint(worldDimensions);
-        this.dimensions = this.generateDimension();
-        this.previousDistance = previousDistance;
-        this.speedX = INITIAL_SPEEDX;
+        this.level = level;
+        this.type = type;
+        this.speedX = speedX;
+        this.dimensions = new Dimension2D(image.getWidth(), image.getHeight());
+
     }
 
     @Override
@@ -38,11 +40,6 @@ public abstract class DynamicEntityImpl implements DynamicEntity {
     }
 
     @Override
-    public final void setSpeedX(final double speedX) {
-        this.speedX = speedX;
-    }
-
-    @Override
     public final boolean isOutofScreen() {
         return this.coordinates.getX() < -this.dimensions.getWidth(); 
     }
@@ -53,8 +50,12 @@ public abstract class DynamicEntityImpl implements DynamicEntity {
     }
 
     @Override
-    public final EntityLevelType getLevelType() {
+    public final  EntityLevel getLevelType() {
         return this.level;
+    }
+
+    public final EntityType getType() {
+        return this.type;
     }
 
     @Override
@@ -67,13 +68,7 @@ public abstract class DynamicEntityImpl implements DynamicEntity {
         this.nextDistance = distance;
     }
 
-    private Point2D.Double generatePoint(final Dimension2D worldDimenion) {
-        final double x = worldDimenion.getWidth() * level.getSpawnX() + previousDistance;
-        final double y = worldDimenion.getHeight() * level.getSpawnY() - image.getHeight();
-        return new Point2D.Double(x, y);
-    }
+    @Override
+    public abstract void activateEffect(Model model);
 
-    private Dimension2D generateDimension() {
-        return new Dimension2D(image.getWidth(), image.getHeight());
-    }
 }

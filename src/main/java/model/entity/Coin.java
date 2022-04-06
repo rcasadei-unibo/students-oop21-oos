@@ -1,19 +1,17 @@
 package model.entity;
 
-import javafx.geometry.Dimension2D;
+import java.awt.geom.Point2D.Double;
 import javafx.scene.image.Image;
+import model.Model;
 
-public final class Coin extends CollectibleEntityImpl {
+public final class Coin extends DynamicEntityImpl {
 
-    public Coin(final EntityLevelType level, final Dimension2D worldDimension, final Image image) {
-        super(worldDimension, image, level);
+    Coin(final Double coordinates, final Image image, final EntityLevel level, final EntityType type, final double speedX) {
+        super(coordinates, image, level, type, speedX);
     }
 
     @Override
-    public void activateEffect() {
-        /*
-         * Aumento il valore delle monete contenuto nelle statistiche 
-         * */
+    public void activateEffect(final Model model) {
+        /*Manca implementazione metodo*/
     }
-
 }

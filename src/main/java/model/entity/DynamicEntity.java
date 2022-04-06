@@ -2,6 +2,7 @@ package model.entity;
 
 import javafx.geometry.Rectangle2D;
 import javafx.scene.image.Image;
+import model.Model;
 
 public interface DynamicEntity {
 
@@ -14,12 +15,6 @@ public interface DynamicEntity {
      * @return a new Rectangle2D that represents the coordinates and the dimension of the entity
      */
     Rectangle2D getBounds();
-
-    /**
-     * Set the speed of the entity.
-     * @param speedX 
-     */
-    void setSpeedX(double speedX);
 
     /**
      * Check if the entity is out of the screen.
@@ -37,7 +32,13 @@ public interface DynamicEntity {
      * 
      * @return the level in which the entity is placed. 
      */
-    EntityLevelType getLevelType();
+    EntityLevel getLevelType();
+
+    /**
+     * 
+     * @return the type of entity created.
+     */
+    EntityType getType();
 
     /**
      * 
@@ -51,4 +52,9 @@ public interface DynamicEntity {
      */
     void setDistance(double distance);
 
+    /**
+     * Activate the effect related to the entity, when it gets hit. 
+     * @param model 
+     */
+    void activateEffect(Model model);
 }
