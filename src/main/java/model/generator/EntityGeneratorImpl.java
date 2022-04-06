@@ -1,98 +1,101 @@
 package model.generator;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
 import javafx.geometry.Dimension2D;
-import model.entity.Coin;
-import model.entity.CollectibleEntityImpl;
 import model.entity.DynamicEntity;
-import model.entity.EntityLevelType;
-import model.entity.Obstacle;
-import model.entity.Platform;
-import view.entity.EntityImages;
+import model.entity.DynamicEntityFactory;
+import model.entity.DynamicEntityFactoryImpl;
+import model.entity.EntityLevel;
 
 public final class EntityGeneratorImpl implements EntityGenerator {
 
     private static final int MAX_CASE = 3;
     private static final int POWERUP_RARITY = 30;
+    private static final double INITIAL_SPEEDX = 2.5;
+
     private final List<DynamicEntity> entityList;
-    private int entityCount;
     private final Dimension2D worldDimension;
     private final Random rand = new Random();
+    private final DynamicEntityFactory factory;
+    private final Counter entitiesCount;
+    private double speedX;
 
     public EntityGeneratorImpl(final Dimension2D worldDimension) {
         this.entityList = new ArrayList<>();
-        this.entityList.add(new Obstacle(EntityLevelType.LEVEL_ZERO, worldDimension, EntityImages.OBSTACLE_ONE.getImageFromPath()));
-        this.entityCount = 0;
         this.worldDimension = worldDimension;
+        this.speedX = INITIAL_SPEEDX;
+        this.factory = new DynamicEntityFactoryImpl(worldDimension);
+        this.entityList.add(factory.createObsatcle(EntityLevel.ZERO, speedX));
+        entitiesCount = new Counter();
+        entitiesCount.increment(1);
     }
 
     @Override
-    public List<DynamicEntity> getEntityList() {
-        return Collections.unmodifiableList(entityList);
+    public List<DynamicEntity> getEntities() {
+        return this.entityList;
+    }
+
+    @Override
+    public void setSpeedX(final double speedX) {
+        this.speedX = speedX;
     }
 
     @Override
     public void updateList() {
         this.removeEntity();
+
         if (this.entityList.isEmpty() || this.checkPosition()) {
-            if (entityCount < POWERUP_RARITY) {
+            if (entitiesCount.getCounter() < POWERUP_RARITY) {
                 this.addEntity();
             } else  {
-                this.addPowerUp();
-                this.entityCount = 0;
+                //this.addPowerUp();
+                this.entitiesCount.reset();
             }
 
         }
-        this.entityList.forEach(e -> {
-            e.updatePosition();
-            if (e instanceof CollectibleEntityImpl && ((CollectibleEntityImpl) e).wasCollected() && !entityList.isEmpty()) {
-                entityList.remove(e);
-            }
-        });
+        this.entityList.forEach(e -> e.updatePosition());
 
     }
 
     private void addEntity() {
         final int random = rand.nextInt(MAX_CASE);
         switch (this.entityList.get(entityList.size() - 1).getLevelType()) {
-        case LEVEL_ZERO:
+        case ZERO:
             this.addFromZero(random);
             break;
-        case LEVEL_ONE:
+        case ONE:
             this.addFromOne(random);
             break;
-        case LEVEL_TWO:
+        case TWO:
             this.addFromTwo(random);
             break;
         default:
             break;
         }
-        this.entityCount++;
     }
 
-    private void addPowerUp() {
-
-    }
 
     private void addFromZero(final int random) {
         switch (Case.values()[random]) {
         case CASE_0:
             /*Obstacle ground level*/
-            this.entityList.add(new Obstacle(EntityLevelType.LEVEL_ZERO, worldDimension, EntityImages.OBSTACLE_ONE.getImageFromPath()));
+            this.entityList.add(factory.createObsatcle(EntityLevel.ZERO, speedX));
+            this.entitiesCount.increment(1);
             break;
         case CASE_1:
             /*Platform level one with under an obstacle*/
-            this.entityList.add(new Obstacle(EntityLevelType.LEVEL_ZERO, worldDimension, EntityImages.OBSTACLE_TWO.getImageFromPath()));
-            this.entityList.add(new Platform(EntityLevelType.LEVEL_ONE, worldDimension, EntityImages.PLATFORM.getImageFromPath()));
+            this.entityList.add(factory.createObsatcle(EntityLevel.ZERO, speedX));
+            this.entityList.add(factory.createPlatform(EntityLevel.ZERO, speedX));
+            this.entitiesCount.increment(2);
             break;
         case CASE_2:
             /*Platform level one with under a coin*/
-            this.entityList.add(new Coin(EntityLevelType.LEVEL_ZERO, worldDimension, EntityImages.COIN.getImageFromPath()));
-            this.entityList.add(new Platform(EntityLevelType.LEVEL_ONE, worldDimension, EntityImages.PLATFORM.getImageFromPath()));
+            this.entityList.add(factory.createCoin(EntityLevel.ZERO, speedX));
+            this.entityList.add(factory.createPlatform(EntityLevel.ZERO, speedX));
+            this.entitiesCount.increment(2);
             break;
 
         default:
@@ -106,15 +109,18 @@ public final class EntityGeneratorImpl implements EntityGenerator {
         switch (Case.values()[random]) {
         case CASE_0:
             /*Platform level two*/
-            this.entityList.add(new Platform(EntityLevelType.LEVEL_TWO, worldDimension, EntityImages.PLATFORM.getImageFromPath()));
+            this.entityList.add(factory.createPlatform(EntityLevel.TWO, speedX));
+            this.entitiesCount.increment(1);
             break;
         case CASE_1:
             /*Obstacle ground level*/
-            this.entityList.add(new Obstacle(EntityLevelType.LEVEL_ZERO, worldDimension, EntityImages.OBSTACLE_ONE.getImageFromPath()));
+            this.entityList.add(factory.createObsatcle(EntityLevel.ZERO, speedX));
+            this.entitiesCount.increment(1);
             break;
         case CASE_2:
             /*Collection of coin*/
-            this.entityList.add(new Coin(EntityLevelType.LEVEL_ONE, worldDimension, EntityImages.COIN.getImageFromPath()));
+            this.entityList.add(factory.createCoin(EntityLevel.ONE, speedX));
+            this.entitiesCount.increment(1);
             break;
 
         default:
@@ -127,15 +133,18 @@ public final class EntityGeneratorImpl implements EntityGenerator {
         switch (Case.values()[random]) {
         case CASE_0:
             /*Platform level one*/
-            this.entityList.add(new Platform(EntityLevelType.LEVEL_ONE, worldDimension, EntityImages.PLATFORM.getImageFromPath()));
+            this.entityList.add(factory.createPlatform(EntityLevel.ONE, speedX));
+            this.entitiesCount.increment(1);
             break;
         case CASE_1:
             /*Obstacle ground level*/
-            this.entityList.add(new Obstacle(EntityLevelType.LEVEL_ZERO, worldDimension, EntityImages.OBSTACLE_ONE.getImageFromPath()));
+            this.entityList.add(factory.createObsatcle(EntityLevel.ZERO, speedX));
+            this.entitiesCount.increment(1);
             break;
         case CASE_2:
             /*Collection of coin*/
-            this.entityList.add(new Coin(EntityLevelType.LEVEL_ZERO, worldDimension, EntityImages.COIN.getImageFromPath()));
+            this.entityList.add(factory.createCoin(EntityLevel.ZERO, speedX));
+            this.entitiesCount.increment(1);
             break;
 
         default:
@@ -158,4 +167,24 @@ public final class EntityGeneratorImpl implements EntityGenerator {
         CASE_0, CASE_1, CASE_2;
     }
 
+    private class Counter {
+
+        private int count;
+
+        Counter() {
+            this.count = 0;
+        }
+
+        public void increment(final int increment) {
+            this.count += increment;
+        }
+
+        public void reset() {
+            this.count = 0;
+        }
+
+        public int getCounter() {
+            return this.count;
+        }
+    }
 }
