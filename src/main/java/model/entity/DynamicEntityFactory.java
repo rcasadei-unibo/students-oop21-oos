@@ -26,4 +26,12 @@ public interface DynamicEntityFactory {
      */
     DynamicEntity createCoin(EntityLevel level, double speedX);
 
+    /**
+     * Create a new Powerup.
+     * @param level the level on which the powerup spawns.
+     * @param speedX the speed of the powerup. 
+     * @return a new Powerup instance.
+     */
+    DynamicEntity createPowerup(EntityLevel level, double speedX); 
+
 }
