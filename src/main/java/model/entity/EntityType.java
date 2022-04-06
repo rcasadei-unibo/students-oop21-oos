@@ -15,7 +15,12 @@ public enum EntityType {
     /**
      * Coin's type.
      */
-    COIN(5.0);
+    COIN(5.0), 
+
+    /**
+     * Powerup's type. 
+     */
+    POWERUP(5.0); 
 
     private final double distanceFactor;
 

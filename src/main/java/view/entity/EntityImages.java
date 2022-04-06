@@ -22,7 +22,32 @@ public enum EntityImages {
     /**
      * Platform's image.
      */
-    PLATFORM("res/Platform.png");
+    PLATFORM("res/Platform.png"),
+
+    /**
+     * Extralife powerup's image. 
+     */
+    EXTRALIFE("ExtraLife.png"), 
+
+    /**
+     * Mushroom powerup's image. 
+     */
+    MUSHROOM("Mushroom.png"), 
+
+    /**
+     * Shield powerup's image. 
+     */
+    SHIELD("Shield.png"), 
+
+    /**
+     * Spraybomb powerup's image. 
+     */
+    SPRAYBOMB("SprayBomb.png"), 
+
+    /**
+     * Superjump powerup's image. 
+     */
+    SUPERJUMP("SuperJump.png"); 
 
     private String path;
 
