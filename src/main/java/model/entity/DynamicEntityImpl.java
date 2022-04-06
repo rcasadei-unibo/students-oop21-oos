@@ -7,7 +7,7 @@ import javafx.geometry.Rectangle2D;
 import javafx.scene.image.Image;
 import model.Model;
 
-public class DynamicEntityImpl implements DynamicEntity {
+public abstract class DynamicEntityImpl implements DynamicEntity {
 
     private final Point2D.Double coordinates;
     private final Dimension2D dimensions;
@@ -69,8 +69,6 @@ public class DynamicEntityImpl implements DynamicEntity {
     }
 
     @Override
-    public void activateEffect(final Model model) {
-        // TODO Auto-generated method stub
-    }
+    public abstract void activateEffect(Model model);
 
 }
