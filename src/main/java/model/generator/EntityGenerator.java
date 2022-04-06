@@ -10,7 +10,7 @@ public interface EntityGenerator {
      * 
      * @return a list containing the entity that are actually in the game.
      */
-    List<DynamicEntity> getEntityList();
+    List<DynamicEntity> getEntities();
 
     /**
      * 
