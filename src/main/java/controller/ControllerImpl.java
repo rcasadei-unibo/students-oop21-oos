@@ -1,6 +1,8 @@
 package controller;
 
+import input.InputObserver;
 import model.Model;
+import model.ModelImpl;
 import view.View;
 
 public class ControllerImpl implements Controller {
@@ -8,24 +10,27 @@ public class ControllerImpl implements Controller {
     private Model model;
     private final View view;
     private final AnimationTimerImpl timer;
+    private final InputObserver obs;
 
-    public ControllerImpl(final View view) {
+    public ControllerImpl(final View view, final InputObserver obs) {
         super();
         this.view = view;
+        this.obs = obs;
         this.timer = new AnimationTimerImpl(this);
     }
 
     @Override
     public void setup() {
-        //this.model = new ModelImpl();
-        //this.view.game();
-
+        this.model = new ModelImpl();
+        this.view.game();
     }
 
     @Override
     public void processInput() {
-        // TODO Auto-generated method stub
-
+        this.obs.getCommands().forEach(cmd -> {
+            cmd.execute();
+        });
+        this.obs.clear();
     }
 
     @Override
@@ -39,7 +44,7 @@ public class ControllerImpl implements Controller {
 
     @Override
     public void render() {
-        //this.view.render();
+        this.view.render();
     }
 
     @Override
