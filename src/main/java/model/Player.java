@@ -68,4 +68,10 @@ public interface Player {
      */
     void setShield(boolean active);
 
+    /**
+     * Sets the field isOnPlatform.
+     * @param on true if the player is on a platform
+     */
+    void setOnPlatform(boolean on);
+
 }

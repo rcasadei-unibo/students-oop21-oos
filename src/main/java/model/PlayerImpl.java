@@ -26,6 +26,7 @@ public final class PlayerImpl implements Player {
     //se sta saltando, da quanto e se deve aspettare
     private boolean isJumping = false;
     private boolean isGoingDown = false;
+    private boolean isOnPlatform = false;
     private int jumpHeight;
     private int landHeight;
 
@@ -58,10 +59,13 @@ public final class PlayerImpl implements Player {
             } else if (this.y <= this.jumpHeight && this.isGoingDown) {
                 this.y++;
             }
+            if (this.y == this.landHeight) {
+                this.isJumping = false;
+                this.isGoingDown = false;
+            }
         }
-        if (this.isJumping && this.y == this.landHeight) {
-            this.isJumping = false;
-            this.isGoingDown = false;
+        if (!this.isOnPlatform) {
+            this.landHeight = INITIAL_Y;
         }
     }
 
@@ -113,6 +117,11 @@ public final class PlayerImpl implements Player {
     @Override
     public void setShield(final boolean active) {
         this.shieldActive = active;
+    }
+
+    @Override
+    public void setOnPlatform(final boolean on) {
+        this.isOnPlatform = on;
     }
 
 }
