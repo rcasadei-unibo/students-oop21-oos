@@ -53,6 +53,12 @@ public interface Player {
     void setJumpHeight(int h);
 
     /**
+     * Sets the height of the land.
+     * @param h the new height of the land
+     */
+    void setLandHeight(int h);
+
+    /**
      * Sets the number of lifes of the player.
      * @param lifes the new number of lifes
      */
