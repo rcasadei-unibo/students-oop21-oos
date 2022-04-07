@@ -12,7 +12,10 @@ public final class CollisionManagerImpl implements CollisionManager {
         for (final DynamicEntityImpl obj : objects) {
             if (obj.getBounds().intersects(pl.getBounds())) {
                 if (obj.getType() == EntityType.PLATFORM)  {
+                    pl.setOnPlatform(true);
                     pl.setLandHeight((int) obj.getBounds().getMaxY());
+                } else {
+                    pl.setOnPlatform(false);
                 }
                 obj.activateEffect(model);
             }
