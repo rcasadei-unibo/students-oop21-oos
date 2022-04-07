@@ -66,7 +66,7 @@ public final class PlayerImpl implements Player {
     }
 
     @Override
-    public int getX() {
+    public int getX() { 
             return this.x;
     }
 

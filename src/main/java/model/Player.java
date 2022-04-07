@@ -5,13 +5,6 @@ import javafx.geometry.Rectangle2D;
 public interface Player {
 
     /**
-     * Move the player to the point (x,y).
-     * @param x final X coordinate
-     * @param y final Y coordinate
-     */
-    void moveTo(int x, int y);
-
-    /**
      * Makes the jump start.
      */
     void jump();
