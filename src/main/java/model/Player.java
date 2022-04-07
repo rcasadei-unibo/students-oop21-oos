@@ -51,5 +51,10 @@ public interface Player {
      * @param active true if the shield is active
      */
     void setShield(boolean active);
+    
+    /**
+     * @return true if the player is jumping
+     */
+    boolean isJumping();
 
 }

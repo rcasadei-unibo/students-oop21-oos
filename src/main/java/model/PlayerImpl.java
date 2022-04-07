@@ -98,4 +98,9 @@ public final class PlayerImpl implements Player {
         this.shieldActive = active;
     }
 
+    @Override
+    public boolean isJumping() {
+        return this.isJumping;
+    }
+
 }
