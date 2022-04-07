@@ -1,6 +1,16 @@
 package model;
 
+import javafx.geometry.Rectangle2D;
+
 public final class PlayerImpl implements Player {
+    /**
+     * Width of the sprite.
+     */
+    public static final int MAIN_CHARACTER_WIDTH = 96;
+    /**
+     * Height of the sprite.
+     */
+    public static final int MAIN_CHARACTER_HEIGHT = 96;
 
     //decido quanto � lungo un salto, quanto deve passare tra un salto e l'altro
     public static final int JUMP_TIME = 30;
@@ -79,8 +89,18 @@ public final class PlayerImpl implements Player {
     }
 
     @Override
+    public Rectangle2D getBounds() {
+        return new Rectangle2D(this.getX(), this.getY(), MAIN_CHARACTER_WIDTH, MAIN_CHARACTER_HEIGHT);
+    }
+
+    @Override
     public boolean isShieldActive() {
         return shieldActive;
+    }
+
+    @Override
+    public boolean isJumping() {
+        return this.isJumping;
     }
 
     @Override
@@ -96,11 +116,6 @@ public final class PlayerImpl implements Player {
     @Override
     public void setShield(final boolean active) {
         this.shieldActive = active;
-    }
-
-    @Override
-    public boolean isJumping() {
-        return this.isJumping;
     }
 
 }

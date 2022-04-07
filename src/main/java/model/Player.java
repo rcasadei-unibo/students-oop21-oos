@@ -1,5 +1,7 @@
 package model;
 
+import javafx.geometry.Rectangle2D;
+
 public interface Player {
 
     /**
@@ -30,9 +32,19 @@ public interface Player {
     int getLives();
 
     /**
+     * @return the bounds of the Player
+     */
+    Rectangle2D getBounds();
+
+    /**
      * @return true if the shield is active
      */
     boolean isShieldActive();
+
+    /**
+     * @return true if the player is jumping
+     */
+    boolean isJumping();
 
     /**
      * Sets the height of the jumps.
@@ -51,10 +63,5 @@ public interface Player {
      * @param active true if the shield is active
      */
     void setShield(boolean active);
-    
-    /**
-     * @return true if the player is jumping
-     */
-    boolean isJumping();
 
 }
