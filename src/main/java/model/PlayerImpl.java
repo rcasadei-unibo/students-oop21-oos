@@ -25,8 +25,7 @@ public final class PlayerImpl implements Player {
 
     //se sta saltando, da quanto e se deve aspettare
     private boolean isJumping = false;
-    private int jumpTime = 0;
-    private int waitTime;
+    private boolean isGoingDown = false;
     private int jumpHeight;
     private int landHeight;
 
@@ -37,7 +36,6 @@ public final class PlayerImpl implements Player {
     public PlayerImpl() {
         this.x = INITIAL_X;
         this.y = INITIAL_Y;
-        this.waitTime = WAIT_JUMP_TIME;
         this.jumpHeight = JUMP_HEIGHT;
         this.landHeight = INITIAL_Y;
         this.numLives = 1;
@@ -45,35 +43,27 @@ public final class PlayerImpl implements Player {
     }
 
     @Override
-    public void moveTo(final int x, final int y) {
-            this.x = x;
-            this.y = y;
+    public void jump() {
+        this.isJumping = true;
     }
 
     @Override
-    public void jump() {
-        if (!isJumping) {
-            if (waitTime < WAIT_JUMP_TIME) {
-                waitTime++;
-            } else if (y == landHeight) {
-                isJumping = true;
-                jumpTime++;
-                int newY = y;
-                newY -= jumpHeight;
-                moveTo(x, newY);
+    public void updateJump() {
+        if (this.isJumping) {
+            if (this.y == this.jumpHeight) {
+                this.isGoingDown = true;
             }
-        } else {
-            jumpTime++;
-            if (jumpTime >= landHeight) {
-                    y = INITIAL_Y;
-                    isJumping = false;
-                    jumpTime = 0;
-                    waitTime = 0;
+            if (this.y < this.jumpHeight && !this.isGoingDown) {
+                this.y--;
+            } else if (this.y <= this.jumpHeight && this.isGoingDown) {
+                this.y++;
             }
-            //animate(movement);
         }
-
-}
+        if (this.isJumping && this.y == this.landHeight) {
+            this.isJumping = false;
+            this.isGoingDown = false;
+        }
+    }
 
     @Override
     public int getX() {
