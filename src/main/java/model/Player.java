@@ -12,9 +12,14 @@ public interface Player {
     void moveTo(int x, int y);
 
     /**
-     * Jump.
+     * Makes the jump start.
      */
     void jump();
+
+    /**
+     * Update the coordinate of the player during the jump.
+     */
+    void updateJump();
 
     /**
      * @return the X coordinate of the player
