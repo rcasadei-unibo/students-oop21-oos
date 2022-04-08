@@ -7,22 +7,22 @@ public enum EntityImages {
     /**
      * Obstacle's image (hydrant).
      */
-    OBSTACLE_ONE("res/Hydrant.png"),
+    OBSTACLE_ONE("Hydrant.png"),
 
     /**
      * Obstacle's image (road cone).
      */
-    OBSTACLE_TWO("res/RoadCone.png"),
+    OBSTACLE_TWO("RoadCone.png"),
 
     /**
      * Coin's image.
      */
-    COIN("res/Coin.png"),
+    COIN("Coin.png"),
 
     /**
      * Platform's image.
      */
-    PLATFORM("res/Platform.png"),
+    PLATFORM("Platform.png"),
 
     /**
      * Extralife powerup's image. 
@@ -53,10 +53,6 @@ public enum EntityImages {
 
     EntityImages(final String path) {
         this.path = path;
-    }
-
-    public String getImagePath() {
-        return this.path;
     }
 
     public Image getImageFromPath() {
