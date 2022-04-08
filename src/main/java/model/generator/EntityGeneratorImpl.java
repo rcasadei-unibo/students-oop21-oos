@@ -127,7 +127,7 @@ public final class EntityGeneratorImpl implements EntityGenerator {
             break;
         case CASE_2:
             /*Collection of coin*/
-            this.entityList.add(factory.createCoin(EntityLevel.ONE, speedX));
+            this.entityList.addAll(factory.createCoinCollection(EntityLevel.ONE, speedX));
             this.entitiesCount.increment(1);
             break;
 
