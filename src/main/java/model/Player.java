@@ -45,6 +45,11 @@ public interface Player {
     boolean isJumping();
 
     /**
+     * @return true if the player is going down from the jump
+     */
+    boolean isGoingDown();
+
+    /**
      * Sets the height of the jumps.
      * @param h the new height of the jump
      */

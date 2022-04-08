@@ -100,6 +100,11 @@ public final class PlayerImpl implements Player {
     }
 
     @Override
+    public boolean isGoingDown() {
+        return this.isGoingDown;
+    }
+
+    @Override
     public void setJumpHeight(final int h) {
         this.jumpHeight = h;
     }
