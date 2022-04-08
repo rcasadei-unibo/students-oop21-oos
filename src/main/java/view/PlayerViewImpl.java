@@ -1,19 +1,10 @@
 package view;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import model.Player;
-import model.entity.DynamicEntity;
 
-public class PlayerViewImpl implements PlayerView {
+public final class PlayerViewImpl implements PlayerView {
 
     private final Pane pane; 
     /**
@@ -29,18 +20,22 @@ public class PlayerViewImpl implements PlayerView {
      */
     public static final String IMAGE_PATH = "src/main/resources/Player1.png";
 
-    /*public static final int TOTAL_MOVEMENTS = 2;
+    public static final int TOTAL_MOVEMENTS = 3;
     public static final int NORMAL = 0;
     public static final int JUMP = 1;
+    public static final int DOWN = 2;
+    //quando veloce deve cambiare immagine 
+    public static final byte SPRITE_CHANGE = 5;
 
     //coordinate dello sprite nel png per scegliere l'orso che mi serve
     private int spriteX;
     private int spriteY;
     private int currentDirection;
     private byte currentSprite;
+    private byte currentSpriteChange;
 
     private int[][] spriteXCoordinates = new int[TOTAL_MOVEMENTS][];
-    private int[][] spriteYCoordinates = new int[TOTAL_MOVEMENTS][];*/
+    private int[][] spriteYCoordinates = new int[TOTAL_MOVEMENTS][];
 
     //il player
     private Player player;
@@ -49,36 +44,42 @@ public class PlayerViewImpl implements PlayerView {
     public PlayerViewImpl(final Pane pane, final Player pl) {
         this.pane = pane;
         this.player = pl;
-        /*this.currentDirection = NORMAL;
+        this.currentDirection = NORMAL;
         this.currentSprite = 0;
-        try {
-            image = new Image(Files.newInputStream(Paths.get(IMAGE_PATH)));
-            this.spriteImage = new ImageView(image);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        this.currentSpriteChange = 0;
 
-        spriteXCoordinates[NORMAL] = new int[] {480}; //la coordinata delle prime due immagini
+        spriteXCoordinates[NORMAL] = new int[] {480, 560, 650}; //le coordinata delle prime tre immagini
         spriteYCoordinates[NORMAL] = new int[] {0, 0, 0, 0};
-        spriteXCoordinates[JUMP] = new int[] {1248, 1344, 1440}; // le ccoridnate delle altre
-        spriteYCoordinates[JUMP] = new int[] {0, 0, 0, 0};*/
+        spriteXCoordinates[JUMP] = new int[] {1248}; // le coordinata del salto
+        spriteYCoordinates[JUMP] = new int[] {0};
+        spriteXCoordinates[DOWN] = new int[] {1248}; // la coordinata della discesa
+        spriteYCoordinates[DOWN] = new int[] {0};
     }
 
-    /*private void animate() {
-        if (this.player.isJumping() && this.currentDirection != JUMP) {
+    private void animate() {
+        if (this.player.isJumping() && !this.player.isGoingDown() && this.currentDirection != JUMP) {
             this.currentDirection = JUMP;
             this.currentSprite = 0;
+            this.currentSpriteChange = 0;
         } else if (!this.player.isJumping() && this.currentDirection != NORMAL) {
             this.currentDirection = NORMAL;
             this.currentSprite = 0;
+            this.currentSpriteChange = 0;
+        } else if (this.player.isGoingDown() && this.currentDirection != DOWN) {
+            this.currentDirection = DOWN;
+            this.currentSprite = 0;
+            this.currentSpriteChange = 0;
         } else {
-            this.currentSprite = (byte) ((this.currentSprite + 1)
-                    %  spriteXCoordinates[this.currentDirection].length);
+            this.currentSpriteChange++;
+                if (currentSpriteChange >= SPRITE_CHANGE) {
+                        currentSprite = (byte) ((currentSprite++) 
+                        % spriteXCoordinates[currentDirection].length);
+                }
         }
 
         spriteX = spriteXCoordinates[this.currentDirection][this.currentSprite];
         spriteY = spriteYCoordinates[this.currentDirection][this.currentSprite];
-    }*/
+    }
 
     @Override
     public void render() {
