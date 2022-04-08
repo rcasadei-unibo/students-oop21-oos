@@ -1,7 +1,11 @@
 package model.entity;
 
 import java.awt.geom.Point2D;
+import java.util.List;
 import java.util.Random;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import javafx.geometry.Dimension2D;
 import javafx.scene.image.Image;
@@ -29,7 +33,7 @@ public final class DynamicEntityFactoryImpl implements DynamicEntityFactory {
         final Image image = Math.random() > 0.5 ? EntityImages.OBSTACLE_ONE.getImageFromPath() : EntityImages.OBSTACLE_TWO.getImageFromPath();
         final Point2D.Double coordinates = this.generatePoint(level, image, EntityType.OBSATCLE.getDistanceFactor());
         final DynamicEntity ob = new Obstacle(coordinates, image, level, EntityType.OBSATCLE, speedX);
-        ob.setDistance(worldDimension.getWidth() - image.getWidth());
+        ob.setDistance(worldDimension.getWidth() - image.getWidth() * EntityType.OBSATCLE.getDistanceFactor());
         return ob;
 
     }
@@ -51,9 +55,16 @@ public final class DynamicEntityFactoryImpl implements DynamicEntityFactory {
         final Image image = EntityImages.COIN.getImageFromPath();
         final Point2D.Double coordinates = this.generatePoint(level, image, EntityType.COIN.getDistanceFactor());
         final DynamicEntity cn = new Coin(coordinates, image, level, EntityType.COIN, speedX);
-        cn.setDistance(worldDimension.getWidth() - image.getWidth());
+        cn.setDistance(worldDimension.getWidth() - image.getWidth() * EntityType.COIN.getDistanceFactor());
         return cn;
 
+    }
+
+    @Override
+    public List<DynamicEntity> createCoinCollection(final EntityLevel level, final double speedX) {
+        return Stream.generate(() -> createCoin(level, speedX))
+                     .limit(3)
+                     .collect(Collectors.toList());
     }
 
     @Override
@@ -139,4 +150,5 @@ public final class DynamicEntityFactoryImpl implements DynamicEntityFactory {
      * Aggiungere metodi che costruiscano collezioni con due Entità ? 
      * 
      * */
+
 }

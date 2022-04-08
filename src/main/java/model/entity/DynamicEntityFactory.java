@@ -1,5 +1,7 @@
 package model.entity;
 
+import java.util.List;
+
 public interface DynamicEntityFactory {
 
     /**
@@ -25,6 +27,14 @@ public interface DynamicEntityFactory {
      * @return a new {@link Coin} 's instance 
      */
     DynamicEntity createCoin(EntityLevel level, double speedX);
+
+    /**
+     * Create a list of {@link Coin}.
+     * @param level the level on which coin spawn 
+     * @param speedX the speed of the coin. 
+     * @return a {@link Coin} list. 
+     */
+    List<DynamicEntity> createCoinCollection(EntityLevel level, double speedX);
 
     /**
      * Create a new Powerup.
