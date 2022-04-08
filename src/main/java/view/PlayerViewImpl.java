@@ -19,12 +19,25 @@ public final class PlayerViewImpl implements PlayerView {
      * Where to find the image with all the png.
      */
     public static final String IMAGE_PATH = "src/main/resources/Player1.png";
-
+    /**
+     * The total of the movements.
+     */
     public static final int TOTAL_MOVEMENTS = 3;
+    /**
+     * The normal direction.
+     */
     public static final int NORMAL = 0;
+    /**
+     * Jump direction.
+     */
     public static final int JUMP = 1;
+    /**
+     * Down direction.
+     */
     public static final int DOWN = 2;
-    //quando veloce deve cambiare immagine 
+    /**
+     * How often i have to change the sprite.
+     */
     public static final byte SPRITE_CHANGE = 5;
 
     //coordinate dello sprite nel png per scegliere l'orso che mi serve
@@ -58,17 +71,11 @@ public final class PlayerViewImpl implements PlayerView {
 
     private void animate() {
         if (this.player.isJumping() && !this.player.isGoingDown() && this.currentDirection != JUMP) {
-            this.currentDirection = JUMP;
-            this.currentSprite = 0;
-            this.currentSpriteChange = 0;
+            this.changeDirection(JUMP);
         } else if (!this.player.isJumping() && this.currentDirection != NORMAL) {
-            this.currentDirection = NORMAL;
-            this.currentSprite = 0;
-            this.currentSpriteChange = 0;
+            this.changeDirection(NORMAL);
         } else if (this.player.isGoingDown() && this.currentDirection != DOWN) {
-            this.currentDirection = DOWN;
-            this.currentSprite = 0;
-            this.currentSpriteChange = 0;
+            this.changeDirection(DOWN);
         } else {
             this.currentSpriteChange++;
                 if (currentSpriteChange >= SPRITE_CHANGE) {
@@ -79,6 +86,12 @@ public final class PlayerViewImpl implements PlayerView {
 
         spriteX = spriteXCoordinates[this.currentDirection][this.currentSprite];
         spriteY = spriteYCoordinates[this.currentDirection][this.currentSprite];
+    }
+
+    private void changeDirection(final int dir) {
+        this.currentDirection = dir;
+        this.currentSprite = 0;
+        this.currentSpriteChange = 0;
     }
 
     @Override
