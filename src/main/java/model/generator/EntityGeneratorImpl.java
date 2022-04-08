@@ -13,11 +13,10 @@ import model.entity.EntityLevel;
 public final class EntityGeneratorImpl implements EntityGenerator {
 
     private static final int MAX_CASE = 3;
-    private static final int POWERUP_RARITY = 30;
+    private static final int POWERUP_RARITY = 15;
     private static final double INITIAL_SPEEDX = 2.5;
 
     private final List<DynamicEntity> entityList;
-    private final Dimension2D worldDimension;
     private final Random rand = new Random();
     private final DynamicEntityFactory factory;
     private final Counter entitiesCount;
@@ -25,7 +24,6 @@ public final class EntityGeneratorImpl implements EntityGenerator {
 
     public EntityGeneratorImpl(final Dimension2D worldDimension) {
         this.entityList = new ArrayList<>();
-        this.worldDimension = worldDimension;
         this.speedX = INITIAL_SPEEDX;
         this.factory = new DynamicEntityFactoryImpl(worldDimension);
         this.entityList.add(factory.createObsatcle(EntityLevel.ZERO, speedX));
@@ -44,6 +42,16 @@ public final class EntityGeneratorImpl implements EntityGenerator {
     }
 
     @Override
+    public void removeEntity(final DynamicEntity entity) {
+        this.entityList.remove(entity);
+    }
+
+    @Override
+    public void clearEntity() {
+        this.entityList.clear();
+    }
+
+    @Override
     public void updateList() {
         this.removeEntity();
 
@@ -51,7 +59,7 @@ public final class EntityGeneratorImpl implements EntityGenerator {
             if (entitiesCount.getCounter() < POWERUP_RARITY) {
                 this.addEntity();
             } else  {
-                //this.addPowerUp();
+                this.entityList.add(factory.createPowerup(EntityLevel.ZERO, speedX));
                 this.entitiesCount.reset();
             }
 
@@ -64,13 +72,13 @@ public final class EntityGeneratorImpl implements EntityGenerator {
         final int random = rand.nextInt(MAX_CASE);
         switch (this.entityList.get(entityList.size() - 1).getLevelType()) {
         case ZERO:
-            this.addFromZero(random);
+            this.levelZeroConfig(random);
             break;
         case ONE:
-            this.addFromOne(random);
+            this.levelOneConfig(random);
             break;
         case TWO:
-            this.addFromTwo(random);
+            this.levelTwoConfig(random);
             break;
         default:
             break;
@@ -78,7 +86,7 @@ public final class EntityGeneratorImpl implements EntityGenerator {
     }
 
 
-    private void addFromZero(final int random) {
+    private void levelZeroConfig(final int random) {
         switch (Case.values()[random]) {
         case CASE_0:
             /*Obstacle ground level*/
@@ -104,7 +112,7 @@ public final class EntityGeneratorImpl implements EntityGenerator {
 
     }
 
-    private void addFromOne(final int random) {
+    private void levelOneConfig(final int random) {
 
         switch (Case.values()[random]) {
         case CASE_0:
@@ -128,7 +136,7 @@ public final class EntityGeneratorImpl implements EntityGenerator {
         }
     }
 
-    private void addFromTwo(final int random) {
+    private void levelTwoConfig(final int random) {
 
         switch (Case.values()[random]) {
         case CASE_0:
