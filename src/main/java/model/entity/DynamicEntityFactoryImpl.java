@@ -3,7 +3,6 @@ package model.entity;
 import java.awt.geom.Point2D;
 import java.util.List;
 import java.util.Random;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -146,9 +145,5 @@ public final class DynamicEntityFactoryImpl implements DynamicEntityFactory {
         final double y = worldDimension.getHeight() * level.getSpawnY() - image.getHeight();
         return new Point2D.Double(x, y);
     }
-    /*
-     * Aggiungere metodi che costruiscano collezioni con due Entità ? 
-     * 
-     * */
 
 }
