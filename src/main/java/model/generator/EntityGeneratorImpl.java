@@ -53,7 +53,7 @@ public final class EntityGeneratorImpl implements EntityGenerator {
 
     @Override
     public void updateList() {
-        this.removeEntity();
+        this.removeIfOut();
 
         if (this.entityList.isEmpty() || this.checkPosition()) {
             if (entitiesCount.getCounter() < POWERUP_RARITY) {
@@ -160,7 +160,7 @@ public final class EntityGeneratorImpl implements EntityGenerator {
         }
     }
 
-    private void removeEntity() {
+    private void removeIfOut() {
         if (!this.entityList.isEmpty() && this.entityList.get(0).isOutofScreen()) {
             this.entityList.remove(0);
         }
