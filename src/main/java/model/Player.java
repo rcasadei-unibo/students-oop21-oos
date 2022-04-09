@@ -25,11 +25,6 @@ public interface Player {
     Rectangle2D getBounds();
 
     /**
-     * @return the height of the jump
-     */
-    int getJumpHeight();
-
-    /**
      * @return true if the shield is active
      */
     boolean isShieldActive();
