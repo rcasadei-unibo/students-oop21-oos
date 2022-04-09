@@ -96,13 +96,13 @@ public final class EntityGeneratorImpl implements EntityGenerator {
         case CASE_1:
             /*Platform level one with under an obstacle*/
             this.entityList.add(factory.createObsatcle(EntityLevel.ZERO, speedX));
-            this.entityList.add(factory.createPlatform(EntityLevel.ZERO, speedX));
+            this.entityList.add(factory.createPlatform(EntityLevel.ONE, speedX));
             this.entitiesCount.increment(2);
             break;
         case CASE_2:
             /*Platform level one with under a coin*/
             this.entityList.add(factory.createCoin(EntityLevel.ZERO, speedX));
-            this.entityList.add(factory.createPlatform(EntityLevel.ZERO, speedX));
+            this.entityList.add(factory.createPlatform(EntityLevel.ONE, speedX));
             this.entitiesCount.increment(2);
             break;
 
