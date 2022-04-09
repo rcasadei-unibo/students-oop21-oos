@@ -107,7 +107,7 @@ public final class PlayerViewImpl implements PlayerView {
 
     private ImageView createImage(final Player pl) {
         final ImageView image = new ImageView(new Image(IMAGE_PATH));
-        image.setViewport(new Rectangle2D(spriteX, spriteY, MAIN_CHARACTER_WIDTH, MAIN_CHARACTER_HEIGHT));;
+        image.setViewport(new Rectangle2D(spriteX, spriteY, 65, 65));;
         image.setPreserveRatio(true);
         image.setX(pl.getBounds().getMinX());
         image.setY(pl.getBounds().getMinY());
