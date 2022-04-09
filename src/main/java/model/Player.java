@@ -15,16 +15,6 @@ public interface Player {
     void updateJump();
 
     /**
-     * @return the X coordinate of the player
-     */
-    int getX();
-
-    /**
-     * @return the Y coordinate of the player
-     */
-    int getY();
-
-    /**
      * @return the number of lifes of the player
      */
     int getLives();
@@ -33,6 +23,11 @@ public interface Player {
      * @return the bounds of the Player
      */
     Rectangle2D getBounds();
+
+    /**
+     * @return the height of the jump
+     */
+    int getJumpHeight();
 
     /**
      * @return true if the shield is active

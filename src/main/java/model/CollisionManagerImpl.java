@@ -13,7 +13,9 @@ public final class CollisionManagerImpl implements CollisionManager {
             if (obj.getBounds().intersects(pl.getBounds())) {
                 if (obj.getType() == EntityType.PLATFORM)  {
                     pl.setOnPlatform(true);
-                    pl.setLandHeight((int) obj.getBounds().getMaxY());
+                    final int platformHeight = (int) obj.getBounds().getMaxY();
+                    pl.setLandHeight(platformHeight);
+                    pl.setJumpHeight(pl.getJumpHeight() + platformHeight);
                 } else {
                     pl.setOnPlatform(false);
                 }

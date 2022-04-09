@@ -11,22 +11,26 @@ public final class PlayerImpl implements Player {
      * Height of the sprite.
      */
     public static final int MAIN_CHARACTER_HEIGHT = 96;
-
-    //decido quanto � lungo un salto, quanto deve passare tra un salto e l'altro
-    public static final int JUMP_TIME = 30;
-    public static final int WAIT_JUMP_TIME = 10;
-    //posizione di default di partenza
+    /**
+     * Initial x of the sprite.
+     */
     public static final int INITIAL_X = 40;
-    public static final int INITIAL_Y = 300;
-    public static final int JUMP_HEIGHT = 200;
+    /**
+     * Initial y of the sprite.
+     */
+    public static final int INITIAL_Y = 350;
+    /**
+     * Jump height of the sprite.
+     */
+    public static final int JUMP_HEIGHT = 300;
     //coordinate nello schermo
     private int x;
     private int y;
 
     //se sta saltando, da quanto e se deve aspettare
-    private boolean isJumping = false;
-    private boolean isGoingDown = false;
-    private boolean isOnPlatform = false;
+    private boolean isJumping;
+    private boolean isGoingDown;
+    private boolean isOnPlatform;
     private int jumpHeight;
     private int landHeight;
 
@@ -37,6 +41,9 @@ public final class PlayerImpl implements Player {
     public PlayerImpl() {
         this.x = INITIAL_X;
         this.y = INITIAL_Y;
+        this.isJumping = false;
+        this.isGoingDown = false;
+        this.isOnPlatform = false;
         this.jumpHeight = JUMP_HEIGHT;
         this.landHeight = INITIAL_Y;
         this.numLives = 1;
@@ -66,17 +73,11 @@ public final class PlayerImpl implements Player {
         }
         if (!this.isOnPlatform) {
             this.landHeight = INITIAL_Y;
+            this.jumpHeight = JUMP_HEIGHT;
+            if (this.y < this.jumpHeight && this.y < this.landHeight) {
+                this.y++;
+            }
         }
-    }
-
-    @Override
-    public int getX() { 
-            return this.x;
-    }
-
-    @Override
-    public int getY() {
-        return this.y;
     }
 
     @Override
@@ -86,7 +87,12 @@ public final class PlayerImpl implements Player {
 
     @Override
     public Rectangle2D getBounds() {
-        return new Rectangle2D(this.getX(), this.getY(), MAIN_CHARACTER_WIDTH, MAIN_CHARACTER_HEIGHT);
+        return new Rectangle2D(this.x, this.y, MAIN_CHARACTER_WIDTH, MAIN_CHARACTER_HEIGHT);
+    }
+
+    @Override
+    public int getJumpHeight() {
+        return this.jumpHeight;
     }
 
     @Override
