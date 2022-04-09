@@ -62,11 +62,11 @@ public final class PlayerViewImpl implements PlayerView {
         this.currentSprite = 0;
         this.currentSpriteChange = 0;
 
-        spriteXCoordinates[NORMAL] = new int[] {480, 560, 650}; //le coordinata delle prime tre immagini
+        spriteXCoordinates[NORMAL] = new int[] {6, 50, 95}; //le coordinata delle prime tre immagini
         spriteYCoordinates[NORMAL] = new int[] {0, 0, 0, 0};
-        spriteXCoordinates[JUMP] = new int[] {1248}; // le coordinata del salto
+        spriteXCoordinates[JUMP] = new int[] {141}; // le coordinata del salto
         spriteYCoordinates[JUMP] = new int[] {0};
-        spriteXCoordinates[DOWN] = new int[] {1248}; // la coordinata della discesa
+        spriteXCoordinates[DOWN] = new int[] {193}; // la coordinata della discesa
         spriteYCoordinates[DOWN] = new int[] {0};
     }
 
