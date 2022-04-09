@@ -9,9 +9,8 @@ import model.generator.EntityGeneratorImpl;
 
 public class GameStateImpl implements GameState {
 
-    private Player player;
-    private EntityGenerator entityGenerator;
-    private List<DynamicEntity> entities;
+    private final Player player;
+    private final EntityGenerator entityGenerator;
 
     public GameStateImpl() {
         this.player = new PlayerImpl();
