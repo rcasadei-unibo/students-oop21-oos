@@ -2,7 +2,7 @@ package model;
 
 import java.util.List;
 
-import model.entity.DynamicEntityImpl;
+import model.entity.DynamicEntity;
 
 public interface CollisionManager {
 
@@ -11,6 +11,6 @@ public interface CollisionManager {
      * @param objects the list of Objects
      * @param model the Model
      */
-    void playerCollidesWidth(Player pl, List<DynamicEntityImpl> objects, Model model);
+    void playerCollidesWidth(Player pl, List<DynamicEntity> objects, Model model);
 
 }
