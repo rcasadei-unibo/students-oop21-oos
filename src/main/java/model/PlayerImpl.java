@@ -16,9 +16,9 @@ public final class PlayerImpl implements Player {
     public static final int JUMP_TIME = 30;
     public static final int WAIT_JUMP_TIME = 10;
     //posizione di default di partenza
-    public static final int INITIAL_X = 380;
-    public static final int INITIAL_Y = 375;
-    public static final int JUMP_HEIGHT = 110;
+    public static final int INITIAL_X = 40;
+    public static final int INITIAL_Y = 300;
+    public static final int JUMP_HEIGHT = 200;
     //coordinate nello schermo
     private int x;
     private int y;
@@ -54,9 +54,9 @@ public final class PlayerImpl implements Player {
             if (this.y == this.jumpHeight) {
                 this.isGoingDown = true;
             }
-            if (this.y < this.jumpHeight && !this.isGoingDown) {
+            if (this.y > this.jumpHeight && !this.isGoingDown) {
                 this.y--;
-            } else if (this.y <= this.jumpHeight && this.isGoingDown) {
+            } else if (this.y >= this.jumpHeight && this.isGoingDown) {
                 this.y++;
             }
             if (this.y == this.landHeight) {

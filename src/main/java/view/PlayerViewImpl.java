@@ -64,11 +64,11 @@ public final class PlayerViewImpl implements PlayerView {
         this.currentSpriteChange = 0;
 
         spriteXCoordinates[NORMAL] = new int[] {6, 50, 95}; //le coordinata delle prime tre immagini
-        spriteYCoordinates[NORMAL] = new int[] {0, 0, 0, 0};
+        spriteYCoordinates[NORMAL] = new int[] {88, 88, 88, 88};
         spriteXCoordinates[JUMP] = new int[] {141}; // le coordinata del salto
-        spriteYCoordinates[JUMP] = new int[] {0};
+        spriteYCoordinates[JUMP] = new int[] {88};
         spriteXCoordinates[DOWN] = new int[] {193}; // la coordinata della discesa
-        spriteYCoordinates[DOWN] = new int[] {0};
+        spriteYCoordinates[DOWN] = new int[] {88};
     }
 
     private void animate() {
@@ -99,6 +99,7 @@ public final class PlayerViewImpl implements PlayerView {
     @Override
     public void render() {
         this.pane.getChildren().remove(lastSpriteImage);
+        this.animate();
         this.lastSpriteImage = this.createImage(player);
         //dire quale è la sprite imagine da mettere
         this.pane.getChildren().add(this.lastSpriteImage);
