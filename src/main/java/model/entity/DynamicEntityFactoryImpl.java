@@ -19,11 +19,12 @@ import view.entity.EntityImages;
 public final class DynamicEntityFactoryImpl implements DynamicEntityFactory {
 
     private static final int POWERUPS = 5; 
+    private static final double LAND_HEIGHT = 20;
     private final Dimension2D worldDimension;
     private final Random rand = new Random(); 
 
     public DynamicEntityFactoryImpl(final Dimension2D worldDimension) {
-        this.worldDimension = worldDimension;
+        this.worldDimension = new Dimension2D(worldDimension.getWidth(), worldDimension.getHeight() - LAND_HEIGHT);
     }
 
     @Override
