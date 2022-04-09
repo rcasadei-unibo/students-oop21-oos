@@ -22,8 +22,8 @@ public class ModelImpl implements Model {
 
     @Override
     public void update() {
-        // TODO Auto-generated method stub
-
+        this.gameState.update();
+        this.statistics.update();
     }
 
 }
