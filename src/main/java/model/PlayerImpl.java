@@ -22,7 +22,7 @@ public final class PlayerImpl implements Player {
     /**
      * Jump height of the sprite.
      */
-    public static final int JUMP_HEIGHT = 300;
+    public static final int JUMP_HEIGHT = 110;
     //coordinate nello schermo
     private int x;
     private int y;
@@ -53,6 +53,7 @@ public final class PlayerImpl implements Player {
     @Override
     public void jump() {
         this.isJumping = true;
+        this.jumpHeight = landHeight - JUMP_HEIGHT;
     }
 
     @Override
@@ -62,9 +63,9 @@ public final class PlayerImpl implements Player {
                 this.isGoingDown = true;
             }
             if (this.y > this.jumpHeight && !this.isGoingDown) {
-                this.y--;
+                this.y = this.y-2;
             } else if (this.y >= this.jumpHeight && this.isGoingDown) {
-                this.y++;
+                this.y = this.y+2;
             }
             if (this.y == this.landHeight) {
                 this.isJumping = false;
@@ -73,9 +74,9 @@ public final class PlayerImpl implements Player {
         }
         if (!this.isOnPlatform) {
             this.landHeight = INITIAL_Y;
-            this.jumpHeight = JUMP_HEIGHT;
+            this.jumpHeight = landHeight - JUMP_HEIGHT;
             if (this.y < this.jumpHeight && this.y < this.landHeight) {
-                this.y++;
+                this.y = this.y+2;
             }
         }
     }
@@ -88,11 +89,6 @@ public final class PlayerImpl implements Player {
     @Override
     public Rectangle2D getBounds() {
         return new Rectangle2D(this.x, this.y, MAIN_CHARACTER_WIDTH, MAIN_CHARACTER_HEIGHT);
-    }
-
-    @Override
-    public int getJumpHeight() {
-        return this.jumpHeight;
     }
 
     @Override
