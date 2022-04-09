@@ -26,7 +26,6 @@ public class GameViewImpl implements GameView {
         this.view = view;
         this.stage = stage;
         this.pane = pane;
-        this.pane.getChildren().clear();
         this.obs = obs;
         this.gameState = gameState;
         this.statistics = statistics;
@@ -42,6 +41,7 @@ public class GameViewImpl implements GameView {
 
     @Override
     public void render() {
+        this.pane.getChildren().clear();
         this.playerView.render();
         this.entityView.render();
     }

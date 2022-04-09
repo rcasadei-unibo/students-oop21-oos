@@ -64,7 +64,7 @@ public class ViewImpl extends Application implements View {
 
     @Override
     public void render() {
-        this.game();
+        this.gameView.render();
     }
 
     @Override
