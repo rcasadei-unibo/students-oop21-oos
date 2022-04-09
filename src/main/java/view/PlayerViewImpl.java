@@ -1,5 +1,6 @@
 package view;
 
+import javafx.geometry.Rectangle2D;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import model.Player;
@@ -18,7 +19,7 @@ public final class PlayerViewImpl implements PlayerView {
     /**
      * Where to find the image with all the png.
      */
-    public static final String IMAGE_PATH = "src/main/resources/Player1.png";
+    public static final String IMAGE_PATH = "src/main/resources/Player.png";
     /**
      * The total of the movements.
      */
@@ -104,6 +105,7 @@ public final class PlayerViewImpl implements PlayerView {
 
     private ImageView createImage(final Player pl) {
         final ImageView image = new ImageView(IMAGE_PATH);
+        image.setViewport(new Rectangle2D(spriteX, spriteY, MAIN_CHARACTER_WIDTH, MAIN_CHARACTER_HEIGHT));;
         image.setPreserveRatio(true);
         image.setX(pl.getX());
         image.setY(pl.getY());
