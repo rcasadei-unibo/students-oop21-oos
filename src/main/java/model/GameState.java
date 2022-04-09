@@ -12,4 +12,6 @@ public interface GameState {
 
     boolean isGameOver();
 
+    void update();
+
 }
