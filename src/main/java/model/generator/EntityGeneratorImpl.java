@@ -14,7 +14,7 @@ public final class EntityGeneratorImpl implements EntityGenerator {
 
     private static final int MAX_CASE = 3;
     private static final int POWERUP_RARITY = 15;
-    private static final double INITIAL_SPEEDX = 2.5;
+    private static final double INITIAL_SPEEDX = 2.0;
 
     private final List<DynamicEntity> entityList;
     private final Random rand = new Random();
