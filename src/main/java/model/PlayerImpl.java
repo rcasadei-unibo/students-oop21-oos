@@ -22,7 +22,11 @@ public final class PlayerImpl implements Player {
     /**
      * Jump height of the sprite.
      */
-    public static final int JUMP_HEIGHT = 110;
+    public static final int JUMP_HEIGHT = 270;
+    /**
+     * How many steps the player does every refresh.
+     */
+    public static final int STEP = 5;
     //coordinate nello schermo
     private int x;
     private int y;
@@ -63,9 +67,9 @@ public final class PlayerImpl implements Player {
                 this.isGoingDown = true;
             }
             if (this.y > this.jumpHeight && !this.isGoingDown) {
-                this.y = this.y-2;
+                this.y = this.y - STEP;
             } else if (this.y >= this.jumpHeight && this.isGoingDown) {
-                this.y = this.y+2;
+                this.y = this.y + STEP;
             }
             if (this.y == this.landHeight) {
                 this.isJumping = false;
@@ -76,7 +80,7 @@ public final class PlayerImpl implements Player {
             this.landHeight = INITIAL_Y;
             this.jumpHeight = landHeight - JUMP_HEIGHT;
             if (this.y < this.jumpHeight && this.y < this.landHeight) {
-                this.y = this.y+2;
+                this.y = this.y + STEP;
             }
         }
     }
