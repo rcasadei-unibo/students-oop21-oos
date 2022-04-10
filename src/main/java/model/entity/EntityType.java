@@ -15,7 +15,7 @@ public enum EntityType {
     /**
      * Coin's type.
      */
-    COIN(5.0), 
+    COIN(2.5), 
 
     /**
      * Powerup's type. 
