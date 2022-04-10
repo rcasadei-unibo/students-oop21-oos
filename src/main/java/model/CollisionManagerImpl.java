@@ -12,7 +12,7 @@ public final class CollisionManagerImpl implements CollisionManager {
         for (final DynamicEntity obj : objects) {
             if (obj.getType() == EntityType.PLATFORM) {
                 final int platformHeight = (int) obj.getBounds().getMinY();
-                final int platformStart = (int) obj.getBounds().getMinY();
+                final int platformStart = (int) obj.getBounds().getMinX();
                 if (pl.getBounds().getMaxY() <= platformHeight 
                         && pl.getBounds().getMaxX() >= platformStart) {
                     pl.setOnPlatform(true);

@@ -71,15 +71,16 @@ public final class PlayerImpl implements Player {
             } else if (this.y >= this.jumpHeight && this.isGoingDown) {
                 this.y = this.y + STEP;
             }
-            if (this.y == this.landHeight) {
+            if (this.y >= this.landHeight) {
                 this.isJumping = false;
                 this.isGoingDown = false;
+                this.y = landHeight;
             }
         }
         if (!this.isOnPlatform) {
             this.landHeight = INITIAL_Y;
-            this.jumpHeight = landHeight - JUMP_HEIGHT;
-            if (this.y < this.jumpHeight && this.y < this.landHeight) {
+            this.jumpHeight = landHeight - JUMP_HEIGHT;  //forse non serve
+            if (!this.isJumping && this.y < this.landHeight) {
                 this.y = this.y + STEP;
             }
         }

@@ -40,7 +40,7 @@ public final class PlayerViewImpl implements PlayerView {
     /**
      * How often i have to change the sprite.
      */
-    public static final byte SPRITE_CHANGE = 5;
+    public static final byte SPRITE_CHANGE = 40;
 
     //coordinate dello sprite nel png per scegliere l'orso che mi serve
     private int spriteX;
@@ -64,7 +64,7 @@ public final class PlayerViewImpl implements PlayerView {
         this.currentSpriteChange = 0;
 
         spriteXCoordinates[NORMAL] = new int[] {6, 50, 95}; //le coordinata delle prime tre immagini
-        spriteYCoordinates[NORMAL] = new int[] {88, 88, 88, 88};
+        spriteYCoordinates[NORMAL] = new int[] {88, 88, 88};
         spriteXCoordinates[JUMP] = new int[] {141}; // le coordinata del salto
         spriteYCoordinates[JUMP] = new int[] {88};
         spriteXCoordinates[DOWN] = new int[] {193}; // la coordinata della discesa
@@ -81,8 +81,9 @@ public final class PlayerViewImpl implements PlayerView {
         } else {
             this.currentSpriteChange++;
                 if (currentSpriteChange >= SPRITE_CHANGE) {
-                        currentSprite = (byte) ((currentSprite++) 
+                        currentSprite = (byte) ((currentSprite + 1) 
                         % spriteXCoordinates[currentDirection].length);
+                        currentSpriteChange = 0;
                 }
         }
 
