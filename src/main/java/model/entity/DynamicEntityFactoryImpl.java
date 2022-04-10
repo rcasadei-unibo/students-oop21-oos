@@ -19,7 +19,7 @@ import view.entity.EntityImages;
 public final class DynamicEntityFactoryImpl implements DynamicEntityFactory {
 
     private static final int POWERUPS = 5; 
-    private static final double LAND_HEIGHT = 20;
+    private static final double LAND_HEIGHT = 40;
     private final Dimension2D worldDimension;
     private final Random rand = new Random(); 
 
