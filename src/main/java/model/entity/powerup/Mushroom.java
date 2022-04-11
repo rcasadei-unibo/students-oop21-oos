@@ -13,8 +13,8 @@ public class Mushroom extends DynamicEntityImpl {
 
     private final EffectTimer mushroomTimer; 
 
-    public Mushroom(final Double coordinates, final Image image, final EntityLevel level, final EntityType type, final double speedX) {
-        super(coordinates, image, level, type, speedX);
+    public Mushroom(final Double coordinates, final Image image, final EntityLevel level, final EntityType type) {
+        super(coordinates, image, level, type);
         mushroomTimer = new EffectTimer(); 
     }
 
