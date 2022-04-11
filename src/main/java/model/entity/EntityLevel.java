@@ -9,12 +9,12 @@ public enum EntityLevel {
     /**
      * Level in which platform of the second level, coin or PowerUps spawn.
      */
-    ONE(1.0, 0.6),
+    ONE(1.0, 0.75),
 
     /**
      * Level in which platform of the second level.
      */
-    TWO(1.0, 0.3);
+    TWO(1.0, 0.5);
 
     private final double spawnX;
     private final double spawnY;
