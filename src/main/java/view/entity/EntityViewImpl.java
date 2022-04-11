@@ -19,8 +19,7 @@ public final class EntityViewImpl implements EntityView {
 
     @Override
     public void render() {
-        final List<DynamicEntity> im = Collections.unmodifiableList(entities);
-        im.forEach(i -> {
+        Collections.unmodifiableList(entities).forEach(i -> {
             this.pane.getChildren().add(this.createImage(i));
         });
     }
