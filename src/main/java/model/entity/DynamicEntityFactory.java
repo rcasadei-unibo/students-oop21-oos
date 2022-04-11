@@ -35,9 +35,8 @@ public interface DynamicEntityFactory {
     /**
      * Create a new Powerup.
      * @param level the level on which the powerup spawns.
-     * @param speedX the speed of the powerup. 
      * @return a new Powerup instance.
      */
-    DynamicEntity createPowerup(EntityLevel level, double speedX); 
+    DynamicEntity createPowerup(EntityLevel level); 
 
 }

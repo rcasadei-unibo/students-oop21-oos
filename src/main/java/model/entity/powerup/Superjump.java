@@ -15,8 +15,8 @@ public final class Superjump extends DynamicEntityImpl {
     private static final int NORMALJUMP_HEIGHT = 60; 
     private final EffectTimer jumpTimer; 
 
-    public Superjump(final Double coordinates, final Image image, final EntityLevel level, final EntityType type, final double speedX) {
-        super(coordinates, image, level, type, speedX);
+    public Superjump(final Double coordinates, final Image image, final EntityLevel level, final EntityType type) {
+        super(coordinates, image, level, type);
         jumpTimer = new EffectTimer(); 
     }
 

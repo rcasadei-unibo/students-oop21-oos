@@ -70,25 +70,25 @@ public final class DynamicEntityFactoryImpl implements DynamicEntityFactory {
     }
 
     @Override
-    public DynamicEntity createPowerup(final EntityLevel level, final double speedX) {
+    public DynamicEntity createPowerup(final EntityLevel level) {
 
         final int random = rand.nextInt(POWERUPS); 
         final DynamicEntity powerup; 
         switch (PowerUpType.values()[random]) {
             case EXTRALIFE: 
-                powerup = createExtralife(level, speedX); 
+                powerup = createExtralife(level); 
                 break; 
             case MUSHROOM: 
-                powerup = createMushroom(level, speedX); 
+                powerup = createMushroom(level); 
                 break; 
             case SHIELD: 
-                powerup = createShield(level, speedX); 
+                powerup = createShield(level); 
                 break; 
             case SPRAYBOMB: 
-                powerup = createSpraybomb(level, speedX); 
+                powerup = createSpraybomb(level); 
                 break; 
             case SUPERJUMP: 
-                powerup = createSuperjump(level, speedX); 
+                powerup = createSuperjump(level); 
                 break; 
             default: 
                 powerup = null; 
@@ -98,47 +98,47 @@ public final class DynamicEntityFactoryImpl implements DynamicEntityFactory {
         return powerup; 
     }
 
-    private DynamicEntity createExtralife(final EntityLevel level, final double speedX) {
+    private DynamicEntity createExtralife(final EntityLevel level) {
 
         final Image image = EntityImages.EXTRALIFE.getImageFromPath(); 
         final Point2D.Double coordinates = this.generatePoint(level, image, EntityType.POWERUP.getDistanceFactor());
-        final DynamicEntity extralife = new ExtraLife(coordinates, image, level, EntityType.POWERUP, speedX);
+        final DynamicEntity extralife = new ExtraLife(coordinates, image, level, EntityType.POWERUP);
         extralife.setDistance(worldDimension.getWidth() - image.getWidth() * EntityType.POWERUP.getDistanceFactor());
         return extralife; 
     }
 
-    private DynamicEntity createMushroom(final EntityLevel level, final double speedX) {
+    private DynamicEntity createMushroom(final EntityLevel level) {
 
         final Image image = EntityImages.MUSHROOM.getImageFromPath(); 
         final Point2D.Double coordinates = this.generatePoint(level, image, EntityType.POWERUP.getDistanceFactor());
-        final DynamicEntity mushroom = new Mushroom(coordinates, image, level, EntityType.POWERUP, speedX);
+        final DynamicEntity mushroom = new Mushroom(coordinates, image, level, EntityType.POWERUP);
         mushroom.setDistance(worldDimension.getWidth() - image.getWidth() * EntityType.POWERUP.getDistanceFactor());
         return mushroom; 
     }
 
-    private DynamicEntity createShield(final EntityLevel level, final double speedX) {
+    private DynamicEntity createShield(final EntityLevel level) {
 
         final Image image = EntityImages.SHIELD.getImageFromPath(); 
         final Point2D.Double coordinates = this.generatePoint(level, image, EntityType.POWERUP.getDistanceFactor());
-        final DynamicEntity shield = new Shield(coordinates, image, level, EntityType.POWERUP, speedX);
+        final DynamicEntity shield = new Shield(coordinates, image, level, EntityType.POWERUP);
         shield.setDistance(worldDimension.getWidth() - image.getWidth() * EntityType.POWERUP.getDistanceFactor());
         return shield; 
     }
 
-    private DynamicEntity createSpraybomb(final EntityLevel level, final double speedX) {
+    private DynamicEntity createSpraybomb(final EntityLevel level) {
 
         final Image image = EntityImages.SPRAYBOMB.getImageFromPath(); 
         final Point2D.Double coordinates = this.generatePoint(level, image, EntityType.POWERUP.getDistanceFactor());
-        final DynamicEntity spraybomb = new Spraybomb(coordinates, image, level, EntityType.POWERUP, speedX);
+        final DynamicEntity spraybomb = new Spraybomb(coordinates, image, level, EntityType.POWERUP);
         spraybomb.setDistance(worldDimension.getWidth() - image.getWidth() * EntityType.POWERUP.getDistanceFactor());
         return spraybomb; 
     }
 
-    private DynamicEntity createSuperjump(final EntityLevel level, final double speedX) {
+    private DynamicEntity createSuperjump(final EntityLevel level) {
 
         final Image image = EntityImages.SUPERJUMP.getImageFromPath(); 
         final Point2D.Double coordinates = this.generatePoint(level, image, EntityType.POWERUP.getDistanceFactor());
-        final DynamicEntity superjump = new Superjump(coordinates, image, level, EntityType.POWERUP, speedX);
+        final DynamicEntity superjump = new Superjump(coordinates, image, level, EntityType.POWERUP);
         superjump.setDistance(worldDimension.getWidth() - image.getWidth() * EntityType.POWERUP.getDistanceFactor());
         return superjump; 
     }
