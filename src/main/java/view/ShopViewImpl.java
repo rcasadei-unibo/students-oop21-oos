@@ -1,6 +1,10 @@
 package view;
 
-import javafx.geometry.Rectangle2D;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -12,7 +16,6 @@ import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
-import javafx.scene.shape.Shape;
 import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
@@ -23,30 +26,54 @@ public class ShopViewImpl implements ShopView {
     private final Stage stage; 
     private final Pane pane; 
     private Image shopWallpaper; 
+    private List<ImageView> skins = new ArrayList<>(); 
+    private int skinsCounter; 
 
-    //Check all of the sizes!!!
     private static final int FONT_SIZE = 18; 
     private static final int BUTTON_WIDTH = 130; 
     private static final int BUTTON_X = 340; 
     private static final int BUY_BUTTON_Y = 320; 
     private static final int SELECT_BUTTON_Y = 370; 
-    private static final int ARROW_WIDTH = 50; 
+    private static final int SQUARE_WIDTH = 50; 
     private static final int ARROW_BUTTON_X = 240; 
     private static final int ARROW_DXBUTTON_X = 510; 
     private static final int ARROW_BUTTON_Y = 200; 
     private static final int ARROW_HEIGTH = 40; 
     private static final int SHOPTITLE_X = 330; 
+    private static final int SKIN_X = 357; 
+    private static final int SKIN_Y = 130; 
+    private static final int ARC = 20;
+    private static final int BACKGROUND_WIDTH = 854;
+    private static final int BACKGROUND_HEIGTH = 480;
+    private static final int HOMEBTN_Y = 355;
+    private static final int HOMEBTN_X = 740;
 
     public ShopViewImpl(final View view, final Stage stage, final Pane pane) {
         super(); 
         this.view = view; 
         this.stage = stage; 
         this.pane = pane; 
+        skinsCounter = 0;
     }
 
     @Override
     public void render() {
-        // TODO Auto-generated method stub
+
+        final ImageView title = new ImageView(new Image("Shop.png"));
+        title.setLayoutX(SHOPTITLE_X);
+        title.setLayoutY(0); 
+
+        final ImageView programmerSkin = new ImageView(new Image("ProgrammerSkin.png")); 
+        programmerSkin.setLayoutX(SKIN_X);
+        programmerSkin.setLayoutY(SKIN_Y);
+
+        final ImageView dinoSkin = new ImageView(new Image("DinoSkin.png")); 
+        dinoSkin.setLayoutX(SKIN_X);
+        dinoSkin.setLayoutY(SKIN_Y);
+
+        skins.add(programmerSkin); 
+        skins.add(dinoSkin); 
+
         final Button buy = new Button(); 
         buy.setLayoutX(BUTTON_X);
         buy.setLayoutY(BUY_BUTTON_Y);
@@ -66,7 +93,7 @@ public class ShopViewImpl implements ShopView {
         select.setFont(new Font("Arial", FONT_SIZE));
         select.setText("SELECT"); 
         select.setOnAction(e -> {
-            select.setDisable(false); 
+            select.setText("SELECTED"); 
         });
 
         final ImageView dxArr = new ImageView(); 
@@ -79,49 +106,82 @@ public class ShopViewImpl implements ShopView {
         sxArr.setFitHeight(ARROW_HEIGTH); 
         sxArr.setPreserveRatio(true);
 
+        final ImageView homeIm = new ImageView(); 
+        homeIm.setImage(new Image("Home.png"));
+        homeIm.setFitHeight(ARROW_HEIGTH);
+        homeIm.setPreserveRatio(true);
+
         final Button dxArrow = new Button(); 
         dxArrow.setLayoutX(ARROW_DXBUTTON_X);
         dxArrow.setLayoutY(ARROW_BUTTON_Y);
-        dxArrow.setPrefWidth(ARROW_WIDTH);
+        dxArrow.setPrefWidth(SQUARE_WIDTH);
         dxArrow.setGraphic(dxArr); 
+        dxArrow.setOnAction(e -> {
+            increaseSkinCounter(); 
+        });
 
         final Button sxArrow = new Button(); 
         sxArrow.setLayoutX(ARROW_BUTTON_X);
         sxArrow.setLayoutY(ARROW_BUTTON_Y);
-        sxArrow.setPrefWidth(ARROW_WIDTH);
+        sxArrow.setPrefWidth(SQUARE_WIDTH);
         sxArrow.setGraphic(sxArr);
+        sxArrow.setOnAction(e -> {
+            decreaseSkinCounter(); 
+        });
 
-        final ImageView title = new ImageView(new Image("Shop.png"));
-        title.setLayoutX(SHOPTITLE_X);
-        title.setLayoutY(0); 
+        final Button home = new Button(); 
+        home.setLayoutX(HOMEBTN_X);
+        home.setLayoutY(HOMEBTN_Y);
+        home.setPrefWidth(SQUARE_WIDTH);
+        home.setGraphic(homeIm);
+        home.setOnAction(e -> {
+            //BACK ON THE MAIN MENU
+        });
 
-        final ImageView programmerSkin = new ImageView(new Image("ProgrammerSkin.png")); 
-        programmerSkin.setLayoutX(357);
-        programmerSkin.setLayoutY(130);
+        //
 
         final Rectangle rectangle = new Rectangle(345, 120, 120, 170); 
         rectangle.setFill(Color.LIGHTPINK);
-        rectangle.setArcHeight(20);
-        rectangle.setArcWidth(20);
+        rectangle.setArcHeight(ARC);
+        rectangle.setArcWidth(ARC);
         final Rectangle outerRec = new Rectangle(340, 115, 130, 180); 
         outerRec.setFill(Color.BLACK);
-        outerRec.setArcHeight(20);
-        outerRec.setArcWidth(20);
+        outerRec.setArcHeight(ARC);
+        outerRec.setArcWidth(ARC);
 
-        this.shopWallpaper = new Image("ShopBackground.jpg", 854, 480, false, true); 
+        this.shopWallpaper = new Image("ShopBackground.jpg", BACKGROUND_WIDTH, BACKGROUND_HEIGTH, false, true); 
         final BackgroundImage shopBackground = new BackgroundImage(shopWallpaper, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT); 
 
         this.pane.getChildren().add(buy); 
         this.pane.getChildren().add(select); 
+        this.pane.getChildren().add(home); 
         this.pane.getChildren().add(dxArrow); 
         this.pane.getChildren().add(sxArrow); 
         this.pane.getChildren().add(title); 
         this.pane.getChildren().add(outerRec); 
         this.pane.getChildren().add(rectangle);
-        this.pane.getChildren().add(programmerSkin); 
+        this.pane.getChildren().add(skins.get(skinsCounter)); 
 
         this.pane.setBackground(new Background(shopBackground));
 
+    }
+
+    private void increaseSkinCounter() {
+        this.pane.getChildren().remove(skins.get(skinsCounter));
+        skinsCounter++; 
+        if (skinsCounter >= skins.size()) {
+            skinsCounter = 0; 
+        }
+        this.pane.getChildren().add(skins.get(skinsCounter));
+    }
+
+    private void decreaseSkinCounter() {
+        this.pane.getChildren().remove(skins.get(skinsCounter));
+        skinsCounter--; 
+        if (skinsCounter < 0) {
+            skinsCounter = skins.size() - 1; 
+        }
+        this.pane.getChildren().add(skins.get(skinsCounter)); 
     }
 
 }
