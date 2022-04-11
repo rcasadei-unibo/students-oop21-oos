@@ -6,8 +6,8 @@ import model.Model;
 
 public final class Platform extends DynamicEntityImpl {
 
-    Platform(final Double coordinates, final Image image, final EntityLevel level, final EntityType type, final double speedX) {
-        super(coordinates, image, level, type, speedX);
+    Platform(final Double coordinates, final Image image, final EntityLevel level, final EntityType type) {
+        super(coordinates, image, level, type);
     }
 
     @Override

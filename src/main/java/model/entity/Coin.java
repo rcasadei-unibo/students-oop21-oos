@@ -6,12 +6,12 @@ import model.Model;
 
 public final class Coin extends DynamicEntityImpl {
 
-    Coin(final Double coordinates, final Image image, final EntityLevel level, final EntityType type, final double speedX) {
-        super(coordinates, image, level, type, speedX);
+    Coin(final Double coordinates, final Image image, final EntityLevel level, final EntityType type) {
+        super(coordinates, image, level, type);
     }
 
     @Override
     public void activateEffect(final Model model) {
-        /*Manca implementazione metodo*/
+        //model.getGameState().
     }
 }
