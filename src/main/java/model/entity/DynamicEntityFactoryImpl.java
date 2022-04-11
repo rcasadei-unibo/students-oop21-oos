@@ -20,6 +20,7 @@ public final class DynamicEntityFactoryImpl implements DynamicEntityFactory {
 
     private static final int POWERUPS = 5; 
     private static final double LAND_HEIGHT = 40;
+    private static final int MAX_COIN = 5; 
     private final Dimension2D worldDimension;
     private final Random rand = new Random(); 
 
@@ -28,42 +29,43 @@ public final class DynamicEntityFactoryImpl implements DynamicEntityFactory {
     }
 
     @Override
-    public DynamicEntity createObsatcle(final EntityLevel level, final double speedX) {
+    public DynamicEntity createObsatcle(final EntityLevel level) {
 
         final Image image = Math.random() > 0.5 ? EntityImages.OBSTACLE_ONE.getImageFromPath() : EntityImages.OBSTACLE_TWO.getImageFromPath();
         final Point2D.Double coordinates = this.generatePoint(level, image, EntityType.OBSATCLE.getDistanceFactor());
-        final DynamicEntity ob = new Obstacle(coordinates, image, level, EntityType.OBSATCLE, speedX);
+        final DynamicEntity ob = new Obstacle(coordinates, image, level, EntityType.OBSATCLE);
         ob.setDistance(worldDimension.getWidth() - image.getWidth() * EntityType.OBSATCLE.getDistanceFactor());
         return ob;
 
     }
 
     @Override
-    public DynamicEntity createPlatform(final EntityLevel level, final double speedX) {
+    public DynamicEntity createPlatform(final EntityLevel level) {
 
         final Image image = EntityImages.PLATFORM.getImageFromPath();
         final Point2D.Double coordinates = this.generatePoint(level, image, EntityType.PLATFORM.getDistanceFactor());
-        final DynamicEntity pl = new Platform(coordinates, image, level, EntityType.PLATFORM, speedX);
+        final DynamicEntity pl = new Platform(coordinates, image, level, EntityType.PLATFORM);
         pl.setDistance(worldDimension.getWidth() - image.getWidth());
         return pl;
 
     }
 
     @Override
-    public DynamicEntity createCoin(final EntityLevel level,  final double speedX) {
+    public DynamicEntity createCoin(final EntityLevel level) {
 
         final Image image = EntityImages.COIN.getImageFromPath();
         final Point2D.Double coordinates = this.generatePoint(level, image, EntityType.COIN.getDistanceFactor());
-        final DynamicEntity cn = new Coin(coordinates, image, level, EntityType.COIN, speedX);
+        final DynamicEntity cn = new Coin(coordinates, image, level, EntityType.COIN);
         cn.setDistance(worldDimension.getWidth() - image.getWidth() * EntityType.COIN.getDistanceFactor());
         return cn;
 
     }
 
     @Override
-    public List<DynamicEntity> createCoinCollection(final EntityLevel level, final double speedX) {
-        return Stream.generate(() -> createCoin(level, speedX))
-                     .limit(3)
+    public List<DynamicEntity> createCoinCollection(final EntityLevel level) {
+        final int random = rand.nextInt(MAX_COIN);
+        return Stream.generate(() -> createCoin(level))
+                     .limit(random)
                      .collect(Collectors.toList());
     }
 

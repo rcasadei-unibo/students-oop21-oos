@@ -7,34 +7,30 @@ public interface DynamicEntityFactory {
     /**
      * Create a new {@link Obstacle}'s instance.
      * @param level the level on which obstacle spawn
-     * @param speedX the speed of the obstacle
      * @return a new {@link Obstacle} 's instance 
      */
-    DynamicEntity createObsatcle(EntityLevel level, double speedX);
+    DynamicEntity createObsatcle(EntityLevel level);
 
     /**
      * Create a new {@link Platform}'s instance.
      * @param level the level on which platform spawn
-     * @param speedX the speed of the platform
      * @return a new {@link Platform} 's instance 
      */
-    DynamicEntity createPlatform(EntityLevel level, double speedX);
+    DynamicEntity createPlatform(EntityLevel level);
 
     /**
      * Create a new {@link Coin}'s instance.
      * @param level the level on which coin spawn
-     * @param speedX the speed of the coin
      * @return a new {@link Coin} 's instance 
      */
-    DynamicEntity createCoin(EntityLevel level, double speedX);
+    DynamicEntity createCoin(EntityLevel level);
 
     /**
      * Create a list of {@link Coin}.
      * @param level the level on which coin spawn 
-     * @param speedX the speed of the coin. 
      * @return a {@link Coin} list. 
      */
-    List<DynamicEntity> createCoinCollection(EntityLevel level, double speedX);
+    List<DynamicEntity> createCoinCollection(EntityLevel level);
 
     /**
      * Create a new Powerup.
