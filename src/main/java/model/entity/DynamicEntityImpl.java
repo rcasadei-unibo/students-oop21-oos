@@ -11,26 +11,24 @@ public abstract class DynamicEntityImpl implements DynamicEntity {
 
     private final Point2D.Double coordinates;
     private final Dimension2D dimensions;
-    private final double speedX;
     private double nextDistance;
     private final Image image;
     private final EntityLevel level;
     private final EntityType type;
 
 
-    public DynamicEntityImpl(final Point2D.Double coordinates, final Image image, final EntityLevel level, final EntityType type, final double speedX) {
+    public DynamicEntityImpl(final Point2D.Double coordinates, final Image image, final EntityLevel level, final EntityType type) {
 
         this.coordinates = coordinates;
         this.image = image;
         this.level = level;
         this.type = type;
-        this.speedX = speedX;
         this.dimensions = new Dimension2D(image.getWidth(), image.getHeight());
 
     }
 
     @Override
-    public final void updatePosition() {
+    public final void updatePosition(final double speedX) {
         this.coordinates.setLocation(coordinates.getX() - speedX, coordinates.getY());
     }
 

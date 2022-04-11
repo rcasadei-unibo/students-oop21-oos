@@ -8,8 +8,10 @@ public interface DynamicEntity {
 
     /**
      * Updates the entity position on the screen.
+     * @param speedX the speed by which entity should move.
      * */
-    void updatePosition();
+    void updatePosition(double speedX);
+
     /**
      * 
      * @return a new Rectangle2D that represents the coordinates and the dimension of the entity
