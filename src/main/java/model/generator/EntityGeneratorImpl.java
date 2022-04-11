@@ -26,7 +26,7 @@ public final class EntityGeneratorImpl implements EntityGenerator {
         this.entityList = new ArrayList<>();
         this.speedX = INITIAL_SPEEDX;
         this.factory = new DynamicEntityFactoryImpl(worldDimension);
-        this.entityList.add(factory.createObsatcle(EntityLevel.ZERO, speedX));
+        this.entityList.add(factory.createObsatcle(EntityLevel.ZERO));
         entitiesCount = new Counter();
         entitiesCount.increment(1);
     }
@@ -59,12 +59,12 @@ public final class EntityGeneratorImpl implements EntityGenerator {
             if (entitiesCount.getCounter() < POWERUP_RARITY) {
                 this.addEntity();
             } else  {
-                this.entityList.add(factory.createPowerup(EntityLevel.ZERO, speedX));
+                //this.entityList.add(factory.createPowerup(EntityLevel.ZERO, speedX));
                 this.entitiesCount.reset();
             }
 
         }
-        this.entityList.forEach(e -> e.updatePosition());
+        this.entityList.forEach(e -> e.updatePosition(speedX));
 
     }
 
@@ -90,19 +90,19 @@ public final class EntityGeneratorImpl implements EntityGenerator {
         switch (Case.values()[random]) {
         case CASE_0:
             /*Obstacle ground level*/
-            this.entityList.add(factory.createObsatcle(EntityLevel.ZERO, speedX));
+            this.entityList.add(factory.createObsatcle(EntityLevel.ZERO));
             this.entitiesCount.increment(1);
             break;
         case CASE_1:
             /*Platform level one with under an obstacle*/
-            this.entityList.add(factory.createObsatcle(EntityLevel.ZERO, speedX));
-            this.entityList.add(factory.createPlatform(EntityLevel.ONE, speedX));
+            this.entityList.add(factory.createObsatcle(EntityLevel.ZERO));
+            this.entityList.add(factory.createPlatform(EntityLevel.ONE));
             this.entitiesCount.increment(2);
             break;
         case CASE_2:
             /*Platform level one with under a coin*/
-            this.entityList.add(factory.createCoin(EntityLevel.ZERO, speedX));
-            this.entityList.add(factory.createPlatform(EntityLevel.ONE, speedX));
+            this.entityList.add(factory.createCoin(EntityLevel.ZERO));
+            this.entityList.add(factory.createPlatform(EntityLevel.ONE));
             this.entitiesCount.increment(2);
             break;
 
@@ -117,17 +117,17 @@ public final class EntityGeneratorImpl implements EntityGenerator {
         switch (Case.values()[random]) {
         case CASE_0:
             /*Platform level two*/
-            this.entityList.add(factory.createPlatform(EntityLevel.TWO, speedX));
+            this.entityList.add(factory.createPlatform(EntityLevel.TWO));
             this.entitiesCount.increment(1);
             break;
         case CASE_1:
             /*Obstacle ground level*/
-            this.entityList.add(factory.createObsatcle(EntityLevel.ZERO, speedX));
+            this.entityList.add(factory.createObsatcle(EntityLevel.ZERO));
             this.entitiesCount.increment(1);
             break;
         case CASE_2:
             /*Collection of coin*/
-            this.entityList.addAll(factory.createCoinCollection(EntityLevel.ONE, speedX));
+            this.entityList.addAll(factory.createCoinCollection(EntityLevel.ONE));
             this.entitiesCount.increment(1);
             break;
 
@@ -141,17 +141,17 @@ public final class EntityGeneratorImpl implements EntityGenerator {
         switch (Case.values()[random]) {
         case CASE_0:
             /*Platform level one*/
-            this.entityList.add(factory.createPlatform(EntityLevel.ONE, speedX));
+            this.entityList.add(factory.createPlatform(EntityLevel.ONE));
             this.entitiesCount.increment(1);
             break;
         case CASE_1:
             /*Obstacle ground level*/
-            this.entityList.add(factory.createObsatcle(EntityLevel.ZERO, speedX));
+            this.entityList.add(factory.createObsatcle(EntityLevel.ZERO));
             this.entitiesCount.increment(1);
             break;
         case CASE_2:
             /*Collection of coin*/
-            this.entityList.add(factory.createCoin(EntityLevel.ZERO, speedX));
+            this.entityList.add(factory.createCoin(EntityLevel.ZERO));
             this.entitiesCount.increment(1);
             break;
 
