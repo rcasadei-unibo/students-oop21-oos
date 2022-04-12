@@ -12,6 +12,6 @@ public final class Platform extends DynamicEntityImpl {
 
     @Override
     public void activateEffect(final Model model) {
-        /*Manca implementazione metodo*/
+
     }
 }
