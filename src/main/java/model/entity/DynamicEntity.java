@@ -55,6 +55,18 @@ public interface DynamicEntity {
     void setDistance(double distance);
 
     /**
+     * Set the hit field.
+     * @param hit true if the entity collided with the player, false otherwise.
+     */
+    void hit(boolean hit);
+
+    /**
+     * 
+     * @return true if the entity collided with the player, false otherwise.
+     */
+    boolean wasHit();
+
+    /**
      * Activate the effect related to the entity, when it gets hit. 
      * @param model 
      */

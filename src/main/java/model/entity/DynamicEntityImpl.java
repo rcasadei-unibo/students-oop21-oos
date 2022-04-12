@@ -15,6 +15,7 @@ public abstract class DynamicEntityImpl implements DynamicEntity {
     private final Image image;
     private final EntityLevel level;
     private final EntityType type;
+    private boolean hit;
 
 
     public DynamicEntityImpl(final Point2D.Double coordinates, final Image image, final EntityLevel level, final EntityType type) {
@@ -24,6 +25,7 @@ public abstract class DynamicEntityImpl implements DynamicEntity {
         this.level = level;
         this.type = type;
         this.dimensions = new Dimension2D(image.getWidth(), image.getHeight());
+        this.hit = false;
 
     }
 
@@ -64,6 +66,16 @@ public abstract class DynamicEntityImpl implements DynamicEntity {
     @Override
     public final void setDistance(final double distance) {
         this.nextDistance = distance;
+    }
+
+    @Override
+    public final void hit(final boolean hit) {
+        this.hit = hit;
+    }
+
+    @Override
+    public final boolean wasHit() {
+        return this.hit;
     }
 
     @Override
