@@ -10,8 +10,8 @@ import model.entity.EntityType;
 
 public class Spraybomb extends DynamicEntityImpl {
 
-    public Spraybomb(final Double coordinates, final Image image, final EntityLevel level, final EntityType type, final double speedX) {
-        super(coordinates, image, level, type, speedX);
+    public Spraybomb(final Double coordinates, final Image image, final EntityLevel level, final EntityType type) {
+        super(coordinates, image, level, type);
     }
 
     //Da rivedere 
