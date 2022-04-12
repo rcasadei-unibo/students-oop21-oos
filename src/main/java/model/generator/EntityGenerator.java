@@ -23,15 +23,4 @@ public interface EntityGenerator {
      */
     void updateList();
 
-    /**
-     * Remove the specified entity from entities' list. 
-     * @param entity the entity that need to be removed. 
-     */
-    void removeEntity(DynamicEntity entity);
-
-    /**
-     * Remove all the entities from the entities' list.
-     */
-    void clearEntity();
-
 }
