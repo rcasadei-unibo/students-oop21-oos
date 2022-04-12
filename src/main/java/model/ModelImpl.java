@@ -37,6 +37,7 @@ public class ModelImpl implements Model {
         this.collisionManager.playerCollidesWidth(player, entities, this);
 
         this.statistics.update();
+        this.gameState.setVelocity(this.statistics.getDifficulty());
     }
 
 }
