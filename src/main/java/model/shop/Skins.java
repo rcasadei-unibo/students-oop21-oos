@@ -1,11 +1,18 @@
 package model.shop;
 
 /**
- * Lists all of the prices
+ * Lists all of the prices.
  *
  */
 public enum Skins {
+    /**
+     * Programmer skin and its price.
+     */
     PROGRAMMER("Programmer", 500), 
+
+    /**
+     * Dinosaur skin and its price. 
+     */
     DINOSAUR("Dinosaur", 1000),
     FREDDIE("Freddie", 2000); 
 

@@ -6,12 +6,12 @@ public interface Shop {
 
     /**
      * If the player has enough money, update the player properties.
-     * @param item the item chosen by the player 
+     * @param ShopItem the item chosen by the player 
      */
-    void payment();
+    void shopItemPayment(ShopItem selectedItem);
 
     void printItems(); 
-    
+
     List<ShopItem> getItems();
 
 }

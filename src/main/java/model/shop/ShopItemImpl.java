@@ -1,6 +1,6 @@
 package model.shop;
 
-public class ShopItemImpl implements ShopItem{
+public class ShopItemImpl implements ShopItem {
 
     private final String itemName; 
     private final int price; 
