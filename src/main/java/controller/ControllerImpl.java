@@ -51,11 +51,13 @@ public class ControllerImpl implements Controller {
     public void start() {
         this.setup();
         this.timer.start();
+        this.model.getStatisticsUpdater().start();
     }
 
     @Override
     public void stop() {
         this.timer.stop();
+        this.model.getStatisticsUpdater().stop();
         this.view.gameOver();
     }
 

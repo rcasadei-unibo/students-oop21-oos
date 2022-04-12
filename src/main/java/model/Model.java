@@ -6,6 +6,8 @@ public interface Model {
 
     Statistics getStatistics();
 
+    StatisticsUpdater getStatisticsUpdater();
+
     void update();
 
 }

@@ -9,12 +9,14 @@ public class ModelImpl implements Model {
     private final GameState gameState;
     private final Statistics statistics;
     private final CollisionManager collisionManager;
+    private final StatisticsUpdater statisticsUpdater;
     //private boolean isGameOVer;
 
     public ModelImpl() {
         this.gameState = new GameStateImpl();
         this.statistics = new StatisticsImpl();
         this.collisionManager = new CollisionManagerImpl();
+        this.statisticsUpdater = new StatisticsUpdater(this.statistics);
         //this.isGameOVer = false;
     }
 
@@ -29,6 +31,11 @@ public class ModelImpl implements Model {
     }
 
     @Override
+    public StatisticsUpdater getStatisticsUpdater() {
+        return this.statisticsUpdater;
+    }
+
+    @Override
     public void update() {
         this.gameState.update();
 
@@ -36,7 +43,7 @@ public class ModelImpl implements Model {
         final List<DynamicEntity> entities = this.gameState.getEntities();
         this.collisionManager.playerCollidesWidth(player, entities, this);
 
-        this.statistics.update();
+        this.gameState.setVelocity(this.statistics.getDifficulty());
     }
 
 }

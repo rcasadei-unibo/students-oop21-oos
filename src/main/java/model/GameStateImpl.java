@@ -39,4 +39,9 @@ public class GameStateImpl implements GameState {
         this.entityGenerator.updateList();
     }
 
+    @Override
+    public void setVelocity(final double difficulty) {
+        this.entityGenerator.setSpeedX(difficulty);
+    }
+
 }

@@ -6,12 +6,14 @@ import model.Model;
 
 public final class Coin extends DynamicEntityImpl {
 
+    private static final int COIN_VALUE = 1; 
+
     Coin(final Double coordinates, final Image image, final EntityLevel level, final EntityType type) {
         super(coordinates, image, level, type);
     }
 
     @Override
     public void activateEffect(final Model model) {
-        //model.getGameState().
+        model.getStatistics().increaseCoin(COIN_VALUE);
     }
 }

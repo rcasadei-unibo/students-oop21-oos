@@ -14,4 +14,6 @@ public interface GameState {
 
     void update();
 
+    void setVelocity(double difficulty);
+
 }
