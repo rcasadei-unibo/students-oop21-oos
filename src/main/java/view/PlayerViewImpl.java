@@ -20,7 +20,7 @@ public final class PlayerViewImpl implements PlayerView {
     /**
      * Where to find the image with all the png.
      */
-    public static final String IMAGE_PATH = "Player.png";
+    public static final String IMAGE_PATH = "Player2giusto.png";
     /**
      * The total of the movements.
      */
@@ -63,12 +63,14 @@ public final class PlayerViewImpl implements PlayerView {
         this.currentSprite = 0;
         this.currentSpriteChange = 0;
 
-        spriteXCoordinates[NORMAL] = new int[] {6, 50, 95}; //le coordinata delle prime tre immagini
-        spriteYCoordinates[NORMAL] = new int[] {88, 88, 88};
-        spriteXCoordinates[JUMP] = new int[] {141}; // le coordinata del salto
-        spriteYCoordinates[JUMP] = new int[] {88};
-        spriteXCoordinates[DOWN] = new int[] {193}; // la coordinata della discesa
-        spriteYCoordinates[DOWN] = new int[] {88};
+        int var = 208;
+        
+        spriteXCoordinates[NORMAL] = new int[] {131, 177, 223}; //le coordinata delle prime tre immagini
+        spriteYCoordinates[NORMAL] = new int[] {var, var, var};
+        spriteXCoordinates[JUMP] = new int[] {262}; // le coordinata del salto
+        spriteYCoordinates[JUMP] = new int[] {var};
+        spriteXCoordinates[DOWN] = new int[] {307}; // la coordinata della discesa
+        spriteYCoordinates[DOWN] = new int[] {var};
     }
 
     private void animate() {
@@ -108,7 +110,7 @@ public final class PlayerViewImpl implements PlayerView {
 
     private ImageView createImage(final Player pl) {
         final ImageView image = new ImageView(new Image(IMAGE_PATH));
-        image.setViewport(new Rectangle2D(spriteX, spriteY, 65, 65));;
+        image.setViewport(new Rectangle2D(spriteX, spriteY, 35, 45));;
         image.setPreserveRatio(true);
         image.setX(pl.getBounds().getMinX());
         image.setY(pl.getBounds().getMinY());
