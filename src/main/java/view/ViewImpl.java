@@ -7,6 +7,7 @@ import input.InputObserverImpl;
 import model.GameState;
 import model.Statistics;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
@@ -37,6 +38,9 @@ public class ViewImpl extends Application implements View {
         this.stage.setHeight(480);
         this.stage.setScene(new Scene(this.pane));
         this.stage.setResizable(false);
+        this.stage.setOnCloseRequest(e -> {
+            System.exit(0);
+        });
         this.stage.show();
 
     }
