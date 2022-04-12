@@ -3,17 +3,19 @@ package model.generator;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.function.Predicate;
 
 import javafx.geometry.Dimension2D;
 import model.entity.DynamicEntity;
 import model.entity.DynamicEntityFactory;
 import model.entity.DynamicEntityFactoryImpl;
 import model.entity.EntityLevel;
+import model.entity.EntityType;
 
 public final class EntityGeneratorImpl implements EntityGenerator {
 
     private static final int MAX_CASE = 3;
-    private static final int POWERUP_RARITY = 15;
+    private static final int POWERUP_RARITY = 20;
     private static final double INITIAL_SPEEDX = 2.0;
 
     private final List<DynamicEntity> entityList;
@@ -42,46 +44,38 @@ public final class EntityGeneratorImpl implements EntityGenerator {
     }
 
     @Override
-    public void removeEntity(final DynamicEntity entity) {
-        this.entityList.remove(entity);
-    }
-
-    @Override
-    public void clearEntity() {
-        this.entityList.clear();
-    }
-
-    @Override
     public void updateList() {
-        this.removeIfOut();
+
+        this.removeEntity(e -> e.isOutofScreen());
 
         if (this.entityList.isEmpty() || this.checkPosition()) {
-            if (entitiesCount.getCounter() < POWERUP_RARITY) {
                 this.addEntity();
-            } else  {
-                //this.entityList.add(factory.createPowerup(EntityLevel.ZERO, speedX));
-                this.entitiesCount.reset();
-            }
-
         }
+
         this.entityList.forEach(e -> e.updatePosition(speedX));
 
+        this.removeEntity(e -> e.wasHit() && (e.getType() == EntityType.POWERUP || e.getType() == EntityType.COIN));
     }
 
     private void addEntity() {
         final int random = rand.nextInt(MAX_CASE);
-        switch (this.entityList.get(entityList.size() - 1).getLevelType()) {
-        case ZERO:
-            this.levelZeroConfig(random);
-            break;
-        case ONE:
-            this.levelOneConfig(random);
-            break;
-        case TWO:
-            this.levelTwoConfig(random);
-            break;
-        default:
-            break;
+        if (entitiesCount.getCounter() < POWERUP_RARITY) {
+            switch (this.entityList.get(entityList.size() - 1).getLevelType()) {
+                case ZERO:
+                    this.levelZeroConfig(random);
+                    break;
+                case ONE:
+                    this.levelOneConfig(random);
+                    break;
+                case TWO:
+                    this.levelTwoConfig(random);
+                    break;
+                default:
+                    break;
+            }
+        } else {
+            this.entityList.add(factory.createPowerup(EntityLevel.ONE));
+            this.entitiesCount.reset();
         }
     }
 
@@ -127,7 +121,8 @@ public final class EntityGeneratorImpl implements EntityGenerator {
             break;
         case CASE_2:
             /*Collection of coin*/
-            this.entityList.addAll(factory.createCoinCollection(EntityLevel.ONE));
+            //this.entityList.addAll(factory.createCoinCollection(EntityLevel.ONE));
+            this.entityList.add(factory.createCoin(EntityLevel.ONE));
             this.entitiesCount.increment(1);
             break;
 
@@ -160,11 +155,12 @@ public final class EntityGeneratorImpl implements EntityGenerator {
         }
     }
 
-    private void removeIfOut() {
-        if (!this.entityList.isEmpty() && this.entityList.get(0).isOutofScreen()) {
-            this.entityList.remove(0);
-        }
-
+    private void removeEntity(final Predicate<DynamicEntity> filterCondition) {
+        final List<DynamicEntity> removeList = new ArrayList<>();
+        entityList.stream()
+                  .filter(filterCondition)
+                  .forEach(e -> removeList.add(e));
+        this.entityList.removeAll(removeList);
     }
 
     private boolean checkPosition() {
