@@ -117,8 +117,8 @@ public final class PlayerImpl implements Player {
     }
 
     @Override
-    public void setJumpHeight(final int h) {
-        this.jumpHeight = h;
+    public void setJumpHeight(final int mul) {
+        this.jumpHeight = mul * jumpHeight;
     }
 
     @Override
