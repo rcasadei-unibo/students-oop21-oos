@@ -11,8 +11,8 @@ import model.entity.EntityType;
 
 public final class Superjump extends DynamicEntityImpl {
 
-    private static final int SUPERJUMP_HEIGHT = 100; 
-    private static final int NORMALJUMP_HEIGHT = 60; 
+    private static final int SUPERJUMP_HEIGHT = 2; 
+    private static final int NORMALJUMP_HEIGHT = 1; 
     private final EffectTimer jumpTimer; 
 
     public Superjump(final Double coordinates, final Image image, final EntityLevel level, final EntityType type) {

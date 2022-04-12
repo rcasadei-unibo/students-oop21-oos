@@ -19,6 +19,4 @@ public class ExtraLife extends DynamicEntityImpl {
         model.getGameState().getPlayer().setNumberOfLives(1);
     }
 
-    //Mi serve il getter della vita del personaggio di Sara 
-
 }
