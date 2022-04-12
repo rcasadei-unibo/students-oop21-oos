@@ -27,7 +27,7 @@ public class GameViewImpl implements GameView {
     private final EntityView entityView;
     private final GameState gameState;
     private final Statistics statistics;
-    private final InputObserver obs;  
+    private final InputObserver obs;
 
     public GameViewImpl(final View view, final Stage stage, final Pane pane, final InputObserver obs, final GameState gameState, final Statistics statistics) {
         super();
