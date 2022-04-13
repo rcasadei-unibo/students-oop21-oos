@@ -33,7 +33,7 @@ public class StatisticsImpl implements Statistics {
                 .collect(Collectors.toList());
         this.recordDistance = list.get(0);
         this.lastDeathDistance = list.get(1);
-        this.gameCoins = list.get(2);
+        this.totalCoins = list.get(2);
     }
 
     @Override
