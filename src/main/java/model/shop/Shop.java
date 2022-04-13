@@ -6,9 +6,11 @@ public interface Shop {
 
     /**
      * If the player has enough money, update the player properties.
-     * @param ShopItem the item chosen by the player 
+     * @param selectedItem the item chosen by the player.
      */
     void shopItemPayment(ShopItem selectedItem);
+
+    void misteryBoxPayment(MysteryBox box); 
 
     void printItems(); 
 
