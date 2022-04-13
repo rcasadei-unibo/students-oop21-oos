@@ -1,8 +1,20 @@
 package model;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class StatisticsImpl implements Statistics {
 
+    private static final String SEP = File.separator;
+    private static final String FILE_NAME = System.getProperty("user.home") + SEP + "OOS_statistics.txt";
     private static final double DIFFICULTY_FACTOR = 1.010;
+
     private double difficulty;
     private int gameCoins;
     private int totalCoins;
@@ -15,7 +27,13 @@ public class StatisticsImpl implements Statistics {
         this.difficulty = 2;
         this.actualDistance = 0;
         this.gameCoins = 0;
-        //this.readStatisticsFromFile();
+
+        final List<Integer> list = this.readStatisticsFromFile().stream()
+                .map(s -> Integer.parseInt(s))
+                .collect(Collectors.toList());
+        this.recordDistance = list.get(0);
+        this.lastDeathDistance = list.get(1);
+        this.gameCoins = list.get(2);
     }
 
     @Override
@@ -68,15 +86,34 @@ public class StatisticsImpl implements Statistics {
     }
 
     @Override
-    public void saveStatisticsOnFile() {
-        // TODO Auto-generated method stub
+    public void saveStatisticsOnFile() throws IOException {
+        if (this.actualDistance > this.recordDistance) {
+            this.recordDistance = this.actualDistance;
+        }
+        this.lastDeathDistance = this.actualDistance;
+        this.totalCoins += this.gameCoins;
 
+        final List<Integer> list = List.of(this.recordDistance, this.lastDeathDistance, this.totalCoins);
+        try (BufferedWriter bw = Files.newBufferedWriter(Paths.get(FILE_NAME))) {
+            list.stream().map(e -> Integer.toString(e)).forEach(s -> {
+                try {
+                    bw.write(s);
+                    bw.newLine();
+                } catch (IOException e) {
+                    System.out.println("Error in saveStatisticsOnFile");
+                }
+            });
+        }
     }
 
-    @Override
-    public void readStatisticsFromFile() {
-        // TODO Auto-generated method stub
 
+    @Override
+    public List<String> readStatisticsFromFile() {
+        try (BufferedReader br = Files.newBufferedReader(Paths.get(FILE_NAME))) {
+            return br.lines().collect(Collectors.toList());
+        } catch (IOException e) {
+            return List.of("0", "0", "0");
+        }
     }
 
 }

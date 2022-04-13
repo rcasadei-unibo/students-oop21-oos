@@ -1,5 +1,6 @@
 package model;
 
+import java.io.IOException;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -29,7 +30,11 @@ public class StatisticsUpdater implements Runnable {
 
     public void stop() {
         this.executor.shutdown();
-        //this.statistics.saveOnFile();
+        try {
+            this.statistics.saveStatisticsOnFile();
+        } catch (IOException e) {
+            System.out.println("Statistics unsaved");
+        }
     }
 
 }

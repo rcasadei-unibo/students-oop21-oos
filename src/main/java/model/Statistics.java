@@ -1,5 +1,8 @@
 package model;
 
+import java.io.IOException;
+import java.util.List;
+
 public interface Statistics {
 
     void update();
@@ -18,8 +21,8 @@ public interface Statistics {
 
     int getTotalCoins();
 
-    void saveStatisticsOnFile();
+    void saveStatisticsOnFile() throws IOException;
 
-    void readStatisticsFromFile();
+    List<String> readStatisticsFromFile();
 
 }
