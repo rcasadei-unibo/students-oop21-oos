@@ -2,20 +2,26 @@ package model.shop;
 
 import java.util.Random;
 
-public class MisteryBox {
+public class MysteryBoxImpl implements MysteryBox {
 
     private final String name; 
     private final int price; 
     private final Random rand = new Random(); 
 
+    private static final int BOX_PRICE = 500; 
+
     private static final int PRIZES_NUM = 4; 
 
-    public MisteryBox(final String name, final int price) {
+    public MysteryBoxImpl(final String name, final int price) {
         this.name = name; 
-        this.price = price; 
+        this.price = BOX_PRICE; 
     }
 
-    public void createPrize() {
+    public final int getPrice() {
+        return this.price; 
+    }
+
+    public final void createPrize() {
         final int random = rand.nextInt(PRIZES_NUM); 
         switch (random) {
             case 0: 
