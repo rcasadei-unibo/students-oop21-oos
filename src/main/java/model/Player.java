@@ -43,7 +43,7 @@ public interface Player {
      * Sets the height of the jumps.
      * @param mul the number to multiply the height of the jump
      */
-    void setJumpHeight(int mul);
+    void setJumpHeight(double mul);
 
     /**
      * Sets the height of the land.
