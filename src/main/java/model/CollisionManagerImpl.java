@@ -49,7 +49,7 @@ public final class CollisionManagerImpl implements CollisionManager {
                             platformY = e.getBounds().getMinY();
                 }
             } else {
-              if (e.getBounds().intersects(pl.getBounds())) {
+              if (e.getBounds().intersects(pl.getBounds()) && !e.wasHit()) {
                   e.activateEffect(model);
                   e.hit(true);
               }
