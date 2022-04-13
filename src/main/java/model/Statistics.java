@@ -21,8 +21,11 @@ public interface Statistics {
 
     int getTotalCoins();
 
+    void setTotalCoins(int value);
+
     void saveStatisticsOnFile() throws IOException;
 
     List<String> readStatisticsFromFile();
+
 
 }

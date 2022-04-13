@@ -86,6 +86,11 @@ public class StatisticsImpl implements Statistics {
     }
 
     @Override
+    public void setTotalCoins(final int value) {
+        this.totalCoins = value;
+    }
+
+    @Override
     public void saveStatisticsOnFile() throws IOException {
         if (this.actualDistance > this.recordDistance) {
             this.recordDistance = this.actualDistance;
