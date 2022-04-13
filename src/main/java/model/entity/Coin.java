@@ -6,7 +6,7 @@ import model.Model;
 
 public final class Coin extends DynamicEntityImpl {
 
-    private static final int COIN_VALUE = 1; 
+    private static int coinValue = 1; 
 
     Coin(final Double coordinates, final Image image, final EntityLevel level, final EntityType type) {
         super(coordinates, image, level, type);
@@ -14,6 +14,10 @@ public final class Coin extends DynamicEntityImpl {
 
     @Override
     public void activateEffect(final Model model) {
-        model.getStatistics().increaseCoin(COIN_VALUE);
+        model.getStatistics().increaseCoin(coinValue);
+    }
+
+    public static void setCoinValue(final int coinvalue) {
+        Coin.coinValue = coinvalue;
     }
 }
