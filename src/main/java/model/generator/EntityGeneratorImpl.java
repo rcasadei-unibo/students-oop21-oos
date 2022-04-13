@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 import javafx.geometry.Dimension2D;
 import model.entity.DynamicEntity;
@@ -45,16 +46,14 @@ public final class EntityGeneratorImpl implements EntityGenerator {
 
     @Override
     public void updateList() {
-
-        this.removeEntity(e -> e.isOutofScreen());
+        this.removeEntity(e -> e.wasHit() && (e.getType() == EntityType.POWERUP || e.getType() == EntityType.COIN));
 
         if (this.entityList.isEmpty() || this.checkPosition()) {
                 this.addEntity();
         }
 
         this.entityList.forEach(e -> e.updatePosition(speedX));
-
-        this.removeEntity(e -> e.wasHit() && (e.getType() == EntityType.POWERUP || e.getType() == EntityType.COIN));
+        this.removeEntity(e -> e.isOutofScreen());
     }
 
     private void addEntity() {
@@ -156,10 +155,9 @@ public final class EntityGeneratorImpl implements EntityGenerator {
     }
 
     private void removeEntity(final Predicate<DynamicEntity> filterCondition) {
-        final List<DynamicEntity> removeList = new ArrayList<>();
-        entityList.stream()
-                  .filter(filterCondition)
-                  .forEach(e -> removeList.add(e));
+        final List<DynamicEntity> removeList = entityList.stream()
+                                                         .filter(filterCondition)
+                                                         .collect(Collectors.toList());
         this.entityList.removeAll(removeList);
     }
 

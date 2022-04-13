@@ -15,7 +15,6 @@ public class EffectTimer {
     public final void scheduleTask(final TimerTask powerupTask) {
 
         time.schedule(powerupTask, DELAY);
-        time.cancel();
 
     }
 
