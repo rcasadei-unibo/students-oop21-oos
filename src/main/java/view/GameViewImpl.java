@@ -25,6 +25,7 @@ public class GameViewImpl implements GameView {
     private final Pane pane;
     private final PlayerView playerView;
     private final EntityView entityView;
+    private final StatisticsView statView;
     private final GameState gameState;
     private final Statistics statistics;
     private final InputObserver obs;
@@ -42,6 +43,7 @@ public class GameViewImpl implements GameView {
         this.statistics = statistics;
         this.playerView = new PlayerViewImpl(pane, gameState.getPlayer());
         this.entityView = new EntityViewImpl(pane, gameState.getEntities());
+        this.statView = new StatisticsViewImpl(pane, this.statistics, gameState.getPlayer());
 
         this.pane.getScene().setOnKeyPressed(e -> {
             if (e.getCode().equals(KeyCode.SPACE)) {
@@ -55,6 +57,7 @@ public class GameViewImpl implements GameView {
         this.pane.getChildren().clear();
         this.playerView.render();
         this.entityView.render();
+        this.statView.render();
     }
 
 }
