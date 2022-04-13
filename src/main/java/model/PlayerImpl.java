@@ -68,7 +68,9 @@ public final class PlayerImpl implements Player {
     @Override
     public void updateJump() {
         if (this.isJumping) {
-            if (this.y <= initialY - jumpHeight) {
+            System.out.println(this.y);
+            System.out.println(" \n");
+            if (this.y <= initialY - jumpHeight || this.y <= 70) {
                 this.isGoingDown = true;
             }
             if (this.y > this.jumpHeight - this.initialY && !this.isGoingDown) {
