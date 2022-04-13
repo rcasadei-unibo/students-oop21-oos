@@ -51,7 +51,7 @@ public final class CollisionManagerImpl implements CollisionManager {
             } else {
               if (e.getBounds().intersects(pl.getBounds())) {
                   e.activateEffect(model);
-                  //e.setHit(true);
+                  e.hit(true);
               }
             }
         });

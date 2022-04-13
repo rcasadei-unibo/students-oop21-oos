@@ -59,8 +59,10 @@ public final class PlayerImpl implements Player {
 
     @Override
     public void jump() {
-        this.isJumping = true;
-        this.initialY = this.y;
+        if (!this.isJumping) {
+            this.isJumping = true;
+            this.initialY = this.y;
+        }
     }
 
     @Override
