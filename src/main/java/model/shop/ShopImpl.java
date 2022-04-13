@@ -27,6 +27,21 @@ public class ShopImpl implements Shop {
         }
     }
 
+    /**
+     * @param box the mistery box. 
+     */
+    public void misteryBoxPayment(final MysteryBox box) {
+        // TODO Auto-generated method stub
+        int coins = 1000; 
+        if (checkMystery(box, coins)) {
+            purchaseBox(box, coins);
+        }
+    }
+
+    private boolean checkMystery(final MysteryBox box, final int coins) {
+        return box.getPrice() <= coins; 
+    }
+
     private boolean checkPayment(final ShopItem selectedItem, final int coins) {
         return !selectedItem.isPurchased() && selectedItem.getPrice() <= coins;
     }
@@ -35,6 +50,10 @@ public class ShopImpl implements Shop {
         selectedItem.purchase();
         coins -= selectedItem.getPrice();
         this.purchasedItems.add(selectedItem);
+    }
+
+    private void purchaseBox(final MysteryBox box, int coins) {
+        coins -= box.getPrice(); 
     }
 
     /**
