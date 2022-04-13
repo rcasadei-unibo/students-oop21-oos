@@ -29,8 +29,7 @@ public class GameStateImpl implements GameState {
 
     @Override
     public boolean isGameOver() {
-        // TODO Auto-generated method stub
-        return false;
+        return this.player.getLives() < 1;
     }
 
     @Override
