@@ -6,7 +6,7 @@ public final class PlayerImpl implements Player {
     /**
      * Width of the sprite.
      */
-    public static final int MAIN_CHARACTER_WIDTH = 96;
+    public static final int MAIN_CHARACTER_WIDTH = 70;
     /**
      * Height of the sprite.
      */
@@ -27,7 +27,7 @@ public final class PlayerImpl implements Player {
     /**
      * How many steps the player does every refresh.
      */
-    public static final double GRAVITY = 5.0f;
+    public static final double GRAVITY = 2.0f;
     //coordinate nello schermo
     private final double x;
     private double y;
@@ -68,7 +68,7 @@ public final class PlayerImpl implements Player {
     @Override
     public void updateJump() {
         if (this.isJumping) {
-            System.out.println(this.y);
+            //System.out.println(this.y);
             System.out.println(" \n");
             if (this.y <= initialY - jumpHeight || this.y <= 70) {
                 this.isGoingDown = true;

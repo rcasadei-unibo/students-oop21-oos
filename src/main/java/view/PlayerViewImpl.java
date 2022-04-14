@@ -5,22 +5,13 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import model.Player;
+import model.PlayerImpl;
 
 public final class PlayerViewImpl implements PlayerView {
 
     private final Pane pane; 
-    /**
-     * Width of the sprite.
-     */
-    public static final int MAIN_CHARACTER_WIDTH = 96;
-    /**
-     * Height of the sprite.
-     */
-    public static final int MAIN_CHARACTER_HEIGHT = 96;
-    /**
-     * Where to find the image with all the png.
-     */
-    public static final String IMAGE_PATH = "Player2giusto.png";
+
+    private final String imagePath = "Player2giusto.png";
     /**
      * The total of the movements.
      */
@@ -53,10 +44,10 @@ public final class PlayerViewImpl implements PlayerView {
     private final int[][] spriteYCoordinates = new int[TOTAL_MOVEMENTS][];
 
     //il player
-    private Player player;
+    private final PlayerImpl player;
     private ImageView lastSpriteImage;
 
-    public PlayerViewImpl(final Pane pane, final Player pl) {
+    public PlayerViewImpl(final Pane pane, final PlayerImpl pl) {
         this.pane = pane;
         this.player = pl;
         this.currentDirection = NORMAL;
@@ -65,10 +56,10 @@ public final class PlayerViewImpl implements PlayerView {
 
         int var = 208;
         
-        spriteXCoordinates[NORMAL] = new int[] {131, 177, 223}; //le coordinata delle prime tre immagini
+        spriteXCoordinates[NORMAL] = new int[] {131, 175, 221}; //le coordinata delle prime tre immagini
         spriteYCoordinates[NORMAL] = new int[] {var, var, var};
-        spriteXCoordinates[JUMP] = new int[] {262}; // le coordinata del salto
-        spriteYCoordinates[JUMP] = new int[] {var};
+        spriteXCoordinates[JUMP] = new int[] {252}; // le coordinata del salto
+        spriteYCoordinates[JUMP] = new int[] {210};
         spriteXCoordinates[DOWN] = new int[] {307}; // la coordinata della discesa
         spriteYCoordinates[DOWN] = new int[] {var};
     }
@@ -108,14 +99,14 @@ public final class PlayerViewImpl implements PlayerView {
         this.pane.getChildren().add(this.lastSpriteImage);
     }
 
-    private ImageView createImage(final Player pl) {
-        final ImageView image = new ImageView(new Image(IMAGE_PATH));
+    private ImageView createImage(final PlayerImpl pl) {
+        final ImageView image = new ImageView(new Image(imagePath));
         image.setViewport(new Rectangle2D(spriteX, spriteY, 35, 45));;
         image.setPreserveRatio(true);
         image.setX(pl.getBounds().getMinX());
         image.setY(pl.getBounds().getMinY());
-        image.setFitHeight(MAIN_CHARACTER_HEIGHT);
-        image.setFitWidth(MAIN_CHARACTER_WIDTH);
+        image.setFitHeight(PlayerImpl.MAIN_CHARACTER_HEIGHT);
+        image.setFitWidth(PlayerImpl.MAIN_CHARACTER_WIDTH);
         return image;
     }
 
