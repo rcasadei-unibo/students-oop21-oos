@@ -44,7 +44,9 @@ public class ControllerImpl implements Controller {
 
     @Override
     public void render() {
-        this.view.render();
+        if (!this.model.getGameState().isGameOver()) {
+            this.view.render();
+        }
     }
 
     @Override
