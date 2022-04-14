@@ -27,7 +27,7 @@ public final class PlayerImpl implements Player {
     /**
      * How many steps the player does every refresh.
      */
-    public static final double GRAVITY = 2.0f;
+    public static final double GRAVITY = 4.5f;
     //coordinate nello schermo
     private final double x;
     private double y;
