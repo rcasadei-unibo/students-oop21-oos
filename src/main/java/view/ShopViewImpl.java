@@ -1,11 +1,11 @@
 package view;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
@@ -19,6 +19,8 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+import model.shop.Shop;
 
 public class ShopViewImpl implements ShopView {
 
@@ -38,7 +40,7 @@ public class ShopViewImpl implements ShopView {
     private static final int ARROW_BUTTON_X = 240; 
     private static final int ARROW_DXBUTTON_X = 510; 
     private static final int ARROW_BUTTON_Y = 200; 
-    private static final int ARROW_HEIGTH = 40; 
+    private static final int SQUARE_HEIGTH = 40; 
     private static final int SHOPTITLE_X = 330; 
     private static final int SKIN_X = 357; 
     private static final int SKIN_Y = 130; 
@@ -47,6 +49,9 @@ public class ShopViewImpl implements ShopView {
     private static final int BACKGROUND_HEIGTH = 480;
     private static final int HOMEBTN_Y = 355;
     private static final int HOMEBTN_X = 740;
+    private static final int MYSTBOX_HEIGHT = 80; 
+    private static final int MYSTBOX_X = 40;
+    private static final int MYSTBOX_Y = 310; 
 
     public ShopViewImpl(final View view, final Stage stage, final Pane pane) {
         super(); 
@@ -98,18 +103,23 @@ public class ShopViewImpl implements ShopView {
 
         final ImageView dxArr = new ImageView(); 
         dxArr.setImage(new Image("ArrowDx.png"));
-        dxArr.setFitHeight(ARROW_HEIGTH); 
+        dxArr.setFitHeight(SQUARE_HEIGTH); 
         dxArr.setPreserveRatio(true);
 
         final ImageView sxArr = new ImageView(); 
         sxArr.setImage(new Image("ArrowSx.png"));
-        sxArr.setFitHeight(ARROW_HEIGTH); 
+        sxArr.setFitHeight(SQUARE_HEIGTH); 
         sxArr.setPreserveRatio(true);
 
         final ImageView homeIm = new ImageView(); 
         homeIm.setImage(new Image("Home.png"));
-        homeIm.setFitHeight(ARROW_HEIGTH);
+        homeIm.setFitHeight(SQUARE_HEIGTH);
         homeIm.setPreserveRatio(true);
+
+        final ImageView mysteryBoxIm = new ImageView(); 
+        mysteryBoxIm.setImage(new Image("MysteryBox.png"));
+        mysteryBoxIm.setFitHeight(MYSTBOX_HEIGHT);
+        mysteryBoxIm.setPreserveRatio(true);
 
         final Button dxArrow = new Button(); 
         dxArrow.setLayoutX(ARROW_DXBUTTON_X);
@@ -138,7 +148,19 @@ public class ShopViewImpl implements ShopView {
             //BACK ON THE MAIN MENU
         });
 
-        //
+        final Button mysteryBox = new Button(); 
+        mysteryBox.setLayoutX(MYSTBOX_X);
+        mysteryBox.setLayoutY(MYSTBOX_Y);
+        mysteryBox.setPrefWidth(MYSTBOX_HEIGHT);
+        mysteryBox.setGraphic(mysteryBoxIm);
+        mysteryBox.setOnAction(e -> {
+            //shop.misteryBoxPayment(null, null); 
+            final Alert alert = new Alert(AlertType.INFORMATION); 
+            alert.setTitle("Premio"); 
+            alert.setHeaderText(null); 
+            alert.setContentText("Prova prova"); 
+            alert.showAndWait(); 
+        });
 
         final Rectangle rectangle = new Rectangle(345, 120, 120, 170); 
         rectangle.setFill(Color.LIGHTPINK);
@@ -161,6 +183,7 @@ public class ShopViewImpl implements ShopView {
         this.pane.getChildren().add(outerRec); 
         this.pane.getChildren().add(rectangle);
         this.pane.getChildren().add(skins.get(skinsCounter)); 
+        this.pane.getChildren().add(mysteryBox); 
 
         this.pane.setBackground(new Background(shopBackground));
 
