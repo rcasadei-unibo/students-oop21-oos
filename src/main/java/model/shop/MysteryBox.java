@@ -8,9 +8,10 @@ public interface MysteryBox {
     /**
      * Create the prize of the mystery box, choosing between four different options.
      * @param stats the game statistics. 
-     * @param model the game model to use the class player. 
+     * @param model the game model. 
+     * @return the string with the prize message. 
      */
-    void createPrize(Statistics stats, Model model); 
+    String createPrize(Statistics stats, Model model); 
 
     /**
      * 
