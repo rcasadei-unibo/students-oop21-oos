@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
+import model.Statistics;
+import model.StatisticsImpl;
+
 /**
  * Implements the Shop and its methods, which are needed by the player to buy elements.
  *
@@ -18,23 +21,22 @@ public class ShopImpl implements Shop {
     }
 
     /**
-     * @param selectedItem item
+     * @param selectedItem the item selected by the player. 
+     * @param stats the game statistics. 
      */
-    public void shopItemPayment(final ShopItem selectedItem) {
-        int coins = 10000;
-        if (this.checkPayment(selectedItem, coins)) {
-            this.purchaseSkin(selectedItem, coins);
+    public void shopItemPayment(final ShopItem selectedItem, final Statistics stats) {
+        if (this.checkPayment(selectedItem, stats.getTotalCoins())) {
+            this.purchaseSkin(selectedItem, stats);
         }
     }
 
     /**
-     * @param box the mistery box. 
+     * @param box the mystery box. 
+     * @param stats the game statistics.
      */
-    public void misteryBoxPayment(final MysteryBox box) {
-        // TODO Auto-generated method stub
-        int coins = 1000; 
-        if (checkMystery(box, coins)) {
-            purchaseBox(box, coins);
+    public void misteryBoxPayment(final MysteryBox box, final Statistics stats) {
+        if (checkMystery(box, stats.getTotalCoins())) {
+            purchaseBox(box, stats);
         }
     }
 
@@ -46,14 +48,14 @@ public class ShopImpl implements Shop {
         return !selectedItem.isPurchased() && selectedItem.getPrice() <= coins;
     }
 
-    private void purchaseSkin(final ShopItem selectedItem, int coins) {
+    private void purchaseSkin(final ShopItem selectedItem, final Statistics stats) {
         selectedItem.purchase();
-        coins -= selectedItem.getPrice();
+        stats.setTotalCoins(stats.getTotalCoins() - selectedItem.getPrice());
         this.purchasedItems.add(selectedItem);
     }
 
-    private void purchaseBox(final MysteryBox box, int coins) {
-        coins -= box.getPrice(); 
+    private void purchaseBox(final MysteryBox box, final Statistics stats) {
+        stats.setTotalCoins(stats.getTotalCoins() - box.getPrice());
     }
 
     /**
