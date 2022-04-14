@@ -22,6 +22,8 @@ public final class PlayerViewImpl implements PlayerView {
     private static final int IMAGE4 = 252;
     private static final int IMAGE5 = 307;
     private static final int HEIGHT = 208;
+    private static final int IMAGE_WIDTH = 35;
+    private static final int IMAGE_HEIGHT = 45;
 
     private String imagePath;
 
@@ -92,7 +94,7 @@ public final class PlayerViewImpl implements PlayerView {
 
     private ImageView createImage(final Player pl) {
         final ImageView image = new ImageView(new Image(imagePath));
-        image.setViewport(new Rectangle2D(spriteX, spriteY, 35, 45));;
+        image.setViewport(new Rectangle2D(spriteX, spriteY, IMAGE_WIDTH, IMAGE_HEIGHT));
         image.setPreserveRatio(true);
         image.setX(pl.getBounds().getMinX());
         image.setY(pl.getBounds().getMinY());

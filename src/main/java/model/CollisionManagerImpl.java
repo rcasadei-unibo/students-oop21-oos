@@ -32,7 +32,7 @@ public final class CollisionManagerImpl implements CollisionManager {
                 if (pl.isShieldActive() && e.getType() == EntityType.OBSATCLE) {
                     e.hit(false);
                 } else if (e.getBounds().intersects(pl.getBounds()) && !e.wasHit()) {
-                  //e.activateEffect(model);
+                  e.activateEffect(model);
                   e.hit(true);
               }
             }
