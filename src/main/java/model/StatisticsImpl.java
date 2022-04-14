@@ -61,7 +61,7 @@ public class StatisticsImpl implements Statistics {
     }
 
     @Override
-    public double getDistance() {
+    public int getDistance() {
         return this.actualDistance;
     }
 

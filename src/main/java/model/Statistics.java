@@ -11,7 +11,7 @@ public interface Statistics {
 
     double getDifficulty();
 
-    double getDistance();
+    int getDistance();
 
     int getLastDeathDistance();
 
