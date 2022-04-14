@@ -11,7 +11,6 @@ public final class PlayerViewImpl implements PlayerView {
 
     private final Pane pane; 
 
-    private final String imagePath = "Player2giusto.png";
     /**
      * The total of the movements.
      */
@@ -33,6 +32,8 @@ public final class PlayerViewImpl implements PlayerView {
      */
     public static final byte SPRITE_CHANGE = 40;
 
+    private String imagePath;
+
     //coordinate dello sprite nel png per scegliere l'orso che mi serve
     private int spriteX;
     private int spriteY;
@@ -53,6 +54,7 @@ public final class PlayerViewImpl implements PlayerView {
         this.currentDirection = NORMAL;
         this.currentSprite = 0;
         this.currentSpriteChange = 0;
+        this.imagePath = "Player2giusto.png";
 
         int var = 208;
         
@@ -110,4 +112,8 @@ public final class PlayerViewImpl implements PlayerView {
         return image;
     }
 
+    @Override
+    public void setImage(final String path) {
+        this.imagePath = path;
+    }
 }
