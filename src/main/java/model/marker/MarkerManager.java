@@ -5,11 +5,11 @@ import java.util.Optional;
 
 public interface MarkerManager {
 
-    void update();
-
-    void check();
-
     boolean isCommonMarkerToBeCreated(int distance);
+
+    void check(int distance);
+
+    void update(double difficulty);
 
     List<Optional<Marker>> getMarkers();
 
