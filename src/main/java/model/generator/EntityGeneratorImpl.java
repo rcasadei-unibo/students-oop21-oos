@@ -13,6 +13,11 @@ import model.entity.EntityFactoryImpl;
 import model.entity.SpawnLevel;
 import model.entity.EntityType;
 
+/**
+ * 
+ * Class used to generate a list of {@link DynamicEntity}.
+ *
+ */
 public final class EntityGeneratorImpl implements EntityGenerator {
 
     private static final double INITIAL_SPEEDX = 2.0;
@@ -25,9 +30,13 @@ public final class EntityGeneratorImpl implements EntityGenerator {
     private final Random random; 
     private double speedX;
 
-    public EntityGeneratorImpl(final Dimension2D worldDimension) {
+    /**
+     * 
+     * @param worldDimensions the game's world dimensions.
+     */
+    public EntityGeneratorImpl(final Dimension2D worldDimensions) {
 
-        this.factory = new EntityFactoryImpl(worldDimension);
+        this.factory = new EntityFactoryImpl(worldDimensions);
         this.counter = new Counter();
         this.entities = new ArrayList<>();
         this.speedX = INITIAL_SPEEDX;
@@ -35,16 +44,25 @@ public final class EntityGeneratorImpl implements EntityGenerator {
 
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public List<DynamicEntity> getEntities() {
         return this.entities;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void setSpeedX(final double speedX) {
         this.speedX = speedX;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void updateList() {
         this.removeEntity(e -> e.wasHit() && (e.getType() == EntityType.POWERUP || e.getType() == EntityType.COIN));

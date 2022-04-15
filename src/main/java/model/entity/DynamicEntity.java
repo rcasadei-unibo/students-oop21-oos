@@ -4,6 +4,11 @@ import javafx.geometry.Rectangle2D;
 import javafx.scene.image.Image;
 import model.Model;
 
+/**
+ * 
+ * Interface that identify an entity that moves on the screen.
+ *
+ */
 public interface DynamicEntity {
 
     /**
@@ -13,32 +18,32 @@ public interface DynamicEntity {
     void updatePosition(double speedX);
 
     /**
-     * 
-     * @return a new Rectangle2D that represents the coordinates and the dimension of the entity
+     * Returns the entity Bounding Box.
+     * @return a new Rectangle2D that represents the coordinates and the dimension of the entity.
      */
     Rectangle2D getBounds();
 
     /**
      * Check if the entity is out of the screen.
-     * @return true if the entity is out of the screen, false otherwise 
+     * @return true if the entity is out of the screen, false otherwise.
      */
     boolean isOutofScreen();
 
     /**
-     * Get the image related with the entity.
+     * Get the image defining the entity.
      * @return the image corresponding to the entity
      */
     Image getImage();
 
     /**
      * 
-     * @return the level in which the entity is placed. 
+     * @return the level on which entity spawn. 
      */
     SpawnLevel getLevelType();
 
     /**
      * 
-     * @return the type of entity created.
+     * @return the type that identify the entity.
      */
     EntityType getType();
 
@@ -67,8 +72,8 @@ public interface DynamicEntity {
     boolean wasHit();
 
     /**
-     * Activate the effect related to the entity, when it gets hit. 
-     * @param model 
+     * Activate the effect related to the entity, when it collides with the player. 
+     * @param model the actual state of the game. 
      */
     void activateEffect(Model model);
 }

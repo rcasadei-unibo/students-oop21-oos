@@ -2,30 +2,34 @@ package model.entity;
 
 import java.util.List;
 
+/**
+ * 
+ * Factory Method for {@link DynamicEntity}.
+ *
+ */
 public interface EntityFactory {
 
     /**
      * Create a new {@link Obstacle}'s instance.
-     * @param level the level on which obstacle spawn
+     * @param level the level on which {@link Obstacle} spawn
      * @return a new {@link Obstacle} 's instance 
      */
     DynamicEntity createObstacle(SpawnLevel level);
 
     /**
      * Create a new {@link Platform}'s instance.
-     * @param level the level on which platform spawn
+     * @param level the level on which {@link Platform} spawn
      * @return a new {@link Platform} 's instance 
      */
     DynamicEntity createPlatform(SpawnLevel level);
 
     /**
      * Create a new {@link Coin}'s instance.
-     * @param level the level on which coin spawn
+     * @param level the level on which {@link Coin} spawn
      * @return a new {@link Coin} 's instance 
      */
     DynamicEntity createCoin(SpawnLevel level);
 
-    //List<DynamicEntity> createCoinCollection(EntityLevel level);
     /**
      * 
      * @param platformLevel the level on which {@link Platform} should spawn. 
