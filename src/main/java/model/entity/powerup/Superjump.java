@@ -5,11 +5,11 @@ import java.util.TimerTask;
 
 import javafx.scene.image.Image;
 import model.Model;
-import model.entity.DynamicEntityImpl;
+import model.entity.AbstractDynamicEntity;
 import model.entity.SpawnLevel;
 import model.entity.EntityType;
 
-public final class Superjump extends DynamicEntityImpl {
+public final class Superjump extends AbstractDynamicEntity {
 
     private static final int SUPERJUMP_HEIGHT = 2; 
     private static final double NORMALJUMP_HEIGHT = 0.5; 

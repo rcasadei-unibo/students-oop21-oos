@@ -6,11 +6,11 @@ import java.util.TimerTask;
 import javafx.scene.image.Image;
 import model.Model;
 import model.entity.Coin;
-import model.entity.DynamicEntityImpl;
+import model.entity.AbstractDynamicEntity;
 import model.entity.SpawnLevel;
 import model.entity.EntityType;
 
-public class Mushroom extends DynamicEntityImpl {
+public class Mushroom extends AbstractDynamicEntity {
 
     private final EffectTimer mushroomTimer; 
     private static final int DOUBLECOIN = 2; 

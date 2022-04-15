@@ -4,11 +4,11 @@ import java.awt.geom.Point2D.Double;
 
 import javafx.scene.image.Image;
 import model.Model;
-import model.entity.DynamicEntityImpl;
+import model.entity.AbstractDynamicEntity;
 import model.entity.SpawnLevel;
 import model.entity.EntityType;
 
-public class ExtraLife extends DynamicEntityImpl {
+public class ExtraLife extends AbstractDynamicEntity {
 
     public ExtraLife(final Double coordinates, final Image image, final SpawnLevel level, final EntityType type) {
         super(coordinates, image, level, type);
