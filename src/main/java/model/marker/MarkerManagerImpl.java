@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 
 public class MarkerManagerImpl implements MarkerManager {
 
-    private static final int DISTANCE_BETWEEN_MARKERS = 100;
+    private static final int DISTANCE_BETWEEN_MARKERS = 10;
     private final int lastDeathDistance;
     private final int recordDistance;
     private int numberNextMarker;
@@ -41,17 +41,17 @@ public class MarkerManagerImpl implements MarkerManager {
     @Override
     public void check(final int distance) {
         if (this.isCommonMarkerToBeCreated(distance)) {
-            this.markers.add(Optional.of(this.markerFactory.createCommonMarker()));
+            this.markers.add(Optional.of(this.markerFactory.createCommonMarker(Integer.toString(this.roundDistance(distance)))));
         }
 
         if (this.lastDeathMarker.isEmpty() && distance > 0 && distance >= this.lastDeathDistance) {
             this.lastDeathMarker = Optional.of(this.markerFactory.createLastDeathMarker());
-            this.markers.add(lastDeathMarker);
+            this.markers.add(this.lastDeathMarker);
         }
 
         if (this.recordMarker.isEmpty() && distance > 0 && distance >= this.recordDistance) {
             this.recordMarker = Optional.of(this.markerFactory.createRecordMarker());
-            this.markers.add(recordMarker);
+            this.markers.add(this.recordMarker);
         }
     }
 
@@ -68,6 +68,10 @@ public class MarkerManagerImpl implements MarkerManager {
     @Override
     public List<Optional<Marker>> getMarkers() {
         return this.markers;
+    }
+
+    private int roundDistance(final int distance) {
+        return distance - (distance % 10);
     }
 
 }
