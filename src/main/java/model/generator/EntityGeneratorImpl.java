@@ -8,35 +8,36 @@ import java.util.stream.Collectors;
 
 import javafx.geometry.Dimension2D;
 import model.entity.DynamicEntity;
-import model.entity.DynamicEntityFactory;
-import model.entity.DynamicEntityFactoryImpl;
-import model.entity.EntityLevel;
+import model.entity.EntityFactory;
+import model.entity.EntityFactoryImpl;
+import model.entity.SpawnLevel;
 import model.entity.EntityType;
 
 public final class EntityGeneratorImpl implements EntityGenerator {
 
-    private static final int MAX_CASE = 3;
-    private static final int POWERUP_RARITY = 20;
     private static final double INITIAL_SPEEDX = 2.0;
+    private static final int POWERUP_RARITY = 20;
+    private static final int MAX_CASE = 3;
 
-    private final List<DynamicEntity> entityList;
-    private final Random rand = new Random();
-    private final DynamicEntityFactory factory;
-    private final Counter entitiesCount;
+    private final List<DynamicEntity> entities;
+    private final EntityFactory factory;
+    private final Counter counter;
+    private final Random random; 
     private double speedX;
 
     public EntityGeneratorImpl(final Dimension2D worldDimension) {
-        this.entityList = new ArrayList<>();
+
+        this.factory = new EntityFactoryImpl(worldDimension);
+        this.counter = new Counter();
+        this.entities = new ArrayList<>();
         this.speedX = INITIAL_SPEEDX;
-        this.factory = new DynamicEntityFactoryImpl(worldDimension);
-        this.entityList.add(factory.createObsatcle(EntityLevel.ZERO));
-        entitiesCount = new Counter();
-        entitiesCount.increment(1);
+        this.random = new Random();
+
     }
 
     @Override
     public List<DynamicEntity> getEntities() {
-        return this.entityList;
+        return this.entities;
     }
 
     @Override
@@ -48,107 +49,94 @@ public final class EntityGeneratorImpl implements EntityGenerator {
     public void updateList() {
         this.removeEntity(e -> e.wasHit() && (e.getType() == EntityType.POWERUP || e.getType() == EntityType.COIN));
 
-        if (this.entityList.isEmpty() || this.checkPosition()) {
-                this.addEntity();
+        if (this.entities.isEmpty()) {
+            this.entities.addAll(factory.combineAll(SpawnLevel.ONE, SpawnLevel.ZERO, SpawnLevel.TWO));
+            counter.increment(3);
+        } else if (this.checkPosition()) {
+            this.addEntity();
         }
 
-        this.entityList.forEach(e -> e.updatePosition(speedX));
+        this.entities.forEach(e -> e.updatePosition(speedX));
         this.removeEntity(e -> e.isOutofScreen());
     }
 
     private void addEntity() {
-        final int random = rand.nextInt(MAX_CASE);
-        if (entitiesCount.getCounter() < POWERUP_RARITY) {
-            switch (this.entityList.get(entityList.size() - 1).getLevelType()) {
+        final int rand = random.nextInt(MAX_CASE);
+        final DynamicEntity last = this.entities.get(entities.size() - 1);
+
+        if (counter.get() < POWERUP_RARITY) {
+            switch (last.getLevelType()) {
                 case ZERO:
-                    this.levelZeroConfig(random);
+                    this.levelZeroConfig(rand);
                     break;
                 case ONE:
-                    this.levelOneConfig(random);
+                    this.levelOneConfig(rand);
                     break;
                 case TWO:
-                    this.levelTwoConfig(random);
+                    this.levelTwoConfig(rand);
                     break;
                 default:
                     break;
             }
         } else {
-            this.entityList.add(factory.createPowerup(EntityLevel.ONE));
-            this.entitiesCount.reset();
+            this.entities.add(factory.createPowerup(SpawnLevel.values()[rand]));
+            this.counter.reset();
         }
     }
 
 
-    private void levelZeroConfig(final int random) {
-        switch (Case.values()[random]) {
+    private void levelZeroConfig(final int rand) {
+        switch (Case.values()[rand]) {
         case CASE_0:
-            /*Obstacle ground level*/
-            this.entityList.add(factory.createObsatcle(EntityLevel.ZERO));
-            this.entitiesCount.increment(1);
+            this.entities.addAll(factory.combineObstacleCoin(SpawnLevel.ZERO, SpawnLevel.ONE));
+            this.counter.increment(2);
             break;
         case CASE_1:
-            /*Platform level one with under an obstacle*/
-            this.entityList.add(factory.createObsatcle(EntityLevel.ZERO));
-            this.entityList.add(factory.createPlatform(EntityLevel.ONE));
-            this.entitiesCount.increment(2);
+            this.entities.addAll(factory.combinePlatformObstacle(SpawnLevel.ONE, SpawnLevel.ZERO));
+            this.counter.increment(2);
             break;
         case CASE_2:
-            /*Platform level one with under a coin*/
-            this.entityList.add(factory.createCoin(EntityLevel.ZERO));
-            this.entityList.add(factory.createPlatform(EntityLevel.ONE));
-            this.entitiesCount.increment(2);
+            this.entities.add(factory.createPlatform(SpawnLevel.ONE));
+            this.counter.increment(1);
             break;
-
         default:
             break;
         }
 
     }
 
-    private void levelOneConfig(final int random) {
-
-        switch (Case.values()[random]) {
+    private void levelOneConfig(final int rand) {
+        switch (Case.values()[rand]) {
         case CASE_0:
-            /*Platform level two*/
-            this.entityList.add(factory.createPlatform(EntityLevel.TWO));
-            this.entitiesCount.increment(1);
+            this.entities.addAll(factory.combinePlatformObstacle(SpawnLevel.TWO, SpawnLevel.ZERO));
+            this.counter.increment(1);
             break;
         case CASE_1:
-            /*Platform level two, coin level one*/
-            this.entityList.add(factory.createCoin(EntityLevel.ONE));
-            this.entityList.add(factory.createPlatform(EntityLevel.TWO));
-            this.entitiesCount.increment(1);
+            this.entities.addAll(factory.combinePlatformCoin(SpawnLevel.TWO, SpawnLevel.ONE));
+            this.counter.increment(2);
             break;
         case CASE_2:
-            /*Ground obsatcle*/
-            this.entityList.add(factory.createObsatcle(EntityLevel.ZERO));
-            this.entitiesCount.increment(1);
+            this.entities.add(factory.createObstacle(SpawnLevel.ZERO));
+            this.counter.increment(1);
             break;
-
         default:
             break;
         }
     }
 
-    private void levelTwoConfig(final int random) {
-
-        switch (Case.values()[random]) {
+    private void levelTwoConfig(final int rand) {
+        switch (Case.values()[rand]) {
         case CASE_0:
-            /*Platform level one*/
-            this.entityList.add(factory.createPlatform(EntityLevel.ONE));
-            this.entitiesCount.increment(1);
+            this.entities.addAll(factory.combinePlatformCoin(SpawnLevel.ONE, SpawnLevel.TWO));
+            this.counter.increment(2);
             break;
         case CASE_1:
-            /*Platform level one, ground obstacle*/
-            this.entityList.add(factory.createObsatcle(EntityLevel.ZERO));
-            this.entityList.add(factory.createPlatform(EntityLevel.ONE));
-            this.entitiesCount.increment(2);
+            this.entities.addAll(factory.combinePlatformObstacle(SpawnLevel.ONE, SpawnLevel.ZERO));
+            this.counter.increment(2);
             break;
         case CASE_2:
-            /*Obstacle ground level, coin level one*/
-            this.entityList.add(factory.createCoin(EntityLevel.ONE));
-            this.entityList.add(factory.createObsatcle(EntityLevel.ZERO));
-            this.entitiesCount.increment(2);
+            this.entities.add(factory.createCoin(SpawnLevel.ONE));
+            this.counter.increment(1);
             break;
 
         default:
@@ -157,14 +145,15 @@ public final class EntityGeneratorImpl implements EntityGenerator {
     }
 
     private void removeEntity(final Predicate<DynamicEntity> filterCondition) {
-        final List<DynamicEntity> removeList = entityList.stream()
-                                                         .filter(filterCondition)
-                                                         .collect(Collectors.toList());
-        this.entityList.removeAll(removeList);
+
+        this.entities.removeAll(entities.stream()
+                                        .filter(filterCondition)
+                                        .collect(Collectors.toList()));
+
     }
 
     private boolean checkPosition() {
-        return entityList.get(entityList.size() - 1).getBounds().getMinX() < entityList.get(entityList.size() - 1).getDistance();
+        return entities.get(entities.size() - 1).getBounds().getMinX() < entities.get(entities.size() - 1).getDistance();
     }
 
     private enum Case {
@@ -187,7 +176,7 @@ public final class EntityGeneratorImpl implements EntityGenerator {
             this.count = 0;
         }
 
-        public int getCounter() {
+        public int get() {
             return this.count;
         }
     }
