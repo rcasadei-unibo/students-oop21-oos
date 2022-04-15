@@ -40,10 +40,10 @@ public interface Player {
     boolean isGoingDown();
 
     /**
-     * Sets the height of the jumps.
-     * @param mul the number to multiply the height of the jump
+     * Sets the double jump.
+     * @param set true if doubleJump is active
      */
-    void setJumpHeight(double mul);
+    void setDoubleJump(boolean set);
 
     /**
      * Sets the height of the land.
