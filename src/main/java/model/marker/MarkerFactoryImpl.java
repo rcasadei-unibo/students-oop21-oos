@@ -7,9 +7,9 @@ import javafx.scene.image.Image;
 
 public class MarkerFactoryImpl implements MarkerFactory {
 
-    private static final double MARKER_X = 860;
-    private static final double LOW_MARKER_Y = 480;
-    private static final double HIGH_MARKER_Y = 100;
+    private static final double MARKER_X = 980;
+    private static final double LOW_MARKER_Y = 365;
+    private static final double HIGH_MARKER_Y = 40;
     private final Random random;
 
     public MarkerFactoryImpl() {
@@ -18,32 +18,40 @@ public class MarkerFactoryImpl implements MarkerFactory {
     }
 
     @Override
-    public Marker createCommonMarker() {
+    public Marker createCommonMarker(final String text) {
         return this.random.nextInt() % 2 == 0
-                ? this.createHighMarker(new Image("")) 
-                : this.createLowMarker(new Image("SwagCat.png"));
+                ? this.createHighMarker(new Image("RedBalloon.png"), text)
+                : this.createLowMarker(new Image("SwagCat.png"), text);
     }
 
     @Override
     public Marker createLastDeathMarker() {
-        return this.createLowMarker(new Image("Tombstone.png"));
+        return this.createLowMarkerWithoutText(new Image("Tombstone.png"));
     }
 
     @Override
     public Marker createRecordMarker() {
-        return this.createLowMarker(new Image("Record.png"));
+        return this.createLowMarkerWithoutText(new Image("RecordFlag.png"));
     }
 
-    private Marker createGeneralised(final Point2D.Double point, final Image image) {
-        return new MarkerImpl(point, image);
+    private Marker createGeneralised(final Point2D.Double point, final Image image, final String text) {
+        return new MarkerImpl(point, image, text);
     }
 
-    private Marker createLowMarker(final Image image) {
-        return this.createGeneralised(new Point2D.Double(MARKER_X, LOW_MARKER_Y), image);
+    private Marker createGeneralisedWithoutText(final Point2D.Double point, final Image image) {
+        return new MarkerImpl(point, image, "");
     }
 
-    private Marker createHighMarker(final Image image) {
-        return this.createGeneralised(new Point2D.Double(MARKER_X, HIGH_MARKER_Y), image);
+    private Marker createLowMarker(final Image image, final String text) {
+        return this.createGeneralised(new Point2D.Double(MARKER_X, LOW_MARKER_Y), image, text);
+    }
+
+    private Marker createHighMarker(final Image image, final String text) {
+        return this.createGeneralised(new Point2D.Double(MARKER_X, HIGH_MARKER_Y), image, text);
+    }
+
+    private Marker createLowMarkerWithoutText(final Image image) {
+        return this.createGeneralisedWithoutText(new Point2D.Double(MARKER_X, LOW_MARKER_Y), image);
     }
 
 }
