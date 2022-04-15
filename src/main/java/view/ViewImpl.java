@@ -5,6 +5,7 @@ import controller.ControllerImpl;
 import input.InputObserver;
 import input.InputObserverImpl;
 import model.GameState;
+import model.Model;
 import model.Statistics;
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -47,9 +48,8 @@ public class ViewImpl extends Application implements View {
 
     @Override
     public void game() {
-        final GameState gameState = this.controller.getModel().getGameState();
-        final Statistics statistics = this.controller.getModel().getStatistics();
-        this.gameView = new GameViewImpl(this, this.stage, this.pane, this.observer, gameState, statistics); 
+        final Model model = this.controller.getModel();
+        this.gameView = new GameViewImpl(this, this.stage, this.pane, this.observer, model); 
         this.gameView.render();
     }
 
