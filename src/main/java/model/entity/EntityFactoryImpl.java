@@ -30,7 +30,7 @@ public final class EntityFactoryImpl implements EntityFactory {
     @Override
     public DynamicEntity createObstacle(final SpawnLevel level) {
 
-        final Image image = Math.random() > 0.5 ? EntityImages.OBSTACLE_ONE.getImageFromPath() : EntityImages.OBSTACLE_TWO.getImageFromPath();
+        final Image image = Math.random() > 0.5 ? EntityImages.OBSTACLE_ONE.getImage() : EntityImages.OBSTACLE_TWO.getImage();
         final Point2D.Double coordinates = this.generatePoint(level, image, EntityType.OBSATCLE.getDistanceFactor());
         final DynamicEntity ob = new Obstacle(coordinates, image, level, EntityType.OBSATCLE);
         ob.setDistance(worldDimension.getWidth() - image.getWidth() * EntityType.OBSATCLE.getDistanceFactor());
@@ -41,7 +41,7 @@ public final class EntityFactoryImpl implements EntityFactory {
     @Override
     public DynamicEntity createPlatform(final SpawnLevel level) {
 
-        final Image image = EntityImages.PLATFORM.getImageFromPath();
+        final Image image = EntityImages.PLATFORM.getImage();
         final Point2D.Double coordinates = this.generatePoint(level, image, EntityType.PLATFORM.getDistanceFactor());
         final DynamicEntity pl = new Platform(coordinates, image, level, EntityType.PLATFORM);
         pl.setDistance(worldDimension.getWidth() - image.getWidth());
@@ -52,7 +52,7 @@ public final class EntityFactoryImpl implements EntityFactory {
     @Override
     public DynamicEntity createCoin(final SpawnLevel level) {
 
-        final Image image = EntityImages.COIN.getImageFromPath();
+        final Image image = EntityImages.COIN.getImage();
         final Point2D.Double coordinates = this.generatePoint(level, image, EntityType.COIN.getDistanceFactor());
         final DynamicEntity cn = new Coin(coordinates, image, level, EntityType.COIN);
         cn.setDistance(worldDimension.getWidth() - image.getWidth() * EntityType.COIN.getDistanceFactor());
@@ -137,7 +137,7 @@ public final class EntityFactoryImpl implements EntityFactory {
 
     private DynamicEntity createExtralife(final SpawnLevel level) {
 
-        final Image image = EntityImages.EXTRALIFE.getImageFromPath(); 
+        final Image image = EntityImages.EXTRALIFE.getImage(); 
         final Point2D.Double coordinates = this.generatePoint(level, image, EntityType.POWERUP.getDistanceFactor());
         final DynamicEntity extralife = new ExtraLife(coordinates, image, level, EntityType.POWERUP);
         extralife.setDistance(worldDimension.getWidth() - image.getWidth() * EntityType.POWERUP.getDistanceFactor());
@@ -146,7 +146,7 @@ public final class EntityFactoryImpl implements EntityFactory {
 
     private DynamicEntity createMushroom(final SpawnLevel level) {
 
-        final Image image = EntityImages.MUSHROOM.getImageFromPath(); 
+        final Image image = EntityImages.MUSHROOM.getImage(); 
         final Point2D.Double coordinates = this.generatePoint(level, image, EntityType.POWERUP.getDistanceFactor());
         final DynamicEntity mushroom = new Mushroom(coordinates, image, level, EntityType.POWERUP);
         mushroom.setDistance(worldDimension.getWidth() - image.getWidth() * EntityType.POWERUP.getDistanceFactor());
@@ -155,7 +155,7 @@ public final class EntityFactoryImpl implements EntityFactory {
 
     private DynamicEntity createShield(final SpawnLevel level) {
 
-        final Image image = EntityImages.SHIELD.getImageFromPath(); 
+        final Image image = EntityImages.SHIELD.getImage(); 
         final Point2D.Double coordinates = this.generatePoint(level, image, EntityType.POWERUP.getDistanceFactor());
         final DynamicEntity shield = new Shield(coordinates, image, level, EntityType.POWERUP);
         shield.setDistance(worldDimension.getWidth() - image.getWidth() * EntityType.POWERUP.getDistanceFactor());
@@ -164,7 +164,7 @@ public final class EntityFactoryImpl implements EntityFactory {
 
     private DynamicEntity createSpraybomb(final SpawnLevel level) {
 
-        final Image image = EntityImages.SPRAYBOMB.getImageFromPath(); 
+        final Image image = EntityImages.SPRAYBOMB.getImage(); 
         final Point2D.Double coordinates = this.generatePoint(level, image, EntityType.POWERUP.getDistanceFactor());
         final DynamicEntity spraybomb = new Spraybomb(coordinates, image, level, EntityType.POWERUP);
         spraybomb.setDistance(worldDimension.getWidth() - image.getWidth() * EntityType.POWERUP.getDistanceFactor());
@@ -173,7 +173,7 @@ public final class EntityFactoryImpl implements EntityFactory {
 
     private DynamicEntity createSuperjump(final SpawnLevel level) {
 
-        final Image image = EntityImages.SUPERJUMP.getImageFromPath(); 
+        final Image image = EntityImages.SUPERJUMP.getImage(); 
         final Point2D.Double coordinates = this.generatePoint(level, image, EntityType.POWERUP.getDistanceFactor());
         final DynamicEntity superjump = new Superjump(coordinates, image, level, EntityType.POWERUP);
         superjump.setDistance(worldDimension.getWidth() - image.getWidth() * EntityType.POWERUP.getDistanceFactor());

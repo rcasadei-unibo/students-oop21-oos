@@ -55,7 +55,7 @@ public enum EntityImages {
         this.path = path;
     }
 
-    public Image getImageFromPath() {
+    public Image getImage() {
         return new Image(this.path);
     }
 
