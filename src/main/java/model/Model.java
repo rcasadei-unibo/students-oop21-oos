@@ -1,5 +1,7 @@
 package model;
 
+import model.marker.MarkerManager;
+
 public interface Model {
 
     GameState getGameState();
@@ -7,6 +9,8 @@ public interface Model {
     Statistics getStatistics();
 
     StatisticsUpdater getStatisticsUpdater();
+
+    MarkerManager getMarkerManager();
 
     void update();
 
