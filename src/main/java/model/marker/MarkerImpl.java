@@ -11,12 +11,14 @@ public class MarkerImpl implements Marker {
     private final Point2D.Double coordinates;
     private final Image image;
     private final Dimension2D dimension;
+    private final String text;
 
-    public MarkerImpl(final Double coordinates, final Image image) {
+    public MarkerImpl(final Double coordinates, final Image image, final String text) {
         super();
         this.coordinates = coordinates;
         this.image = image;
         this.dimension = new Dimension2D(this.image.getWidth(), this.image.getHeight());
+        this.text = text;
     }
 
     @Override
@@ -51,8 +53,7 @@ public class MarkerImpl implements Marker {
 
     @Override
     public String getText() {
-        // TODO Auto-generated method stub
-        return null;
+        return this.text;
     }
 
 }
