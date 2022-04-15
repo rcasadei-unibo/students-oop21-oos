@@ -8,7 +8,7 @@ public final class Coin extends DynamicEntityImpl {
 
     private static int coinValue = 1; 
 
-    Coin(final Double coordinates, final Image image, final SpawnLevel level, final EntityType type) {
+    public Coin(final Double coordinates, final Image image, final SpawnLevel level, final EntityType type) {
         super(coordinates, image, level, type);
     }
 
