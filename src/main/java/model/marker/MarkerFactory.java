@@ -2,7 +2,7 @@ package model.marker;
 
 public interface MarkerFactory {
 
-    Marker createCommonMarker();
+    Marker createCommonMarker(String text);
 
     Marker createLastDeathMarker();
 
