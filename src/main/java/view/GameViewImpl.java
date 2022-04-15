@@ -13,9 +13,12 @@ import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import model.GameState;
+import model.Model;
 import model.Statistics;
 import view.entity.EntityView;
 import view.entity.EntityViewImpl;
+import view.marker.MarkerView;
+import view.marker.MarkerViewImpl;
 
 public class GameViewImpl implements GameView {
     private static final double GAME_SCREEN_WIDTH = 854.0;
@@ -28,9 +31,10 @@ public class GameViewImpl implements GameView {
     private final StatisticsView statView;
     private final GameState gameState;
     private final Statistics statistics;
+    private final MarkerView markerView;
     private final InputObserver obs;
 
-    public GameViewImpl(final View view, final Stage stage, final Pane pane, final InputObserver obs, final GameState gameState, final Statistics statistics) {
+    public GameViewImpl(final View view, final Stage stage, final Pane pane, final InputObserver obs, final Model model) {
         super();
         this.view = view;
         this.stage = stage;
@@ -39,11 +43,12 @@ public class GameViewImpl implements GameView {
         final BackgroundImage background = new BackgroundImage(backImage, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
         this.pane.setBackground(new Background(background));
         this.obs = obs;
-        this.gameState = gameState;
-        this.statistics = statistics;
+        this.gameState = model.getGameState();
+        this.statistics = model.getStatistics();
         this.playerView = new PlayerViewImpl(pane, gameState.getPlayer());
         this.entityView = new EntityViewImpl(pane, gameState.getEntities());
         this.statView = new StatisticsViewImpl(pane, this.statistics, gameState.getPlayer());
+        this.markerView = new MarkerViewImpl(pane, model.getMarkerManager());
 
         this.pane.getScene().setOnKeyPressed(e -> {
             if (e.getCode().equals(KeyCode.SPACE)) {
@@ -55,6 +60,7 @@ public class GameViewImpl implements GameView {
     @Override
     public void render() {
         this.pane.getChildren().clear();
+        this.markerView.render();
         this.playerView.render();
         this.entityView.render();
         this.statView.render();
