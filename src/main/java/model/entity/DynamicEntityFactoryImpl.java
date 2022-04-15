@@ -20,7 +20,6 @@ public final class DynamicEntityFactoryImpl implements DynamicEntityFactory {
 
     private static final int POWERUPS = 5; 
     private static final double LAND_HEIGHT = 40;
-    private static final int MAX_COIN = 5; 
     private final Dimension2D worldDimension;
     private final Random rand = new Random(); 
 
@@ -62,12 +61,50 @@ public final class DynamicEntityFactoryImpl implements DynamicEntityFactory {
     }
 
     @Override
-    public List<DynamicEntity> createCoinCollection(final EntityLevel level) {
-        final int random = rand.nextInt(MAX_COIN);
-        return Stream.generate(() -> createCoin(level))
-                     .limit(random)
+    public List<DynamicEntity> combinePlatformObstacle(final EntityLevel platformLevel, final EntityLevel obstacleLevel) {
+
+        final Stream.Builder<DynamicEntity> builder = Stream.builder();
+        return builder.add(this.createObsatcle(obstacleLevel))
+                     .add(this.createPlatform(platformLevel))
+                     .build()
+                     .collect(Collectors.toList());
+
+    }
+
+    @Override
+    public List<DynamicEntity> combinePlatformCoin(final EntityLevel platformLevel, final EntityLevel coinLevel) {
+
+        final Stream.Builder<DynamicEntity> builder = Stream.builder();
+        return builder.add(this.createObsatcle(coinLevel))
+                     .add(this.createPlatform(platformLevel))
+                     .build()
                      .collect(Collectors.toList());
     }
+
+    @Override
+    public List<DynamicEntity> combineObstacleCoin(final EntityLevel obstacleLevel, final EntityLevel coinLevel) {
+
+        final Stream.Builder<DynamicEntity> builder = Stream.builder();
+        return builder.add(this.createObsatcle(coinLevel))
+                     .add(this.createPlatform(obstacleLevel))
+                     .build()
+                     .collect(Collectors.toList());
+
+    }
+
+    @Override
+    public List<DynamicEntity> combineAll(final EntityLevel platformLevel, final EntityLevel obstacleLevel, final EntityLevel coinLevel) {
+
+        final Stream.Builder<DynamicEntity> builder = Stream.builder();
+        return builder.add(this.createCoin(coinLevel))
+                      .add(this.createObsatcle(obstacleLevel))
+                      .add(this.createPlatform(platformLevel))
+                      .build()
+                      .collect(Collectors.toList());
+
+    }
+
+
 
     @Override
     public DynamicEntity createPowerup(final EntityLevel level) {

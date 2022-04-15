@@ -25,12 +25,39 @@ public interface DynamicEntityFactory {
      */
     DynamicEntity createCoin(EntityLevel level);
 
+    //List<DynamicEntity> createCoinCollection(EntityLevel level);
     /**
-     * Create a list of {@link Coin}.
-     * @param level the level on which coin spawn 
-     * @return a {@link Coin} list. 
+     * 
+     * @param platformLevel the level on which {@link Platform} should spawn. 
+     * @param obstacleLevel the level on which {@link Obstacle} should spawn.
+     * @return a list containing {@link Platform} and {@link Obstacle} combined. 
      */
-    List<DynamicEntity> createCoinCollection(EntityLevel level);
+    List<DynamicEntity> combinePlatformObstacle(EntityLevel platformLevel, EntityLevel obstacleLevel);
+
+    /**
+     * 
+     * @param platformLevel the level on which {@link Platform} should spawn. 
+     * @param coinLevel the level on which {@link Coin} should spawn.
+     * @return a list containing {@link Platform} and {@link Coin} combined. 
+     */
+    List<DynamicEntity> combinePlatformCoin(EntityLevel platformLevel, EntityLevel coinLevel);
+
+    /**
+     * 
+     * @param obstacleLevel the level on which {@link Obstacle} should spawn. 
+     * @param coinLevel the level on which {@link Coin} should spawn.
+     * @return a list containing {@link Obstacle} and {@link Coin} combined. 
+     */
+    List<DynamicEntity> combineObstacleCoin(EntityLevel obstacleLevel, EntityLevel coinLevel);
+
+    /**
+     * 
+     * @param platformLevel the level on which {@link Platform} should spawn.
+     * @param obstacleLevel the level on which {@link Obstacle} should spawn.
+     * @param coinLevel the level on which {@link Coin} should spawn. 
+     * @return a list containing {@link Platform}, {@link Obstacle} and {@link Coin} combined. 
+     */
+    List<DynamicEntity> combineAll(EntityLevel platformLevel, EntityLevel obstacleLevel, EntityLevel coinLevel);
 
     /**
      * Create a new Powerup.
