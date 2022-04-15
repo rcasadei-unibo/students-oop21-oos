@@ -26,16 +26,14 @@ public final class StartMenuViewImpl implements StartMenuView {
     private final View view;
     private final Stage stage;
     private final Pane pane;
-    private final Image backImage;
-    private final BackgroundImage background;
  
     public StartMenuViewImpl(final View view, final Stage stage, final Pane pane) {
         super();
         this.view = view;
         this.stage = stage;
         this.pane = pane;
-        this.backImage = new Image("GameScreen.png", GAME_SCREEN_WIDTH, GAME_SCREEN_HEIGHT, true, true);
-        this.background = new BackgroundImage(backImage, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
+        final Image backImage = new Image("GameScreen.png", GAME_SCREEN_WIDTH, GAME_SCREEN_HEIGHT, true, true);
+        final BackgroundImage background = new BackgroundImage(backImage, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
         this.pane.setBackground(new Background(background));
     }
  
