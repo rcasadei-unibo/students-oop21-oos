@@ -6,7 +6,7 @@ import java.util.TimerTask;
 import javafx.scene.image.Image;
 import model.Model;
 import model.entity.DynamicEntityImpl;
-import model.entity.EntityLevel;
+import model.entity.SpawnLevel;
 import model.entity.EntityType;
 
 public final class Superjump extends DynamicEntityImpl {
@@ -15,14 +15,14 @@ public final class Superjump extends DynamicEntityImpl {
     private static final double NORMALJUMP_HEIGHT = 0.5; 
     private final EffectTimer jumpTimer; 
 
-    public Superjump(final Double coordinates, final Image image, final EntityLevel level, final EntityType type) {
+    public Superjump(final Double coordinates, final Image image, final SpawnLevel level, final EntityType type) {
         super(coordinates, image, level, type);
         jumpTimer = new EffectTimer(); 
     }
 
     @Override
     public void activateEffect(final Model model) {
-        model.getGameState().getPlayer().setJumpHeight(SUPERJUMP_HEIGHT);
+        //model.getGameState().getPlayer().setJumpHeight(SUPERJUMP_HEIGHT);
         jumpTask(model);
     }
 
@@ -30,7 +30,7 @@ public final class Superjump extends DynamicEntityImpl {
         final TimerTask task = new TimerTask() {
             @Override
             public void run() {
-                model.getGameState().getPlayer().setJumpHeight(NORMALJUMP_HEIGHT);
+                //model.getGameState().getPlayer().setJumpHeight(NORMALJUMP_HEIGHT);
             }
         };
         jumpTimer.scheduleTask(task);

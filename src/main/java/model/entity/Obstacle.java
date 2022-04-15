@@ -8,7 +8,7 @@ public class Obstacle extends DynamicEntityImpl {
 
     private static final int DOWN_LIFE = -1;
 
-    Obstacle(final Double coordinates, final Image image, final EntityLevel level, final EntityType type) {
+    Obstacle(final Double coordinates, final Image image, final SpawnLevel level, final EntityType type) {
         super(coordinates, image, level, type);
     }
 

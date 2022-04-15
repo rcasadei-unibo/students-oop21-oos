@@ -13,12 +13,12 @@ public abstract class DynamicEntityImpl implements DynamicEntity {
     private final Dimension2D dimensions;
     private double nextDistance;
     private final Image image;
-    private final EntityLevel level;
+    private final SpawnLevel level;
     private final EntityType type;
     private boolean hit;
 
 
-    public DynamicEntityImpl(final Point2D.Double coordinates, final Image image, final EntityLevel level, final EntityType type) {
+    public DynamicEntityImpl(final Point2D.Double coordinates, final Image image, final SpawnLevel level, final EntityType type) {
 
         this.coordinates = coordinates;
         this.image = image;
@@ -50,7 +50,7 @@ public abstract class DynamicEntityImpl implements DynamicEntity {
     }
 
     @Override
-    public final  EntityLevel getLevelType() {
+    public final  SpawnLevel getLevelType() {
         return this.level;
     }
 

@@ -6,7 +6,7 @@ import model.Model;
 
 public final class Platform extends DynamicEntityImpl {
 
-    Platform(final Double coordinates, final Image image, final EntityLevel level, final EntityType type) {
+    Platform(final Double coordinates, final Image image, final SpawnLevel level, final EntityType type) {
         super(coordinates, image, level, type);
     }
 

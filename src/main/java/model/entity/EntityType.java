@@ -5,7 +5,7 @@ public enum EntityType {
     /**
      * Obstacle's type.
      */
-    OBSATCLE(5.0), 
+    OBSATCLE(4.7), 
 
     /**
      * Platform's type.
@@ -15,7 +15,7 @@ public enum EntityType {
     /**
      * Coin's type.
      */
-    COIN(3.0), 
+    COIN(5.3), 
 
     /**
      * Powerup's type. 
