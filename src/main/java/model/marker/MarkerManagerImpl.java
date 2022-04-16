@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import model.Statistics;
+
 public class MarkerManagerImpl implements MarkerManager {
 
     private static final int DISTANCE_BETWEEN_MARKERS = 10;
@@ -41,7 +43,7 @@ public class MarkerManagerImpl implements MarkerManager {
     @Override
     public void check(final int distance) {
         if (this.isCommonMarkerToBeCreated(distance)) {
-            this.markers.add(Optional.of(this.markerFactory.createCommonMarker(Integer.toString(this.roundDistance(distance)))));
+            this.markers.add(Optional.of(this.markerFactory.createCommonMarker(Integer.toString(this.approximatesDistance()))));
         }
 
         if (this.lastDeathMarker.isEmpty() && distance > 0 && distance >= this.lastDeathDistance) {
@@ -57,21 +59,20 @@ public class MarkerManagerImpl implements MarkerManager {
 
     @Override
     public void update(final double difficulty) {
-        this.markers = this.markers.stream()
-                .filter(op -> !op.get().isOutOfScreen())
-                .collect(Collectors.toList());
-
         this.markers.stream()
                 .forEach(op -> op.get().update(difficulty));
     }
 
     @Override
     public List<Optional<Marker>> getMarkers() {
+        this.markers = this.markers.stream()
+                .filter(op -> !op.get().isOutOfScreen())
+                .collect(Collectors.toList());
         return this.markers;
     }
 
-    private int roundDistance(final int distance) {
-        return distance - (distance % 10);
+    private int approximatesDistance() {
+        return this.numberNextMarker * DISTANCE_BETWEEN_MARKERS;
     }
 
 }
