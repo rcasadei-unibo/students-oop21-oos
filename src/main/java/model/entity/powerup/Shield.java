@@ -5,16 +5,16 @@ import java.util.TimerTask;
 
 import javafx.scene.image.Image;
 import model.Model;
-import model.entity.DynamicEntityImpl;
-import model.entity.EntityLevel;
+import model.entity.AbstractDynamicEntity;
+import model.entity.SpawnLevel;
 import model.entity.EntityType;
 
-public final class Shield extends DynamicEntityImpl {
+public final class Shield extends AbstractDynamicEntity {
  
     private static final boolean ACTIVATESHIELD = true; 
     private final EffectTimer shieldTimer; 
 
-    public Shield(final Double coordinates, final Image image, final EntityLevel level, final EntityType type) {
+    public Shield(final Double coordinates, final Image image, final SpawnLevel level, final EntityType type) {
         super(coordinates, image, level, type);
         shieldTimer = new EffectTimer(); 
     }

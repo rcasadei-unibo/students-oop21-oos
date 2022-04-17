@@ -6,17 +6,17 @@ import java.util.TimerTask;
 import javafx.scene.image.Image;
 import model.Model;
 import model.entity.Coin;
-import model.entity.DynamicEntityImpl;
-import model.entity.EntityLevel;
+import model.entity.AbstractDynamicEntity;
+import model.entity.SpawnLevel;
 import model.entity.EntityType;
 
-public class Mushroom extends DynamicEntityImpl {
+public class Mushroom extends AbstractDynamicEntity {
 
     private final EffectTimer mushroomTimer; 
     private static final int DOUBLECOIN = 2; 
     private static final int STDCOIN = 1; 
 
-    public Mushroom(final Double coordinates, final Image image, final EntityLevel level, final EntityType type) {
+    public Mushroom(final Double coordinates, final Image image, final SpawnLevel level, final EntityType type) {
         super(coordinates, image, level, type);
         mushroomTimer = new EffectTimer(); 
     }

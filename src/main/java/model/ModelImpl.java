@@ -3,12 +3,15 @@ package model;
 import java.util.List;
 
 import model.entity.DynamicEntity;
+import model.marker.MarkerManager;
+import model.marker.MarkerManagerImpl;
 
 public class ModelImpl implements Model {
 
     private final GameState gameState;
     private final Statistics statistics;
     private final CollisionManager collisionManager;
+    private final MarkerManager markerManager;
     private final StatisticsUpdater statisticsUpdater;
     //private boolean isGameOVer;
 
@@ -16,7 +19,8 @@ public class ModelImpl implements Model {
         this.gameState = new GameStateImpl();
         this.statistics = new StatisticsImpl();
         this.collisionManager = new CollisionManagerImpl();
-        this.statisticsUpdater = new StatisticsUpdater(this.statistics);
+        this.markerManager = new MarkerManagerImpl(this.statistics.getLastDeathDistance(), this.statistics.getRecordDistance());
+        this.statisticsUpdater = new StatisticsUpdater(this.statistics, this.markerManager);
         //this.isGameOVer = false;
     }
 
@@ -36,8 +40,14 @@ public class ModelImpl implements Model {
     }
 
     @Override
+    public MarkerManager getMarkerManager() {
+        return this.markerManager;
+    }
+
+    @Override
     public void update() {
         this.gameState.update();
+        this.markerManager.update(this.statistics.getDifficulty());
 
         final Player player = this.gameState.getPlayer();
         final List<DynamicEntity> entities = this.gameState.getEntities();

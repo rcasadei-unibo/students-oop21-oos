@@ -1,29 +1,40 @@
 package view;
  
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
  
 public final class StartMenuViewImpl implements StartMenuView {
- 
-    private final View view;
-    private final Stage stage;
-    private final Pane pane;
- 
+
+    private static final double GAME_SCREEN_WIDTH = 854.0;
+    private static final double GAME_SCREEN_HEIGHT = 445.0;
     private static final int FONT_SIZE = 18;
     private static final int BUTTON_WIDTH = 150;
     private static final int ALL_BUTTON_X = 340;
     private static final int START_BUTTON_Y = 250;
     private static final int SHOP_BUTTON_Y = 300;
     private static final int EXIT_BUTTON_Y = 350;
+
+    private final View view;
+    private final Stage stage;
+    private final Pane pane;
  
     public StartMenuViewImpl(final View view, final Stage stage, final Pane pane) {
         super();
         this.view = view;
         this.stage = stage;
         this.pane = pane;
+        final Image backImage = new Image("GameScreen.png", GAME_SCREEN_WIDTH, GAME_SCREEN_HEIGHT, true, true);
+        final BackgroundImage background = new BackgroundImage(backImage, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
+        this.pane.setBackground(new Background(background));
     }
  
     @Override

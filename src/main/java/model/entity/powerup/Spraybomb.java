@@ -8,13 +8,13 @@ import javafx.application.Platform;
 import javafx.scene.image.Image;
 import model.Model;
 import model.entity.DynamicEntity;
-import model.entity.DynamicEntityImpl;
-import model.entity.EntityLevel;
+import model.entity.AbstractDynamicEntity;
+import model.entity.SpawnLevel;
 import model.entity.EntityType;
 
-public class Spraybomb extends DynamicEntityImpl {
+public class Spraybomb extends AbstractDynamicEntity {
 
-    public Spraybomb(final Double coordinates, final Image image, final EntityLevel level, final EntityType type) {
+    public Spraybomb(final Double coordinates, final Image image, final SpawnLevel level, final EntityType type) {
         super(coordinates, image, level, type);
     }
 

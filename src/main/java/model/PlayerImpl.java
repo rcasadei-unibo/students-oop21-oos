@@ -19,11 +19,12 @@ public final class PlayerImpl implements Player {
      * Initial y of the sprite.
      */
     //public static final double INITIAL_Y = 340.0f;
-    public static final double LAND = 430.0f;
+    public static final double LAND = 440.0f;
     /**
      * Jump height of the sprite.
      */
     public static final double JUMP_HEIGHT = 160.0f;
+    private static final double JUMP_HEIGHT_ON_UPPER_PLATFORM = 80.0f;
     /**
      * How many steps the player does every refresh.
      */
@@ -36,6 +37,7 @@ public final class PlayerImpl implements Player {
     private boolean isJumping;
     private boolean isGoingDown;
     private boolean isOnPlatform;
+    private boolean isDoubleJumpActive;
     private double jumpHeight;
     private double landHeight;
     private double initialY;
@@ -50,6 +52,7 @@ public final class PlayerImpl implements Player {
         this.isJumping = false;
         this.isGoingDown = false;
         this.isOnPlatform = false;
+        this.isDoubleJumpActive = false;
         this.jumpHeight = JUMP_HEIGHT;
         this.landHeight = LAND;
         this.numLives = 1;
@@ -62,15 +65,20 @@ public final class PlayerImpl implements Player {
         if (!this.isJumping) {
             this.isJumping = true;
             this.initialY = this.y;
+            this.jumpHeight = JUMP_HEIGHT;
+            if (this.isDoubleJumpActive) {
+                this.jumpHeight = this.jumpHeight * 2;
+            }
+            if (initialY - jumpHeight <= 0) {
+                this.jumpHeight = JUMP_HEIGHT_ON_UPPER_PLATFORM;
+            }
         }
     }
 
     @Override
     public void updateJump() {
         if (this.isJumping) {
-            //System.out.println(this.y);
-            System.out.println(" \n");
-            if (this.y <= initialY - jumpHeight || this.y <= 70) {
+            if (this.y <= initialY - jumpHeight) {
                 this.isGoingDown = true;
             }
             if (this.y > this.jumpHeight - this.initialY && !this.isGoingDown) {
@@ -121,8 +129,8 @@ public final class PlayerImpl implements Player {
     }
 
     @Override
-    public void setJumpHeight(final double mul) {
-        this.jumpHeight = mul * jumpHeight;
+    public void setDoubleJump(final boolean set) {
+        this.isDoubleJumpActive = set;
     }
 
     @Override

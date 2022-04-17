@@ -1,11 +1,15 @@
 package model.entity;
-
+/**
+ * 
+ * Enumeration defining different types of entities.
+ *
+ */
 public enum EntityType {
 
     /**
      * Obstacle's type.
      */
-    OBSATCLE(5.0), 
+    OBSATCLE(4.7), 
 
     /**
      * Platform's type.
@@ -15,7 +19,7 @@ public enum EntityType {
     /**
      * Coin's type.
      */
-    COIN(3.0), 
+    COIN(5.3), 
 
     /**
      * Powerup's type. 
@@ -24,10 +28,18 @@ public enum EntityType {
 
     private final double distanceFactor;
 
+    /**
+     * 
+     * @param distanceFactor the distance of an entity from the last in the {@link DynamicEntity} list. 
+     */
     EntityType(final double distanceFactor) {
         this.distanceFactor = distanceFactor;
     }
 
+    /**
+     * Return the distance property of an entity.
+     * @return the distance factor of an entity.
+     */
     public double getDistanceFactor() {
         return this.distanceFactor;
     }
