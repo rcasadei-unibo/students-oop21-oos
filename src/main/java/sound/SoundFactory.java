@@ -23,7 +23,7 @@ public interface SoundFactory {
      * 
      * @return a {@link Sound} that plays the coin collected.
      */
-    Sound createCoinCollisionSound();
+    Sound createCoinCollectedSound();
 
     /**
      * 

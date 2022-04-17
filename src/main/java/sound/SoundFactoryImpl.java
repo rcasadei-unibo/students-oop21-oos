@@ -29,7 +29,7 @@ public class SoundFactoryImpl implements SoundFactory {
      * {@inheritDoc}
      */
     @Override
-    public Sound createCoinCollisionSound() {
+    public Sound createCoinCollectedSound() {
         return this.createSound(SoundType.COIN);
     }
 
