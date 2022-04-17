@@ -20,15 +20,7 @@ public class Spraybomb extends DynamicEntityImpl {
 
     @Override
     public void activateEffect(final Model model) {
-        final List<DynamicEntity> temp = model.getGameState().getEntities(); 
-        final List<DynamicEntity> remove = temp.stream()
-                .limit(temp.size() - 1).collect(Collectors.toList()); 
-        Platform.runLater(new Runnable() {
-            @Override
-            public void run() {
-                temp.removeAll(remove); 
-            }
-        });
+        model.getGameState().getEntities().clear();
     }
 
 }
