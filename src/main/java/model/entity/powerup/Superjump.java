@@ -11,7 +11,7 @@ import model.entity.EntityType;
 
 public final class Superjump extends AbstractDynamicEntity {
 
-    private static final int SUPERJUMP_HEIGHT = 2; 
+    private static final boolean ACTIVATESUPERJUMP = true; 
     private static final double NORMALJUMP_HEIGHT = 0.5; 
     private final EffectTimer jumpTimer; 
 
@@ -22,7 +22,7 @@ public final class Superjump extends AbstractDynamicEntity {
 
     @Override
     public void activateEffect(final Model model) {
-        //model.getGameState().getPlayer().setJumpHeight(SUPERJUMP_HEIGHT);
+        model.getGameState().getPlayer().setDoubleJump(ACTIVATESUPERJUMP);
         jumpTask(model);
     }
 
@@ -30,7 +30,7 @@ public final class Superjump extends AbstractDynamicEntity {
         final TimerTask task = new TimerTask() {
             @Override
             public void run() {
-                //model.getGameState().getPlayer().setJumpHeight(NORMALJUMP_HEIGHT);
+                model.getGameState().getPlayer().setDoubleJump(!ACTIVATESUPERJUMP);
             }
         };
         jumpTimer.scheduleTask(task);
