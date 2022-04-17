@@ -2,23 +2,40 @@ package sound;
 
 import javafx.scene.media.AudioClip;
 
+/**
+ * A factory of {@link Sound}.
+ * An implementation of {@link SoundFactory} interface.
+ *
+ */
 public class SoundFactoryImpl implements SoundFactory {
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Sound createGameSoundtrack() {
         return this.createSound(SoundType.GAME_SOUNDTRACK);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Sound createJumpSound() {
         return this.createSound(SoundType.JUMP);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Sound createCoinCollisionSound() {
         return this.createSound(SoundType.COIN);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Sound createGameOverSound() {
         return this.createSound(SoundType.GAME_OVER);
