@@ -5,6 +5,11 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+/**
+ * 
+ * Implementation of {@link MarkerManager}.
+ *
+ */
 public class MarkerManagerImpl implements MarkerManager {
 
     private static final int DISTANCE_BETWEEN_MARKERS = 10;
@@ -16,6 +21,11 @@ public class MarkerManagerImpl implements MarkerManager {
     private Optional<Marker> recordMarker;
     private List<Optional<Marker>> markers;
 
+    /**
+     * Creates a new MarkerManagerImpl.
+     * @param lastDeathDistance the distance reached in the last run, given by {@link Statistics}.
+     * @param recordDistance the record distance, given by {@link Statistics}.
+     */
     public MarkerManagerImpl(final int lastDeathDistance, final int recordDistance) {
         super();
         this.lastDeathDistance = lastDeathDistance;
@@ -27,6 +37,9 @@ public class MarkerManagerImpl implements MarkerManager {
         this.markers = new ArrayList<>();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean isCommonMarkerToBeCreated(final int distance) {
         final int nextMarkerDist = this.numberNextMarker * DISTANCE_BETWEEN_MARKERS;
@@ -38,6 +51,9 @@ public class MarkerManagerImpl implements MarkerManager {
         return false;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void check(final int distance) {
         if (this.isCommonMarkerToBeCreated(distance)) {
@@ -55,12 +71,18 @@ public class MarkerManagerImpl implements MarkerManager {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void update(final double difficulty) {
         this.markers.stream()
                 .forEach(op -> op.get().update(difficulty));
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public List<Optional<Marker>> getMarkers() {
         this.markers = this.markers.stream()
@@ -69,10 +91,19 @@ public class MarkerManagerImpl implements MarkerManager {
         return this.markers;
     }
 
+    /**
+     * Calculate the distance that common {@link Marker}s must notify. 
+     * @return the approximate distance.
+     */
     private int approximateDistance() {
         return this.numberNextMarker * DISTANCE_BETWEEN_MARKERS;
     }
 
+    /**
+     * Calculate the spawn distance that special {@link Marker}s must to use. 
+     * @param distance the covered distance.
+     * @return the spawn distance.
+     */
     private int calculateSpawn(final int distance) {
         return distance - DISTANCE_BETWEEN_MARKERS;
     }

@@ -11,11 +11,17 @@ import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import model.Statistics;
 
+/**
+ * 
+ * Implementation of {@link GameOverView}.
+ *
+ */
 public class GameOverViewImpl implements GameOverView {
 
     private static final int TITLE_FONT_SIZE = 90;
     private static final int TITLE_X = 150;
-    private static final int TITLE_Y = 120; 
+    private static final int TITLE_Y = 120;
+    private static final String FAMILY_FONT_NAME = "Arial";
     private static final int STAT_FONT_SIZE = 40;
     private static final int ACTUAL_STAT_X = 100;
     private static final int TOTAL_STAT_X = 500;
@@ -30,13 +36,18 @@ public class GameOverViewImpl implements GameOverView {
     private static final int EXIT_BUTTON_Y = 20;
     private static final int BUTTON_WIDTH = 100;
 
-
-
     private final View view;
     private final Stage stage;
     private final Pane pane;
     private final Statistics statistics;
 
+    /**
+     * Creates a new GameOverViewImpl.
+     * @param view the {@link View} of the application.
+     * @param stage the {@link Stage}.
+     * @param pane the {@link Pane}.
+     * @param statistics the {@link Statistics} of the game.
+     */
     public GameOverViewImpl(final View view, final Stage stage, final Pane pane, final Statistics statistics) {
         super();
         this.view = view;
@@ -45,6 +56,9 @@ public class GameOverViewImpl implements GameOverView {
         this.statistics = statistics;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void render() {
         final ImageView playAgainImage = new ImageView(); 
@@ -94,23 +108,23 @@ public class GameOverViewImpl implements GameOverView {
         title.setY(TITLE_Y);
 
         final Text actualCoinStat = new Text("Collected Coins: " + Integer.toString(this.statistics.getGameCoins()));
-        actualCoinStat.setFont(Font.font("Arial", FontWeight.EXTRA_BOLD, STAT_FONT_SIZE));
+        actualCoinStat.setFont(Font.font(FAMILY_FONT_NAME, FontWeight.EXTRA_BOLD, STAT_FONT_SIZE));
         actualCoinStat.setX(ACTUAL_STAT_X);
         actualCoinStat.setY(COIN_STAT_Y);
 
         final Text actualDistanceStat = new Text("Distance: " + Integer.toString(this.statistics.getDistance()));
-        actualDistanceStat.setFont(Font.font("Arial", FontWeight.EXTRA_BOLD, STAT_FONT_SIZE));
+        actualDistanceStat.setFont(Font.font(FAMILY_FONT_NAME, FontWeight.EXTRA_BOLD, STAT_FONT_SIZE));
         actualDistanceStat.setX(ACTUAL_STAT_X);
         actualDistanceStat.setY(DISTANCE_STAT_Y);
 
         final Text totalCoinStat = new Text("Total Coins: " + Integer.toString(this.statistics.getTotalCoins()));
-        totalCoinStat.setFont(Font.font("Arial", FontWeight.EXTRA_BOLD, STAT_FONT_SIZE));
+        totalCoinStat.setFont(Font.font(FAMILY_FONT_NAME, FontWeight.EXTRA_BOLD, STAT_FONT_SIZE));
         totalCoinStat.setX(TOTAL_STAT_X);
         totalCoinStat.setY(COIN_STAT_Y);
 
 
         final Text recordDistanceStat = new Text("Record: " + Integer.toString(this.statistics.getRecordDistance()));
-        recordDistanceStat.setFont(Font.font("Arial", FontWeight.EXTRA_BOLD, STAT_FONT_SIZE));
+        recordDistanceStat.setFont(Font.font(FAMILY_FONT_NAME, FontWeight.EXTRA_BOLD, STAT_FONT_SIZE));
         recordDistanceStat.setX(TOTAL_STAT_X);
         recordDistanceStat.setY(DISTANCE_STAT_Y);
 

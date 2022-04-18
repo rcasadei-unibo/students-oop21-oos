@@ -8,6 +8,11 @@ import javafx.scene.text.Text;
 import model.marker.Marker;
 import model.marker.MarkerManager;
 
+/**
+ * 
+ * Implementation of {@link MarkerView}.
+ *
+ */
 public class MarkerViewImpl implements MarkerView {
 
     private static final int TEXT_FONT_SIZE = 30;
@@ -16,12 +21,20 @@ public class MarkerViewImpl implements MarkerView {
     private final Pane pane;
     private final MarkerManager markerManager;
 
+    /**
+     * Creates a new MarkerViewImpl.
+     * @param pane the {@link Pane}.
+     * @param markerManager the {@link MarkerManager}.
+     */
     public MarkerViewImpl(final Pane pane, final MarkerManager markerManager) {
         super();
         this.pane = pane;
         this.markerManager = markerManager;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void render() {
         this.markerManager.getMarkers().forEach(op -> {
@@ -29,6 +42,10 @@ public class MarkerViewImpl implements MarkerView {
         });
     }
 
+    /**
+     * Renders a single {@link Marker} adding a text notice if marker has it. 
+     * @param marker the {@link Marker} to render.
+     */
     private void renderMarker(final Marker marker) {
         final ImageView image = new ImageView(marker.getImage());
         image.setX(marker.getX() - marker.getDimension().getWidth());
