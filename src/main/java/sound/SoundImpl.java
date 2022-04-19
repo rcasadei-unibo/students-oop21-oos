@@ -12,6 +12,10 @@ public class SoundImpl implements Sound {
 
     private final AudioClip audioClip;
 
+    /**
+     * Creates a new SoundImpl.
+     * @param audioClip the {@link AudioClip} to play.
+     */
     public SoundImpl(final AudioClip audioClip) {
         super();
         this.audioClip = audioClip;
