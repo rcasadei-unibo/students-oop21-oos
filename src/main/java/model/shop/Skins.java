@@ -8,13 +8,12 @@ public enum Skins {
     /**
      * Programmer skin and its price.
      */
-    PROGRAMMER("Programmer", 500), 
+    PROGRAMMER("Programmer", 50), 
 
     /**
      * Dinosaur skin and its price. 
      */
-    DINOSAUR("Dinosaur", 1000),
-    FREDDIE("Freddie", 2000); 
+    DINOSAUR("Dinosaur", 100); 
 
     private final int price; 
     private final String name; 
