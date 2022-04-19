@@ -39,7 +39,7 @@ public interface DynamicEntity {
      * 
      * @return the level on which entity spawn. 
      */
-    SpawnLevel getLevelType();
+    SpawnLevel getLevel();
 
     /**
      * 

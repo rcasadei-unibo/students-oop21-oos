@@ -83,7 +83,7 @@ public final class EntityGeneratorImpl implements EntityGenerator {
         final DynamicEntity last = this.entities.get(entities.size() - 1);
 
         if (counter.get() < POWERUP_RARITY) {
-            switch (last.getLevelType()) {
+            switch (last.getLevel()) {
                 case ZERO:
                     this.levelZeroConfig(rand);
                     break;

@@ -76,7 +76,7 @@ public abstract class AbstractDynamicEntity implements DynamicEntity {
      * {@inheritDoc}
      */
     @Override
-    public final  SpawnLevel getLevelType() {
+    public final  SpawnLevel getLevel() {
         return this.level;
     }
 
