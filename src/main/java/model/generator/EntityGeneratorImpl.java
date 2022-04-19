@@ -21,7 +21,7 @@ import model.entity.EntityType;
 public final class EntityGeneratorImpl implements EntityGenerator {
 
     private static final double INITIAL_SPEEDX = 2.0;
-    private static final int POWERUP_RARITY = 20;
+    private static final int POWERUP_RARITY = 5;
     private static final int MAX_CASE = 3;
 
     private final List<DynamicEntity> entities;
@@ -171,7 +171,8 @@ public final class EntityGeneratorImpl implements EntityGenerator {
     }
 
     private boolean checkPosition() {
-        return entities.get(entities.size() - 1).getBounds().getMinX() < entities.get(entities.size() - 1).getDistance();
+        final DynamicEntity last = entities.get(entities.size() - 1);
+        return last.getBounds().getMinX() <= last.getDistance();
     }
 
     private enum Case {
