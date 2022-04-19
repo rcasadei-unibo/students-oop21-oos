@@ -1,7 +1,7 @@
 package model.marker;
 
 import java.awt.geom.Point2D;
-import java.util.Random;
+import java.security.SecureRandom;
 
 import javafx.scene.image.Image;
 
@@ -15,7 +15,7 @@ public class MarkerFactoryImpl implements MarkerFactory {
     private static final double MARKER_X = 980;
     private static final double LOW_MARKER_Y = 365;
     private static final double HIGH_MARKER_Y = 40;
-    private final Random random;
+    private final SecureRandom random;
 
     /**
      * Creates a new MarkerFactoryImpl.
@@ -23,7 +23,7 @@ public class MarkerFactoryImpl implements MarkerFactory {
      */
     public MarkerFactoryImpl() {
         super();
-        this.random = new Random();
+        this.random = new SecureRandom();
     }
 
     /**

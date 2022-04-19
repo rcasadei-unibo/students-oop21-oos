@@ -137,7 +137,7 @@ public class MissionFactoryImpl implements MissionFactory {
      * @return a random value for a {@link Mission} goal.
      */
     private int getGoal(final int maxLimit, final int minLimit) {
-        final int goal = (int) (Math.random() * (maxLimit - minLimit) + minLimit); 
+        final int goal = (int) (Math.random() * (maxLimit - minLimit) + minLimit);
         return goal - goal % 10;
     }
 
