@@ -19,6 +19,8 @@ import view.entity.EntityView;
 import view.entity.EntityViewImpl;
 import view.marker.MarkerView;
 import view.marker.MarkerViewImpl;
+import view.mission.MissionView;
+import view.mission.MissionViewImpl;
 
 public class GameViewImpl implements GameView {
     private static final double GAME_SCREEN_WIDTH = 854.0;
@@ -32,6 +34,7 @@ public class GameViewImpl implements GameView {
     private final GameState gameState;
     private final Statistics statistics;
     private final MarkerView markerView;
+    private final MissionView missionView;
     private final InputObserver obs;
 
     public GameViewImpl(final View view, final Stage stage, final Pane pane, final InputObserver obs, final Model model) {
@@ -49,6 +52,7 @@ public class GameViewImpl implements GameView {
         this.entityView = new EntityViewImpl(pane, gameState.getEntities());
         this.statView = new StatisticsViewImpl(pane, this.statistics, gameState.getPlayer());
         this.markerView = new MarkerViewImpl(pane, model.getMarkerManager());
+        this.missionView = new MissionViewImpl(pane, model.getMissionManager());
 
         this.pane.getScene().setOnKeyPressed(e -> {
             if (e.getCode().equals(KeyCode.SPACE)) {
@@ -63,6 +67,7 @@ public class GameViewImpl implements GameView {
         this.markerView.render();
         this.playerView.render();
         this.entityView.render();
+        this.missionView.render();
         this.statView.render();
     }
 
