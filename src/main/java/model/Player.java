@@ -20,6 +20,11 @@ public interface Player {
     int getLives();
 
     /**
+     * @return the number of jumps the player has done
+     */
+    int getJumpCounter();
+
+    /**
      * @return the bounds of the Player
      */
     Rectangle2D getBounds();

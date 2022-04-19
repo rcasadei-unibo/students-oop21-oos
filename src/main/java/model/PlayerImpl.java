@@ -12,23 +12,18 @@ public final class PlayerImpl implements Player {
      */
     public static final int MAIN_CHARACTER_HEIGHT = 96;
     /**
-     * Initial x of the sprite.
+     * Y coordinate of the land.
      */
-    public static final double INITIAL_X = 40.0f;
-    /**
-     * Initial y of the sprite.
-     */
-    //public static final double INITIAL_Y = 340.0f;
     public static final double LAND = 440.0f;
     /**
-     * Jump height of the sprite.
+     * X coordinate of the player.
      */
-    public static final double JUMP_HEIGHT = 160.0f;
+    public static final double INITIAL_X = 40.0f;
+
+    private static final double JUMP_HEIGHT = 160.0f;
     private static final double JUMP_HEIGHT_ON_UPPER_PLATFORM = 80.0f;
-    /**
-     * How many steps the player does every refresh.
-     */
-    public static final double GRAVITY = 4.5f;
+    private static final double GRAVITY = 4.5f;
+
     //coordinate nello schermo
     private final double x;
     private double y;
@@ -41,6 +36,7 @@ public final class PlayerImpl implements Player {
     private double jumpHeight;
     private double landHeight;
     private double initialY;
+    private int jumpCounter;
 
     //numero di vite e scudo
     private int numLives;
@@ -58,6 +54,7 @@ public final class PlayerImpl implements Player {
         this.numLives = 1;
         this.shieldActive = false;
         this.initialY = this.y;
+        this.jumpCounter = 0;
     }
 
     @Override
@@ -66,6 +63,7 @@ public final class PlayerImpl implements Player {
             this.isJumping = true;
             this.initialY = this.y;
             this.jumpHeight = JUMP_HEIGHT;
+            this.jumpCounter++;
             if (this.isDoubleJumpActive) {
                 this.jumpHeight = this.jumpHeight * 2;
             }
@@ -106,6 +104,11 @@ public final class PlayerImpl implements Player {
     @Override
     public int getLives() {
         return this.numLives;
+    }
+
+    @Override
+    public int getJumpCounter() {
+        return this.jumpCounter;
     }
 
     @Override
