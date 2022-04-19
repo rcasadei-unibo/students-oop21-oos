@@ -12,7 +12,6 @@ import model.entity.EntityType;
 public final class Superjump extends AbstractDynamicEntity {
 
     private static final boolean ACTIVATESUPERJUMP = true; 
-    private static final double NORMALJUMP_HEIGHT = 0.5; 
     private final EffectTimer jumpTimer; 
 
     public Superjump(final Double coordinates, final Image image, final SpawnLevel level, final EntityType type) {
