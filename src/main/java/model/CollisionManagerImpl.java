@@ -33,7 +33,11 @@ public final class CollisionManagerImpl implements CollisionManager {
             } else {
                 if (pl.isShieldActive() && e.getType() == EntityType.OBSATCLE) {
                     e.hit(false);
-                } else if (e.getBounds().intersects(new Rectangle2D(pl.getBounds().getMinX() + COLLISION_BOUND / 2, pl.getBounds().getMinY() + COLLISION_BOUND / 2, pl.getBounds().getWidth() - COLLISION_BOUND, pl.getBounds().getHeight() - COLLISION_BOUND)) 
+                } else if (e.getBounds().intersects(
+                            new Rectangle2D(pl.getBounds().getMinX() + COLLISION_BOUND / 2, 
+                                            pl.getBounds().getMinY() + COLLISION_BOUND / 2, 
+                                            pl.getBounds().getWidth() - COLLISION_BOUND, 
+                                            pl.getBounds().getHeight() - COLLISION_BOUND)) 
                             && !e.wasHit()) {
                   e.activateEffect(model);
                   e.hit(true);

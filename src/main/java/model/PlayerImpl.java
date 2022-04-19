@@ -19,8 +19,11 @@ public final class PlayerImpl implements Player {
      * X coordinate of the player.
      */
     public static final double INITIAL_X = 40.0f;
+    /**
+     * How much does the player jump.
+     */
+    public static final double JUMP_HEIGHT = 160.0f;
 
-    private static final double JUMP_HEIGHT = 160.0f;
     private static final double JUMP_HEIGHT_ON_UPPER_PLATFORM = 80.0f;
     private static final double GRAVITY = 4.5f;
 
