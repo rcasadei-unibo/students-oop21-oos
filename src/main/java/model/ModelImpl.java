@@ -5,6 +5,8 @@ import java.util.List;
 import model.entity.DynamicEntity;
 import model.marker.MarkerManager;
 import model.marker.MarkerManagerImpl;
+import model.mission.MissionManager;
+import model.mission.MissionManagerImpl;
 import sound.SoundFactory;
 
 /**
@@ -18,6 +20,7 @@ public class ModelImpl implements Model {
     private final Statistics statistics;
     private final CollisionManager collisionManager;
     private final MarkerManager markerManager;
+    private final MissionManager missionManager;
     private final StatisticsUpdater statisticsUpdater;
     private final SoundFactory soundFactory;
 
@@ -32,7 +35,8 @@ public class ModelImpl implements Model {
         this.statistics = new StatisticsImpl();
         this.collisionManager = new CollisionManagerImpl();
         this.markerManager = new MarkerManagerImpl(this.statistics.getLastDeathDistance(), this.statistics.getRecordDistance());
-        this.statisticsUpdater = new StatisticsUpdater(this.statistics, this.markerManager);
+        this.missionManager = new MissionManagerImpl(this.statistics);
+        this.statisticsUpdater = new StatisticsUpdater(this.statistics, this.markerManager, this.missionManager);
         this.soundFactory = soundFactory;
     }
 
@@ -68,6 +72,11 @@ public class ModelImpl implements Model {
         return this.markerManager;
     }
 
+    @Override
+    public MissionManager getMissionManager() {
+        return this.missionManager;
+    }
+
     /**
      * {@inheritDoc}
      */
@@ -75,6 +84,7 @@ public class ModelImpl implements Model {
     public void update() {
         this.gameState.update();
         this.markerManager.update(this.statistics.getDifficulty());
+        this.missionManager.update();
 
         final Player player = this.gameState.getPlayer();
         final List<DynamicEntity> entities = this.gameState.getEntities();
