@@ -1,6 +1,5 @@
 package view;
 
-
 import input.InputObserver;
 import input.Space;
 import javafx.scene.image.Image;
@@ -22,6 +21,11 @@ import view.marker.MarkerViewImpl;
 import view.mission.MissionView;
 import view.mission.MissionViewImpl;
 
+/**
+ * 
+ * Implementation of {@link GameView}.
+ *
+ */
 public class GameViewImpl implements GameView {
     private static final double GAME_SCREEN_WIDTH = 854.0;
     private static final double GAME_SCREEN_HEIGHT = 445.0;
@@ -37,6 +41,14 @@ public class GameViewImpl implements GameView {
     private final MissionView missionView;
     private final InputObserver obs;
 
+    /**
+     * Creates a new GameViewImpl.
+     * @param view the {@link View}.
+     * @param stage the {@link Stage}.
+     * @param pane the {@link Pane}.
+     * @param obs the {@link InputObserver}.
+     * @param model the {@link Model}.
+     */
     public GameViewImpl(final View view, final Stage stage, final Pane pane, final InputObserver obs, final Model model) {
         super();
         this.view = view;
@@ -48,9 +60,9 @@ public class GameViewImpl implements GameView {
         this.obs = obs;
         this.gameState = model.getGameState();
         this.statistics = model.getStatistics();
-        this.playerView = new PlayerViewImpl(pane, gameState.getPlayer());
-        this.entityView = new EntityViewImpl(pane, gameState.getEntities());
-        this.statView = new StatisticsViewImpl(pane, this.statistics, gameState.getPlayer());
+        this.playerView = new PlayerViewImpl(pane, this.gameState.getPlayer());
+        this.entityView = new EntityViewImpl(pane, this.gameState.getEntities());
+        this.statView = new StatisticsViewImpl(pane, this.statistics, this.gameState.getPlayer());
         this.markerView = new MarkerViewImpl(pane, model.getMarkerManager());
         this.missionView = new MissionViewImpl(pane, model.getMissionManager());
 
@@ -61,6 +73,10 @@ public class GameViewImpl implements GameView {
         });
     }
 
+    /**
+     * {@inheritDoc}
+     * 
+     */
     @Override
     public void render() {
         this.pane.getChildren().clear();
