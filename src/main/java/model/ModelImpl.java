@@ -72,6 +72,9 @@ public class ModelImpl implements Model {
         return this.markerManager;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public MissionManager getMissionManager() {
         return this.missionManager;

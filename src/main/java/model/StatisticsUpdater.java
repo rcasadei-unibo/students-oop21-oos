@@ -26,6 +26,7 @@ public class StatisticsUpdater implements Runnable {
      * Creates a new StatisticsUpdater with given {@link Statistics} and {@link MarkerManager}.
      * @param statistics the {@link Statistics} to update.
      * @param markerManager the {@link MarkerManager}.
+     * @param missionManager the {@link MissionManager}.
      */
     public StatisticsUpdater(final Statistics statistics, final MarkerManager markerManager, final MissionManager missionManager) {
         super();
@@ -66,7 +67,6 @@ public class StatisticsUpdater implements Runnable {
         } catch (IOException e) {
             System.out.println("Statistics unsaved");
         }
-        //ripulire optional dei marker
     }
 
 }

@@ -6,6 +6,11 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import model.mission.MissionManager;
 
+/**
+ * 
+ * Implementation of {@link MissionView}.
+ *
+ */
 public class MissionViewImpl implements MissionView {
 
     private static final double FONT_SIZE = 20;
@@ -14,12 +19,20 @@ public class MissionViewImpl implements MissionView {
     private final Pane pane;
     private final MissionManager missionManager;
 
+    /**
+     * Creates a new MissionViewImpl.
+     * @param pane the {@link Pane}.
+     * @param missionManager the {@link MissionManager}.
+     */
     public MissionViewImpl(final Pane pane, final MissionManager missionManager) {
         super();
         this.pane = pane;
         this.missionManager = missionManager;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void render() {
         final Text missionText = new Text(missionManager.getMission().get().toString());

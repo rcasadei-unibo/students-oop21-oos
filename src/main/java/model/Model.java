@@ -33,7 +33,11 @@ public interface Model {
      * @return the {@link MarkerManager}.
      */
     MarkerManager getMarkerManager();
-    
+
+    /**
+     * Gets the {@link MissionManager}.
+     * @return the {@link MissionManager}. 
+     */
     MissionManager getMissionManager();
 
     /**
