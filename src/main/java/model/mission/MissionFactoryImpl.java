@@ -1,7 +1,7 @@
 package model.mission;
 
+import java.security.SecureRandom;
 import java.util.List;
-import java.util.Random;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
 
@@ -18,11 +18,14 @@ public class MissionFactoryImpl implements MissionFactory {
 
     private static final int REWARD_AMOUNT = 20;
     private static final int MAX_DISTANCE_MISSION = 1000;
+    private static final int MIN_DISTANCE_MISSION = 200;
     private static final int MAX_COINS_TO_COLLECT_MISSION = 50;
+    private static final int MIN_COINS_TO_COLLECT_MISSION = 20;
     private static final int MAX_JUMP_NUMBER_MISSION = 50;
+    private static final int MIN_JUMP_NUMBER_MISSION = 20;
     private final Statistics statistics;
     private final Player player;
-    private final Random random;
+    private final SecureRandom random;
 
     /**
      * Creates a new MissionFactoryImpl.
@@ -32,7 +35,7 @@ public class MissionFactoryImpl implements MissionFactory {
         super();
         this.statistics = model.getStatistics();
         this.player = model.getGameState().getPlayer();
-        this.random = new Random();
+        this.random = new SecureRandom();
     }
 
     /**
@@ -49,7 +52,7 @@ public class MissionFactoryImpl implements MissionFactory {
      */
     @Override
     public Mission createCollectedCoinMission() {
-        final int goal = this.getGoal(MAX_COINS_TO_COLLECT_MISSION);
+        final int goal = this.getGoal(MAX_COINS_TO_COLLECT_MISSION, MIN_COINS_TO_COLLECT_MISSION);
         return this.createGeneralised(x -> x >= goal, () -> this.statistics.getGameCoins(), "Collect " + goal + " coins: ");
     }
 
@@ -58,7 +61,7 @@ public class MissionFactoryImpl implements MissionFactory {
      */
     @Override
     public Mission createDistanceMission() {
-        final int goal = this.getGoal(MAX_DISTANCE_MISSION);
+        final int goal = this.getGoal(MAX_DISTANCE_MISSION, MIN_DISTANCE_MISSION);
         return this.createGeneralised(x -> x >= goal, () -> this.statistics.getDistance(), "Reach distance " + goal + ": ");
     }
 
@@ -67,7 +70,7 @@ public class MissionFactoryImpl implements MissionFactory {
      */
     @Override
     public Mission createNumberOfJumpMission() {
-        final int goal = this.getGoal(MAX_JUMP_NUMBER_MISSION);
+        final int goal = this.getGoal(MAX_JUMP_NUMBER_MISSION, MIN_JUMP_NUMBER_MISSION);
         return this.createGeneralised(x -> x >= goal, () -> this.player.getJumpCounter(), "Jump " + goal + " times: ");
     }
 
@@ -129,11 +132,12 @@ public class MissionFactoryImpl implements MissionFactory {
 
     /**
      * Gets a random value for a {@link Mission} goal.
-     * @param limit the limit of max goal.
+     * @param maxLimit the maximum limit of goal's value.
+     * @param minLimit the minimum limit of goal's value. 
      * @return a random value for a {@link Mission} goal.
      */
-    private int getGoal(final int limit) {
-        final int goal = random.nextInt(limit);
+    private int getGoal(final int maxLimit, final int minLimit) {
+        final int goal = (int) (Math.random() * (maxLimit - minLimit) + minLimit); 
         return goal - goal % 10;
     }
 
