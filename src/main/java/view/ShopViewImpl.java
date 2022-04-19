@@ -17,18 +17,23 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
-import javafx.stage.Stage;
-import javafx.stage.StageStyle;
+import model.Statistics;
+import model.StatisticsImpl;
 import model.shop.Shop;
+import model.shop.ShopImpl;
+import model.shop.ShopItem;
 
 public class ShopViewImpl implements ShopView {
 
     private final View view; 
-    private final Stage stage; 
     private final Pane pane; 
+    private final Shop shop; 
+    private final Statistics stats; 
     private Image shopWallpaper; 
     private List<ImageView> skins = new ArrayList<>(); 
+    private List<ShopItem> shopSkins; 
     private int skinsCounter; 
 
     private static final int FONT_SIZE = 18; 
@@ -47,18 +52,21 @@ public class ShopViewImpl implements ShopView {
     private static final int ARC = 20;
     private static final int BACKGROUND_WIDTH = 854;
     private static final int BACKGROUND_HEIGTH = 480;
-    private static final int HOMEBTN_Y = 355;
-    private static final int HOMEBTN_X = 740;
+    private static final int HOMEBTN_X = 700;
     private static final int MYSTBOX_HEIGHT = 80; 
     private static final int MYSTBOX_X = 40;
     private static final int MYSTBOX_Y = 310; 
+    private static final int COINS_X = 10;
+    private static final int COINS_Y = 30; 
 
-    public ShopViewImpl(final View view, final Stage stage, final Pane pane) {
+    public ShopViewImpl(final View view, final Pane pane) {
         super(); 
         this.view = view; 
-        this.stage = stage; 
         this.pane = pane; 
+        this.stats = new StatisticsImpl(); 
+        this.shop = new ShopImpl(); 
         skinsCounter = 0;
+        shopSkins = this.shop.getItems(); 
     }
 
     @Override
@@ -87,7 +95,10 @@ public class ShopViewImpl implements ShopView {
         buy.setFont(new Font("Arial", FONT_SIZE));
         buy.setText("BUY"); 
         buy.setOnAction(e -> {
-            buy.setDisable(false); 
+            shop.shopItemPayment(shopSkins.get(skinsCounter), stats); 
+            System.out.println(stats.getTotalCoins()); 
+            renderCoins(); 
+            //SALVARE
         });
 
         final Button select = new Button(); 
@@ -99,6 +110,7 @@ public class ShopViewImpl implements ShopView {
         select.setText("SELECT"); 
         select.setOnAction(e -> {
             select.setText("SELECTED"); 
+            //SALVARE
         });
 
         final ImageView dxArr = new ImageView(); 
@@ -111,10 +123,10 @@ public class ShopViewImpl implements ShopView {
         sxArr.setFitHeight(SQUARE_HEIGTH); 
         sxArr.setPreserveRatio(true);
 
-        final ImageView homeIm = new ImageView(); 
-        homeIm.setImage(new Image("Home.png"));
-        homeIm.setFitHeight(SQUARE_HEIGTH);
-        homeIm.setPreserveRatio(true);
+        final ImageView startIm = new ImageView(); 
+        startIm.setImage(new Image("StartGame.png"));
+        startIm.setFitHeight(MYSTBOX_HEIGHT);
+        startIm.setPreserveRatio(true);
 
         final ImageView mysteryBoxIm = new ImageView(); 
         mysteryBoxIm.setImage(new Image("MysteryBox.png"));
@@ -139,13 +151,15 @@ public class ShopViewImpl implements ShopView {
             decreaseSkinCounter(); 
         });
 
-        final Button home = new Button(); 
-        home.setLayoutX(HOMEBTN_X);
-        home.setLayoutY(HOMEBTN_Y);
-        home.setPrefWidth(SQUARE_WIDTH);
-        home.setGraphic(homeIm);
-        home.setOnAction(e -> {
-            //BACK ON THE MAIN MENU
+        final Button startGame = new Button(); 
+        startGame.setLayoutX(HOMEBTN_X);
+        startGame.setLayoutY(MYSTBOX_Y);
+        startGame.setPrefWidth(SQUARE_WIDTH);
+        startGame.setGraphic(startIm);
+        startGame.setOnAction(e -> {
+            pane.getChildren().clear(); 
+            this.view.getController().start();
+            //SALVARE
         });
 
         final Button mysteryBox = new Button(); 
@@ -160,7 +174,11 @@ public class ShopViewImpl implements ShopView {
             alert.setHeaderText(null); 
             alert.setContentText("Prova prova"); 
             alert.showAndWait(); 
+            //SALVARE
         });
+
+        //INDICATORE MONETE
+        renderCoins();
 
         final Rectangle rectangle = new Rectangle(345, 120, 120, 170); 
         rectangle.setFill(Color.LIGHTPINK);
@@ -176,7 +194,7 @@ public class ShopViewImpl implements ShopView {
 
         this.pane.getChildren().add(buy); 
         this.pane.getChildren().add(select); 
-        this.pane.getChildren().add(home); 
+        this.pane.getChildren().add(startGame); 
         this.pane.getChildren().add(dxArrow); 
         this.pane.getChildren().add(sxArrow); 
         this.pane.getChildren().add(title); 
@@ -187,6 +205,14 @@ public class ShopViewImpl implements ShopView {
 
         this.pane.setBackground(new Background(shopBackground));
 
+    }
+
+    private void renderCoins() {
+        final Text coins = new Text("Coins: " + stats.getTotalCoins()); 
+        coins.setFont(new Font("Arial", FONT_SIZE));
+        coins.setLayoutX(COINS_X);
+        coins.setLayoutY(COINS_Y);
+        this.pane.getChildren().add(coins); 
     }
 
     private void increaseSkinCounter() {
