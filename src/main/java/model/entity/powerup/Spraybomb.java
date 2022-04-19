@@ -1,6 +1,8 @@
 package model.entity.powerup;
 
 import java.awt.geom.Point2D.Double;
+
+import javafx.application.Platform;
 import javafx.scene.image.Image;
 import model.Model;
 import model.entity.AbstractDynamicEntity;
@@ -15,7 +17,12 @@ public class Spraybomb extends AbstractDynamicEntity {
 
     @Override
     public void activateEffect(final Model model) {
-        model.getGameState().getEntities().clear();
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                model.getGameState().getEntities().clear();
+            }
+        }); 
     }
 
 }
