@@ -18,10 +18,16 @@ public class MysteryBoxImpl implements MysteryBox {
         this.price = BOX_PRICE; 
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public final int getPrice() {
         return this.price; 
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public final String createPrize(final Statistics stats, final Model model) {
         final int random = rand.nextInt(PRIZES_NUM); 
         String message; 
