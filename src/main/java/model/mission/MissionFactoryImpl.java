@@ -5,6 +5,8 @@ import java.util.Random;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
 
+import model.Model;
+import model.Player;
 import model.Statistics;
 
 /**
@@ -17,16 +19,19 @@ public class MissionFactoryImpl implements MissionFactory {
     private static final int REWARD_AMOUNT = 20;
     private static final int MAX_DISTANCE_MISSION = 1000;
     private static final int MAX_COINS_TO_COLLECT_MISSION = 50;
+    private static final int MAX_JUMP_NUMBER_MISSION = 50;
     private final Statistics statistics;
+    private final Player player;
     private final Random random;
 
     /**
      * Creates a new MissionFactoryImpl.
-     * @param statistics the {@link Statistics}.
+     * @param model the {@link Model}.
      */
-    public MissionFactoryImpl(final Statistics statistics) {
+    public MissionFactoryImpl(final Model model) {
         super();
-        this.statistics = statistics;
+        this.statistics = model.getStatistics();
+        this.player = model.getGameState().getPlayer();
         this.random = new Random();
     }
 
@@ -35,14 +40,15 @@ public class MissionFactoryImpl implements MissionFactory {
      */
     @Override
     public Mission createMission() {
-        final List<Mission> missions = List.of(this.createCollectedCoinMission(), this.createDistanceMission());
+        final List<Mission> missions = List.of(this.createCollectedCoinMission(), this.createDistanceMission(), this.createNumberOfJumpMission());
         return missions.stream().skip(random.nextInt(missions.size())).findFirst().get();
     }
 
     /**
      * {@inheritDoc}
      */
-    @Override    public Mission createCollectedCoinMission() {
+    @Override
+    public Mission createCollectedCoinMission() {
         final int goal = this.getGoal(MAX_COINS_TO_COLLECT_MISSION);
         return this.createGeneralised(x -> x >= goal, () -> this.statistics.getGameCoins(), "Collect " + goal + " coins: ");
     }
@@ -50,9 +56,19 @@ public class MissionFactoryImpl implements MissionFactory {
     /**
      * {@inheritDoc}
      */
-    @Override    public Mission createDistanceMission() {
+    @Override
+    public Mission createDistanceMission() {
         final int goal = this.getGoal(MAX_DISTANCE_MISSION);
         return this.createGeneralised(x -> x >= goal, () -> this.statistics.getDistance(), "Reach distance " + goal + ": ");
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Mission createNumberOfJumpMission() {
+        final int goal = this.getGoal(MAX_JUMP_NUMBER_MISSION);
+        return this.createGeneralised(x -> x >= goal, () -> this.player.getJumpCounter(), "Jump " + goal + " times: ");
     }
 
     /**

@@ -26,7 +26,7 @@ public class ModelImpl implements Model {
 
     /**
      * Creates a new ModelImpl initially with new {@link GameState}, {@link Statistics}, {@link CollisionManager},
-     * {@link MarkerManager}, {@link StatisticsUpdater}.
+     * {@link MarkerManager}, {@link MissionManager}, {@link StatisticsUpdater}.
      * @param soundFactory the {@link SoundFactory}.
      * 
      */
@@ -35,7 +35,7 @@ public class ModelImpl implements Model {
         this.statistics = new StatisticsImpl();
         this.collisionManager = new CollisionManagerImpl();
         this.markerManager = new MarkerManagerImpl(this.statistics.getLastDeathDistance(), this.statistics.getRecordDistance());
-        this.missionManager = new MissionManagerImpl(this.statistics);
+        this.missionManager = new MissionManagerImpl(this);
         this.statisticsUpdater = new StatisticsUpdater(this.statistics, this.markerManager, this.missionManager);
         this.soundFactory = soundFactory;
     }

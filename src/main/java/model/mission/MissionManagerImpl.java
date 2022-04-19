@@ -2,7 +2,7 @@ package model.mission;
 
 import java.util.Optional;
 
-import model.Statistics;
+import model.Model;
 
 /**
  * 
@@ -15,11 +15,11 @@ public class MissionManagerImpl implements MissionManager {
 
     /**
      * Creates a new MissionManagerImpl and creates a new random {@link Mission}.
-     * @param statistics the {@link Statistics}.
+     * @param model the {@link Model}.
      */
-    public MissionManagerImpl(final Statistics statistics) {
+    public MissionManagerImpl(final Model model) {
         super();
-        final MissionFactoryImpl missionFactory = new MissionFactoryImpl(statistics);
+        final MissionFactoryImpl missionFactory = new MissionFactoryImpl(model);
         this.mission = Optional.of(missionFactory.createMission());
     }
 

@@ -25,4 +25,10 @@ public interface MissionFactory {
      */
     Mission createDistanceMission();
 
+    /**
+     * Creates a {@link Mission} to do with number of player's jump.
+     * @return a {@link Mission} to do with number of player's jump.
+     */
+    Mission createNumberOfJumpMission();
+
 }
