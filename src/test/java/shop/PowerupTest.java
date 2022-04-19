@@ -19,6 +19,7 @@ import model.entity.powerup.Mushroom;
 import model.entity.powerup.Shield;
 import model.entity.powerup.Spraybomb;
 import model.entity.powerup.Superjump;
+import sound.SoundFactoryImpl;
 import view.entity.EntityImages;
 
 public class PowerupTest {
@@ -32,7 +33,7 @@ public class PowerupTest {
     private DynamicEntity shield; 
     private DynamicEntity spraybomb; 
     private PlayerImpl player; 
-    private Model model = new ModelImpl(); 
+    private Model model = new ModelImpl(new SoundFactoryImpl()); 
     private Point2D.Double coordinates = new Point2D.Double(X, Y); 
 
     @BeforeAll
