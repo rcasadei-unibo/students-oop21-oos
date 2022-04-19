@@ -27,7 +27,7 @@ public class ControllerImpl implements Controller {
 
     @Override
     public void setup() {
-        this.model = new ModelImpl();
+        this.model = new ModelImpl(this.soundFactory);
         this.view.game();
     }
 

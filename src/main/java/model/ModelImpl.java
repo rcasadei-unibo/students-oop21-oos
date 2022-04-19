@@ -5,6 +5,7 @@ import java.util.List;
 import model.entity.DynamicEntity;
 import model.marker.MarkerManager;
 import model.marker.MarkerManagerImpl;
+import sound.SoundFactory;
 
 public class ModelImpl implements Model {
 
@@ -13,14 +14,16 @@ public class ModelImpl implements Model {
     private final CollisionManager collisionManager;
     private final MarkerManager markerManager;
     private final StatisticsUpdater statisticsUpdater;
+    private final SoundFactory soundFactory;
     //private boolean isGameOVer;
 
-    public ModelImpl() {
+    public ModelImpl(final SoundFactory soundFactory) {
         this.gameState = new GameStateImpl();
         this.statistics = new StatisticsImpl();
         this.collisionManager = new CollisionManagerImpl();
         this.markerManager = new MarkerManagerImpl(this.statistics.getLastDeathDistance(), this.statistics.getRecordDistance());
         this.statisticsUpdater = new StatisticsUpdater(this.statistics, this.markerManager);
+        this.soundFactory = soundFactory;
         //this.isGameOVer = false;
     }
 
