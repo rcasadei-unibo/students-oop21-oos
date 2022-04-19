@@ -24,7 +24,7 @@ public final class Coin extends AbstractDynamicEntity {
     }
 
     /**
-     * Method to call when a {@link Coin} collides with the player, it increments
+     * Method called when a {@link Coin} collides with the player, it increments
      * the total number of coin. 
      * @param model the model that represents the actual game state.
      */
