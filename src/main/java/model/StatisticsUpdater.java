@@ -6,6 +6,7 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 import model.marker.MarkerManager;
+import model.mission.MissionManager;
 
 /**
  * 
@@ -19,18 +20,21 @@ public class StatisticsUpdater implements Runnable {
     private final ScheduledExecutorService executor;
     private final Statistics statistics;
     private final MarkerManager markerManager;
+    private final MissionManager missionManager;
 
     /**
      * Creates a new StatisticsUpdater with given {@link Statistics} and {@link MarkerManager}.
      * @param statistics the {@link Statistics} to update.
      * @param markerManager the {@link MarkerManager}.
+     * @param missionManager the {@link MissionManager}.
      */
-    public StatisticsUpdater(final Statistics statistics, final MarkerManager markerManager) {
+    public StatisticsUpdater(final Statistics statistics, final MarkerManager markerManager, final MissionManager missionManager) {
         super();
         this.executor = Executors.newScheduledThreadPool(1);
         this.executor.scheduleAtFixedRate(this, 0, TIME_RATE_IN_SECONDS, TimeUnit.SECONDS);
         this.statistics = statistics;
         this.markerManager = markerManager;
+        this.missionManager = missionManager;
     }
 
     /**
@@ -57,12 +61,12 @@ public class StatisticsUpdater implements Runnable {
      */
     public void stop() {
         this.executor.shutdown();
+        this.statistics.increaseCoin(this.missionManager.isCompleted() ? this.missionManager.getReward() : 0);
         try {
             this.statistics.saveStatisticsOnFile();
         } catch (IOException e) {
             System.out.println("Statistics unsaved");
         }
-        //ripulire optional dei marker
     }
 
 }

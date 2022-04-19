@@ -1,0 +1,124 @@
+package model.mission;
+
+import java.util.List;
+import java.util.Random;
+import java.util.function.Predicate;
+import java.util.function.Supplier;
+
+import model.Statistics;
+
+/**
+ * 
+ * Implementation of {@link MissionFactory}.
+ *
+ */
+public class MissionFactoryImpl implements MissionFactory {
+
+    private static final int REWARD_AMOUNT = 20;
+    private static final int MAX_DISTANCE_MISSION = 1000;
+    private static final int MAX_COINS_TO_COLLECT_MISSION = 50;
+    private final Statistics statistics;
+    private final Random random;
+
+    /**
+     * Creates a new MissionFactoryImpl.
+     * @param statistics the {@link Statistics}.
+     */
+    public MissionFactoryImpl(final Statistics statistics) {
+        super();
+        this.statistics = statistics;
+        this.random = new Random();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Mission createMission() {
+        final List<Mission> missions = List.of(this.createCollectedCoinMission(), this.createDistanceMission());
+        return missions.stream().skip(random.nextInt(missions.size())).findFirst().get();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override    public Mission createCollectedCoinMission() {
+        final int goal = this.getGoal(MAX_COINS_TO_COLLECT_MISSION);
+        return this.createGeneralised(x -> x >= goal, () -> this.statistics.getGameCoins(), "Collect " + goal + " coins: ");
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override    public Mission createDistanceMission() {
+        final int goal = this.getGoal(MAX_DISTANCE_MISSION);
+        return this.createGeneralised(x -> x >= goal, () -> this.statistics.getDistance(), "Reach distance " + goal + ": ");
+    }
+
+    /**
+     * Creates a general {@link Mission}.
+     * @param goal a {@link Predicate} that decide when a mission is completed.
+     * @param supplier a {@link Supplier} that updates counter value.
+     * @param quest a String with a description of the mission.
+     * @return a general {@link Mission}.
+     */
+    private Mission createGeneralised(final Predicate<Integer> goal, final Supplier<Integer> supplier, final String quest) {
+        return new Mission() {
+
+            private final Predicate<Integer> predicate = goal;
+            private int counter;
+
+            /**
+             * {@inheritDoc}
+             */
+            @Override
+            public boolean isCompleted() {
+                return this.predicate.test(this.counter);
+            }
+
+            /**
+             * {@inheritDoc}
+             */
+            @Override
+            public void updateCounter() {
+                this.counter = supplier.get();
+            }
+
+            /**
+             * {@inheritDoc}
+             */
+            @Override
+            public int getCounter() {
+                return this.counter;
+            }
+
+            /**
+             * {@inheritDoc}
+             */
+            @Override
+            public int getReward() {
+                return REWARD_AMOUNT;
+            }
+
+            /**
+             * {@inheritDoc}
+             */
+            @Override
+            public String toString() {
+                return quest + (this.isCompleted() ? " COMPLETED" : " Not completed yet");
+            }
+
+        };
+    }
+
+    /**
+     * Gets a random value for a {@link Mission} goal.
+     * @param limit the limit of max goal.
+     * @return a random value for a {@link Mission} goal.
+     */
+    private int getGoal(final int limit) {
+        final int goal = random.nextInt(limit);
+        return goal - goal % 10;
+    }
+
+}

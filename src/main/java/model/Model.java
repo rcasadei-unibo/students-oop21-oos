@@ -1,6 +1,7 @@
 package model;
 
 import model.marker.MarkerManager;
+import model.mission.MissionManager;
 
 /**
  * 
@@ -32,6 +33,12 @@ public interface Model {
      * @return the {@link MarkerManager}.
      */
     MarkerManager getMarkerManager();
+
+    /**
+     * Gets the {@link MissionManager}.
+     * @return the {@link MissionManager}. 
+     */
+    MissionManager getMissionManager();
 
     /**
      * Updates the state of the game.
