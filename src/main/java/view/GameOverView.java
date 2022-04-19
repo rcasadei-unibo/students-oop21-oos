@@ -2,13 +2,13 @@ package view;
 
 /**
  * 
- * Interface of application's game over.
+ * Interface of application's game over view.
  *
  */
 public interface GameOverView {
 
     /**
-     * Render the game over view.
+     * Renders the game over view.
      * 
      */
     void render();
