@@ -1,8 +1,9 @@
-package model;
+package model.collision;
 
 import java.util.List;
 
 import javafx.geometry.Rectangle2D;
+import model.Model;
 import model.entity.DynamicEntity;
 import model.entity.EntityType;
 import model.player.Player;

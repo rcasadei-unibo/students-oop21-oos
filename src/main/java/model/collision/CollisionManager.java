@@ -1,7 +1,8 @@
-package model;
+package model.collision;
 
 import java.util.List;
 
+import model.Model;
 import model.entity.DynamicEntity;
 import model.player.Player;
 
