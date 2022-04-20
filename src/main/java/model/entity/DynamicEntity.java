@@ -54,12 +54,6 @@ public interface DynamicEntity {
     double getDistance();
 
     /**
-     * Set the field distance. 
-     * @param distance distance of the next entity
-     */
-    void setDistance(double distance);
-
-    /**
      * Set the hit field.
      * @param hit true if the entity collided with the player, false otherwise.
      */

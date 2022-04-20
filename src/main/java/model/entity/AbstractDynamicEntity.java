@@ -18,7 +18,7 @@ public abstract class AbstractDynamicEntity implements DynamicEntity {
     private final Dimension2D dimensions;
     private final SpawnLevel level;
     private final EntityType type;
-    private double nextDistance;
+    private final double distance;
     private final Image image;
     private boolean hit;
 
@@ -28,10 +28,12 @@ public abstract class AbstractDynamicEntity implements DynamicEntity {
      * @param image the image that identifies the entity.
      * @param level the level on which the entity spawn.
      * @param type the type that identifies the entity.
+     * @param distance the distance after that next entity should spawn.
      */
-    public AbstractDynamicEntity(final Point2D.Double coordinates, final Image image, final SpawnLevel level, final EntityType type) {
+    public AbstractDynamicEntity(final Point2D.Double coordinates, final Image image, final SpawnLevel level, final EntityType type, final double distance) {
 
         this.coordinates = coordinates;
+        this.distance = distance;
         this.image = image;
         this.level = level;
         this.type = type;
@@ -92,15 +94,7 @@ public abstract class AbstractDynamicEntity implements DynamicEntity {
      */
     @Override
     public final double getDistance() {
-       return this.nextDistance;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public final void setDistance(final double distance) {
-        this.nextDistance = distance;
+       return this.distance;
     }
 
     /**
