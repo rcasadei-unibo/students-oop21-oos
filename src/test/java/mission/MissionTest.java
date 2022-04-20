@@ -20,6 +20,8 @@ import sound.SoundFactoryImpl;
 
 class MissionTest {
 
+    private static final double SCREEN_WIDTH = 854.0;
+    private static final double SCREEN_HEIGHT = 480.0;
     private static final int REWARD_AMOUNT = 20;
     private static final int MAX_DISTANCE_MISSION = 1000;
     private static final int MIN_DISTANCE_MISSION = 200;
@@ -34,22 +36,22 @@ class MissionTest {
     private Player player;
 
     @BeforeEach
-    public void init() {
-        this.model = new ModelImpl(new SoundFactoryImpl());
+    void init() {
+        this.model = new ModelImpl(SCREEN_WIDTH, SCREEN_HEIGHT, new SoundFactoryImpl());
         this.missionManager = this.model.getMissionManager();
         this.statistics = this.model.getStatistics();
         this.player = this.model.getGameState().getPlayer();
     }
 
     @Test
-    public void testCreateMission() {
+    void testCreateMission() {
         final Optional<Mission> mission = this.missionManager.getMission();
         assertTrue(mission.isPresent());
         assertEquals(0, mission.get().getCounter());
     }
 
     @Test
-    public void testDistanceMission() {
+    void testDistanceMission() {
         final Mission mission = new MissionFactoryImpl(this.model).createDistanceMission();
         assertFalse(mission.isCompleted());
         int distance = 0;
@@ -64,7 +66,7 @@ class MissionTest {
     }
 
     @Test
-    public void testCoinMission() {
+    void testCoinMission() {
         final Mission mission = new MissionFactoryImpl(this.model).createCollectedCoinMission();
         assertFalse(mission.isCompleted());
         int coinCounter = 0;
@@ -79,7 +81,7 @@ class MissionTest {
     }
 
     @Test
-    public void testJumpMission() {
+    void testJumpMission() {
         final Mission mission = new MissionFactoryImpl(this.model).createNumberOfJumpMission();
         assertFalse(mission.isCompleted());
         int jumpCounter = 0;

@@ -2,7 +2,7 @@ package view.entity;
 
 /**
  * 
- * Interface of the EntityView.
+ * Interface used to render entity.
  *
  */
 public interface EntityView {

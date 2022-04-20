@@ -5,6 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Optional;
 
+import javax.swing.JFrame;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -20,6 +22,8 @@ import sound.SoundFactoryImpl;
 
 class MarkerTest {
 
+    private static final double SCREEN_WIDTH = 854.0;
+    private static final double SCREEN_HEIGHT = 480.0;
     private static final int LAST_DEATH_DISTANCE = 53;
     private static final int RECORD_DISTANCE = 405;
     private static final int DISTANCE_BETWEEN_MARKERS = 10;
@@ -29,23 +33,25 @@ class MarkerTest {
 
     private Statistics statistics;
     private MarkerManager markerManager;
-    // Initialize JavaFX environment
-    private final JFXPanel jfxPanel = new JFXPanel();
 
     @BeforeEach
     public void init() {
-        final Model model = new ModelImpl(new SoundFactoryImpl());
+        final Model model = new ModelImpl(SCREEN_WIDTH, SCREEN_HEIGHT, new SoundFactoryImpl());
         this.markerManager = new MarkerManagerImpl(LAST_DEATH_DISTANCE, RECORD_DISTANCE);
         this.statistics = model.getStatistics();
+        // Initialize JavaFX environment
+        final JFrame frame = new JFrame();
+        final JFXPanel jfxPanel = new JFXPanel();
+        frame.add(jfxPanel);
     }
 
     @Test
-    public void testInitialState() {
+    void testInitialState() {
         assertTrue(this.markerManager.getMarkers().isEmpty());
     }
 
     @Test
-    public void testCommonMarker() {
+    void testCommonMarker() {
         final MarkerFactory factory = new MarkerFactoryImpl();
         int distance = 0;
         String markerString = "";
@@ -68,7 +74,7 @@ class MarkerTest {
     }
 
     @Test
-    public void testLastDeathMarker() {
+    void testLastDeathMarker() {
         int distance = 0;
         while (distance <= LAST_DEATH_DISTANCE * 2) {
             this.markerManager.check(distance);
@@ -82,7 +88,7 @@ class MarkerTest {
     }
 
     @Test
-    public void testRecordMarker() {
+    void testRecordMarker() {
         int distance = 0;
         while (distance <= RECORD_DISTANCE * 2) {
             this.markerManager.check(distance);

@@ -6,8 +6,12 @@ import static org.junit.jupiter.api.Assertions.fail;
 
 import java.util.List;
 
+import javax.swing.JFrame;
+
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import controller.GameInfo;
 import javafx.embed.swing.JFXPanel;
 import javafx.geometry.Dimension2D;
 import model.entity.DynamicEntity;
@@ -19,17 +23,29 @@ import model.generator.EntityGeneratorImpl;
 
 
 class GeneratorTest {
-    private static final int RESULT_ONE = 5;
+
     private static final int NUM_ITERATIONS = 10_000;
-    private static final double WORLD_WIDTH = 854;
-    private static final double WORLD_HEIGHT = 480;
+    private static final int MIN_ENTITIES = 3;
+    private static final int RESULT_ONE = 5;
 
-    private final Dimension2D dimension = new Dimension2D(WORLD_WIDTH, WORLD_HEIGHT);
-    private final EntityGenerator generator = new EntityGeneratorImpl(dimension);
-    private final List<DynamicEntity> entities = generator.getEntities();
-    private final EntityFactory factory = new EntityFactoryImpl(dimension);
-    private final JFXPanel jfxPanel = new JFXPanel(); //Initialize JavaFx environment
+    private EntityGenerator generator;
+    private List<DynamicEntity> entities;
+    private EntityFactory factory;
+    private GameInfo info;
 
+    @BeforeEach
+    void setUp() {
+        info = new GameInfo();
+        final Dimension2D dimension = new Dimension2D(info.getWidth(), info.getHeight());
+        generator = new EntityGeneratorImpl(dimension);
+        factory = new EntityFactoryImpl(dimension);
+        entities  = generator.getEntities();
+        /*Lines to initializes JavaFx environment, so tests work, otherwise we get
+         * "java.lang.RuntimeException: Internal graphics not initialized yet" error */
+        final JFrame frame = new JFrame("Java Swing And JavaFX");
+        final JFXPanel jfxPanel = new JFXPanel();
+        frame.add(jfxPanel);
+    }
     @Test
     void testGetter() {
         /*Empty list at the beginning*/
@@ -44,8 +60,6 @@ class GeneratorTest {
 
     @Test
     void testUpdate() {
-        /*Empty list at the beginning*/
-        assertEquals(entities.size(), 0);
         /*Update the generator, if the size of the list is zero the test should fail*/
         for (int i = 0; i < NUM_ITERATIONS; i++) {
             generator.updateList();
@@ -67,8 +81,8 @@ class GeneratorTest {
         }
         /*Change the speed of the entities so they go out of screen, when the list get updated 
          * all the entities must have been removed except for the new added ones*/
-        generator.setSpeedX(WORLD_HEIGHT * 2);
+        generator.setSpeedX(info.getWidth() * 2);
         generator.updateList();
-        assertTrue(entities.size() <= 3);
+        assertTrue(entities.size() <= MIN_ENTITIES);
     }
 }

@@ -4,8 +4,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import javax.swing.JFrame;
+
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import controller.GameInfo;
 import javafx.embed.swing.JFXPanel;
 import javafx.geometry.Dimension2D;
 import javafx.geometry.Rectangle2D;
@@ -16,13 +20,11 @@ import model.entity.EntityFactory;
 import model.entity.EntityFactoryImpl;
 import model.entity.EntityType;
 import model.entity.SpawnLevel;
+import sound.SoundFactoryImpl;
 import view.entity.EntityImages;
 
 
 class EntityTest {
-
-    private static final double WORLD_WIDTH = 854;
-    private static final double WORLD_HEIGHT = 480;
 
     private static final double COIN_WIDTH = 35;
     private static final double COIN_HEIGHT = 40;
@@ -49,9 +51,21 @@ class EntityTest {
     private static final double CONE_EXPECTED_DISTANCE = 680.1;
 
 
-    private final EntityFactory factory = new EntityFactoryImpl(new Dimension2D(WORLD_WIDTH, WORLD_HEIGHT));
-    private final Model model = new ModelImpl(null); //Model instance used to test entities's effects 
-    private final JFXPanel jfxPanel = new JFXPanel(); //Initialize JavaFx environment
+    private EntityFactory factory;
+    private Model model;
+    private GameInfo info;
+
+    @BeforeEach
+    void setUp() {
+        info = new GameInfo();
+        this.factory = new EntityFactoryImpl(new Dimension2D(info.getWidth(), info.getHeight()));
+        this.model = new ModelImpl(info.getWidth(), info.getHeight(), new SoundFactoryImpl());
+        /*Lines to initializes JavaFx environment, so tests work, otherwise we get
+         * "java.lang.RuntimeException: Internal graphics not initialized yet" error */
+        final JFrame frame = new JFrame("");
+        final JFXPanel jfxPanel = new JFXPanel();
+        frame.add(jfxPanel);
+    }
 
     @Test
     void testCoin() {
@@ -65,7 +79,7 @@ class EntityTest {
         assertFalse(coin.wasHit());
         /*Modify coin's state*/
         coin.hit(true);
-        coin.updatePosition(WORLD_WIDTH * 2);
+        coin.updatePosition(info.getWidth() * 2);
         /*Check the state modification*/
         assertTrue(coin.wasHit());
         assertTrue(coin.isOutofScreen());
@@ -88,7 +102,7 @@ class EntityTest {
         assertFalse(platform.wasHit());
         /*Modify platform's state*/
         platform.hit(true);
-        platform.updatePosition(WORLD_WIDTH * 2);
+        platform.updatePosition(info.getWidth() * 2);
         /*Check the state modification*/
         assertTrue(platform.wasHit());
         assertTrue(platform.isOutofScreen());
@@ -112,7 +126,7 @@ class EntityTest {
         assertFalse(obstacle.wasHit());
         /*Modify obstacle's state*/
         obstacle.hit(true);
-        obstacle.updatePosition(WORLD_WIDTH * 2);
+        obstacle.updatePosition(info.getWidth() * 2);
         /*Check the state modification*/
         assertTrue(obstacle.wasHit());
         assertTrue(obstacle.isOutofScreen());

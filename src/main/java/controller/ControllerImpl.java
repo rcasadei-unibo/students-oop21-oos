@@ -20,6 +20,7 @@ public class ControllerImpl implements Controller {
     private final InputObserver obs;
     private final SoundFactoryImpl soundFactory;
     private final Sound soundtrack;
+    private final GameInfo gameInfo;
 
     /**
      * Creates a new ControllerImpl and initializes a new AnimationTimerImpl.
@@ -33,6 +34,7 @@ public class ControllerImpl implements Controller {
         this.timer = new AnimationTimerImpl(this);
         this.soundFactory = new SoundFactoryImpl();
         this.soundtrack = this.soundFactory.createGameSoundtrack();
+        this.gameInfo = new GameInfo();
     }
 
     /**
@@ -40,7 +42,7 @@ public class ControllerImpl implements Controller {
      */
     @Override
     public void setup() {
-        this.model = new ModelImpl(this.soundFactory);
+        this.model = new ModelImpl(this.gameInfo.getWidth(), this.gameInfo.getHeight(), this.soundFactory);
         this.view.game();
     }
 
@@ -109,6 +111,22 @@ public class ControllerImpl implements Controller {
     @Override
     public Model getModel() {
         return this.model;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public double getWidth() {
+        return this.gameInfo.getWidth();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public double getHeight() {
+        return this.gameInfo.getHeight();
     }
 
 }

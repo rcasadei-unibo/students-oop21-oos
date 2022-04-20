@@ -20,6 +20,8 @@ import view.marker.MarkerView;
 import view.marker.MarkerViewImpl;
 import view.mission.MissionView;
 import view.mission.MissionViewImpl;
+import view.statistics.StatisticsView;
+import view.statistics.StatisticsViewImpl;
 
 /**
  * 
