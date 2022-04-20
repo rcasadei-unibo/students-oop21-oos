@@ -84,6 +84,14 @@ public class ModelImpl implements Model {
      * {@inheritDoc}
      */
     @Override
+    public SoundFactory getSoundFactory() {
+        return this.soundFactory;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public void update() {
         this.gameState.update();
         this.markerManager.update(this.statistics.getDifficulty());

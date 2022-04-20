@@ -2,6 +2,7 @@ package model;
 
 import model.marker.MarkerManager;
 import model.mission.MissionManager;
+import sound.SoundFactory;
 
 /**
  * 
@@ -39,6 +40,12 @@ public interface Model {
      * @return the {@link MissionManager}. 
      */
     MissionManager getMissionManager();
+
+    /**
+     * Gets the {@link SoundFactory}.
+     * @return the {@link SoundFactory}. 
+     */
+    SoundFactory getSoundFactory();
 
     /**
      * Updates the state of the game.
