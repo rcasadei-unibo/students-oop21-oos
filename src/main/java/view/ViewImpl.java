@@ -55,7 +55,7 @@ public class ViewImpl extends Application implements View {
     @Override
     public void game() {
         final Model model = this.controller.getModel();
-        this.gameView = new GameViewImpl(this, this.stage, this.pane, this.observer, model); 
+        this.gameView = new GameViewImpl(this.pane, this.observer, model); 
         this.gameView.render();
     }
 
