@@ -3,6 +3,8 @@ package model;
 import java.util.List;
 
 import javafx.geometry.Dimension2D;
+import model.collision.CollisionManager;
+import model.collision.CollisionManagerImpl;
 import model.entity.DynamicEntity;
 import model.marker.MarkerManager;
 import model.marker.MarkerManagerImpl;
