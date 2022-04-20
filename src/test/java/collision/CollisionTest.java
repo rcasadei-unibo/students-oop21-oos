@@ -9,6 +9,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import controller.GameInfo;
 import javafx.embed.swing.JFXPanel;
 import javafx.geometry.Dimension2D;
 import model.CollisionManager;
@@ -26,11 +27,12 @@ import sound.SoundFactoryImpl;
 public class CollisionTest {
 
     private final int distance = 1000;
+    private GameInfo info;
     private final CollisionManager manager = new CollisionManagerImpl();
     private final Player player = new PlayerImpl(new SoundFactoryImpl());
-    private final EntityFactory factory = new EntityFactoryImpl(new Dimension2D(854, 480));
+    private final EntityFactory factory = new EntityFactoryImpl(new Dimension2D(info.getWidth(), info.getHeight()));
     private final List<DynamicEntity> objects = new ArrayList<>();
-    private final Model model = new ModelImpl(new SoundFactoryImpl());
+    private final Model model = new ModelImpl(info.getWidth(), info.getHeight(), new SoundFactoryImpl());
     private final JFXPanel jfxPanel = new JFXPanel(); //Initialize JavaFx environment
 
     @Test
