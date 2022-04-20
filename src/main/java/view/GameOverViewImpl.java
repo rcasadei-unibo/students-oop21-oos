@@ -61,6 +61,9 @@ public class GameOverViewImpl implements GameOverView {
      */
     @Override
     public void render() {
+
+        final Font statFont = Font.font(FAMILY_FONT_NAME, FontWeight.EXTRA_BOLD, STAT_FONT_SIZE);
+
         final ImageView playAgainImage = new ImageView(); 
         playAgainImage.setImage(new Image("PlayAgain.png"));
         playAgainImage.setFitHeight(SQUARE_WIDTH);
@@ -108,23 +111,23 @@ public class GameOverViewImpl implements GameOverView {
         title.setY(TITLE_Y);
 
         final Text actualCoinStat = new Text("Collected Coins: " + Integer.toString(this.statistics.getGameCoins()));
-        actualCoinStat.setFont(Font.font(FAMILY_FONT_NAME, FontWeight.EXTRA_BOLD, STAT_FONT_SIZE));
+        actualCoinStat.setFont(statFont);
         actualCoinStat.setX(ACTUAL_STAT_X);
         actualCoinStat.setY(COIN_STAT_Y);
 
         final Text actualDistanceStat = new Text("Distance: " + Integer.toString(this.statistics.getDistance()));
-        actualDistanceStat.setFont(Font.font(FAMILY_FONT_NAME, FontWeight.EXTRA_BOLD, STAT_FONT_SIZE));
+        actualDistanceStat.setFont(statFont);
         actualDistanceStat.setX(ACTUAL_STAT_X);
         actualDistanceStat.setY(DISTANCE_STAT_Y);
 
         final Text totalCoinStat = new Text("Total Coins: " + Integer.toString(this.statistics.getTotalCoins()));
-        totalCoinStat.setFont(Font.font(FAMILY_FONT_NAME, FontWeight.EXTRA_BOLD, STAT_FONT_SIZE));
+        totalCoinStat.setFont(statFont);
         totalCoinStat.setX(TOTAL_STAT_X);
         totalCoinStat.setY(COIN_STAT_Y);
 
 
         final Text recordDistanceStat = new Text("Record: " + Integer.toString(this.statistics.getRecordDistance()));
-        recordDistanceStat.setFont(Font.font(FAMILY_FONT_NAME, FontWeight.EXTRA_BOLD, STAT_FONT_SIZE));
+        recordDistanceStat.setFont(statFont);
         recordDistanceStat.setX(TOTAL_STAT_X);
         recordDistanceStat.setY(DISTANCE_STAT_Y);
 
