@@ -31,6 +31,7 @@ public final class Coin extends AbstractDynamicEntity {
     @Override
     public void activateEffect(final Model model) {
         model.getStatistics().increaseCoin(coinValue);
+        model.getSoundFactory().createCoinCollectedSound().play();
     }
 
     /**
