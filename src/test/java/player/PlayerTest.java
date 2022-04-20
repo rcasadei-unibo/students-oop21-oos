@@ -9,13 +9,16 @@ import org.junit.jupiter.api.Test;
 import javafx.geometry.Rectangle2D;
 import model.Player;
 import model.PlayerImpl;
+import sound.SoundFactoryImpl;
 
 public class PlayerTest {
 
-    private final Player player = new PlayerImpl();
+    private final Player player = new PlayerImpl(new SoundFactoryImpl());
 
     @Test
     public void testJump() {
+        /*Make the player jump, the fields isJumping must be true, 
+         * and the field isGoingDown must be false*/
         player.jump();
         assertTrue(player.isJumping());
         assertFalse(player.isGoingDown());

@@ -1,6 +1,8 @@
 package model;
 
 import javafx.geometry.Rectangle2D;
+import sound.Sound;
+import sound.SoundFactory;
 
 public final class PlayerImpl implements Player {
     /**
@@ -40,12 +42,13 @@ public final class PlayerImpl implements Player {
     private double landHeight;
     private double initialY;
     private int jumpCounter;
+    private Sound jumpSound;
 
     //numero di vite e scudo
     private int numLives;
     private boolean shieldActive;
 
-    public PlayerImpl() {
+    public PlayerImpl(final SoundFactory soundFactory) {
         this.x = INITIAL_X;
         this.y = LAND - MAIN_CHARACTER_HEIGHT;
         this.isJumping = false;
@@ -58,6 +61,7 @@ public final class PlayerImpl implements Player {
         this.shieldActive = false;
         this.initialY = this.y;
         this.jumpCounter = 0;
+        this.jumpSound = soundFactory.createJumpSound();
     }
 
     @Override
@@ -67,8 +71,12 @@ public final class PlayerImpl implements Player {
             this.initialY = this.y;
             this.jumpHeight = JUMP_HEIGHT;
             this.jumpCounter++;
+            this.jumpSound.play();
             if (this.isDoubleJumpActive) {
                 this.jumpHeight = this.jumpHeight * 2;
+                if (initialY - jumpHeight / 2 <= 0) {
+                    this.jumpHeight = JUMP_HEIGHT_ON_UPPER_PLATFORM;
+                }
             }
             if (initialY - jumpHeight <= 0) {
                 this.jumpHeight = JUMP_HEIGHT_ON_UPPER_PLATFORM;
