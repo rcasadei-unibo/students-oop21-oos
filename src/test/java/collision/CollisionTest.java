@@ -7,47 +7,78 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.JFrame;
+
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import controller.GameInfo;
 import javafx.embed.swing.JFXPanel;
 import javafx.geometry.Dimension2D;
-import model.CollisionManager;
-import model.CollisionManagerImpl;
 import model.Model;
 import model.ModelImpl;
+import model.collision.CollisionManager;
+import model.collision.CollisionManagerImpl;
 import model.entity.DynamicEntity;
 import model.entity.EntityFactory;
 import model.entity.EntityFactoryImpl;
 import model.entity.SpawnLevel;
+import model.player.JumpState;
 import model.player.Player;
 import model.player.PlayerImpl;
 import sound.SoundFactoryImpl;
 
-public class CollisionTest {
+class CollisionTest {
 
-    private final int distance = 1000;
-    private GameInfo info;
+    private static final int DISTANCE = 1000;
+    private final GameInfo info = new GameInfo();
     private final CollisionManager manager = new CollisionManagerImpl();
-    private final Player player = new PlayerImpl(new SoundFactoryImpl());
-    private final EntityFactory factory = new EntityFactoryImpl(new Dimension2D(info.getWidth(), info.getHeight()));
+    private final Dimension2D dimension = new Dimension2D(info.getWidth(), info.getHeight());
+    private final EntityFactory factory = new EntityFactoryImpl(dimension);
     private final List<DynamicEntity> objects = new ArrayList<>();
     private final Model model = new ModelImpl(info.getWidth(), info.getHeight(), new SoundFactoryImpl());
-    private final JFXPanel jfxPanel = new JFXPanel(); //Initialize JavaFx environment
+    private final Player player = model.getGameState().getPlayer();
 
+    @BeforeEach
+    void setUp() {
+        /*Lines to initializes JavaFx environment, so tests work, otherwise we get
+         * "java.lang.RuntimeException: Internal graphics not initialized yet" error */
+        final JFrame frame = new JFrame("Java Swing And JavaFX");
+        final JFXPanel jfxPanel = new JFXPanel();
+        frame.add(jfxPanel);
+    }
     @Test
-    public void testCollisionWithPlatform() {
-        objects.add(factory.createPlatform(SpawnLevel.ONE));
+    void testCollisionWithObstacle() {
+        final int lives = player.getLives();
+        objects.clear();
+        objects.add(factory.createObstacle(SpawnLevel.ZERO));
+        objects.get(0).updatePosition(DISTANCE);
+        manager.playerCollidesWidth(player, objects, model);
+        assertTrue(player.getLives() < lives);
     }
 
     @Test
-    public void testCollisionWithCoin() {
+    void testCollisionWithPlatform() {
+        objects.clear();
+        objects.add(factory.createPlatform(SpawnLevel.ZERO));
+        player.jump();
+        assertEquals(JumpState.UP, player.getJumpState());
+    }
+
+    @Test
+    void testCollisionWithCoin() {
         objects.clear();
         objects.add(factory.createCoin(SpawnLevel.ZERO));
         assertEquals(model.getStatistics().getGameCoins(), 0);
-        objects.get(0).updatePosition(distance);
+        objects.get(0).updatePosition(DISTANCE);
         manager.playerCollidesWidth(player, objects, model);
         assertEquals(model.getStatistics().getGameCoins(), 1);
+    }
+
+    @Test
+    void testCollisionWithPowerUp() {
+        objects.clear();
+        objects.add(factory.createPowerup(SpawnLevel.ZERO));
     }
 
 }
