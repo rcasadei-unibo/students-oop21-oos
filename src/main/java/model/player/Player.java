@@ -1,4 +1,4 @@
-package model;
+package model.player;
 
 import javafx.geometry.Rectangle2D;
 
@@ -15,7 +15,12 @@ public interface Player {
     void updateJump();
 
     /**
-     * @return the number of lifes of the player
+     * @return the actual movement the player
+     */
+    JumpState getMovement();
+
+    /**
+     * @return the number of lives of the player
      */
     int getLives();
 
@@ -35,16 +40,6 @@ public interface Player {
     boolean isShieldActive();
 
     /**
-     * @return true if the player is jumping
-     */
-    boolean isJumping();
-
-    /**
-     * @return true if the player is going down from the jump
-     */
-    boolean isGoingDown();
-
-    /**
      * Sets the double jump.
      * @param set true if doubleJump is active
      */
@@ -57,10 +52,10 @@ public interface Player {
     void setLandHeight(double h);
 
     /**
-     * Sets the number of lifes of the player.
-     * @param lifes the new number of lifes
+     * Sets the number of lives of the player.
+     * @param lives the new number of lives
      */
-    void setNumberOfLives(int lifes);
+    void setNumberOfLives(int lives);
 
     /**
      * Sets the shield.

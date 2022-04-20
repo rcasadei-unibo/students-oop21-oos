@@ -1,4 +1,4 @@
-package model;
+package model.player;
 
 import javafx.geometry.Rectangle2D;
 import sound.Sound;
@@ -28,11 +28,11 @@ public final class PlayerImpl implements Player {
     /*The speed of the jump*/
     private static final double GRAVITY = 4.5f;
 
-    private double y = LAND - MAIN_CHARACTER_HEIGHT;
-    private boolean isJumping;
-    private boolean isGoingDown;
+    private double y = LAND;
+    //private boolean isJumping;
+    //private boolean isGoingDown;
+    private JumpState movement = JumpState.NOT_JUMPING;
     private boolean isDoubleJumpActive;
-    private double jumpHeight = JUMP_HEIGHT;
     private double landHeight = LAND;
     private int numLives = 1;
     private boolean shieldActive;
@@ -46,40 +46,50 @@ public final class PlayerImpl implements Player {
 
     @Override
     public void jump() {
-        if (!this.isJumping) {
-            this.isJumping = true;
-            this.jumpHeight = JUMP_HEIGHT;
+        if (movement == JumpState.NOT_JUMPING) {
+            double jumpHeight = JUMP_HEIGHT;
+            this.movement = JumpState.UP;
             this.jumpCounter++;
             this.jumpSound.play();
             if (this.isDoubleJumpActive) {
-                this.jumpHeight = this.jumpHeight * 2;
+                jumpHeight = jumpHeight * 2;
             }
-            this.finalJumpY = Math.max(this.y - jumpHeight, 0);
+            this.finalJumpY = Math.max(this.getHeadY() - jumpHeight, 0);
         }
     }
 
     @Override
     public void updateJump() {
-        if (this.isJumping) {
-            if (this.y <= finalJumpY) {
-                this.isGoingDown = true;
+        if (this.movement != JumpState.NOT_JUMPING) {
+            if (this.y <= this.finalJumpY) {
+                this.movement = JumpState.DOWN;
             }
-            if (!this.isGoingDown) {
+            if (this.movement == JumpState.UP) {
                 this.y = this.y - GRAVITY;
             } else {
                 this.y = this.y + GRAVITY;
             }
-            if (this.y >= this.landHeight - MAIN_CHARACTER_HEIGHT) {
-                this.isJumping = false;
-                this.isGoingDown = false;
-                this.y = landHeight - MAIN_CHARACTER_HEIGHT;
+            if (this.y >= this.landHeight) {
+                this.movement = JumpState.NOT_JUMPING;
+                this.y = landHeight;
             }
         }
 
-        if (!this.isJumping && this.y < this.landHeight - MAIN_CHARACTER_HEIGHT) {
-            this.isJumping = true;
-            this.isGoingDown = true;
+        if (this.movement == JumpState.NOT_JUMPING && this.y < this.landHeight) {
+            this.movement = JumpState.DOWN;
         }
+    }
+
+    /**
+     * @return the y of player's head
+     */
+    private double getHeadY() {
+        return this.y - MAIN_CHARACTER_HEIGHT;
+    }
+
+    @Override
+    public JumpState getMovement() {
+        return this.movement;
     }
 
     @Override
@@ -94,22 +104,12 @@ public final class PlayerImpl implements Player {
 
     @Override
     public Rectangle2D getBounds() {
-        return new Rectangle2D(PLAYER_X, this.y, MAIN_CHARACTER_WIDTH, MAIN_CHARACTER_HEIGHT);
+        return new Rectangle2D(PLAYER_X, this.getHeadY(), MAIN_CHARACTER_WIDTH, MAIN_CHARACTER_HEIGHT);
     }
 
     @Override
     public boolean isShieldActive() {
         return shieldActive;
-    }
-
-    @Override
-    public boolean isJumping() {
-        return this.isJumping;
-    }
-
-    @Override
-    public boolean isGoingDown() {
-        return this.isGoingDown;
     }
 
     @Override
