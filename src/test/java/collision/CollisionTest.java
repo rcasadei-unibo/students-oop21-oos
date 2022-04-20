@@ -74,11 +74,4 @@ class CollisionTest {
         manager.playerCollidesWidth(player, objects, model);
         assertEquals(model.getStatistics().getGameCoins(), 1);
     }
-
-    @Test
-    void testCollisionWithPowerUp() {
-        objects.clear();
-        objects.add(factory.createPowerup(SpawnLevel.ZERO));
-    }
-
 }
