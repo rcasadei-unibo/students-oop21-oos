@@ -122,7 +122,7 @@ class EntityTest {
         }
         assertFalse(obstacle.isOutofScreen());
         assertEquals(SpawnLevel.ZERO, obstacle.getLevel());
-        assertEquals(EntityType.OBSATCLE, obstacle.getType());
+        assertEquals(EntityType.OBSTACLE, obstacle.getType());
         assertFalse(obstacle.wasHit());
         /*Modify obstacle's state*/
         obstacle.hit(true);

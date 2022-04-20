@@ -9,7 +9,7 @@ public enum EntityType {
     /**
      * Obstacle's type.
      */
-    OBSATCLE(4.7), 
+    OBSTACLE(4.7), 
 
     /**
      * Platform's type.

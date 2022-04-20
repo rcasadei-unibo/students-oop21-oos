@@ -27,7 +27,7 @@ public final class CollisionManagerImpl implements CollisionManager {
                 }
             } else {
                 final Rectangle2D playerBounds = shrinkBounds(pl.getBounds(), COLLISION_BOUND);
-                if (pl.isShieldActive() && e.getType() == EntityType.OBSATCLE) {
+                if (pl.isShieldActive() && e.getType() == EntityType.OBSTACLE) {
                     e.hit(false);
                 } else if (e.getBounds().intersects(playerBounds) && !e.wasHit()) {
                     e.activateEffect(model);

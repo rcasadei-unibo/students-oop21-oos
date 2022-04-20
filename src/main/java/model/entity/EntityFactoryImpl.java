@@ -44,9 +44,9 @@ public final class EntityFactoryImpl implements EntityFactory {
     public DynamicEntity createObstacle(final SpawnLevel level) {
 
         final Image image = Math.random() > 0.5 ? EntityImages.OBSTACLE_ONE.getImage() : EntityImages.OBSTACLE_TWO.getImage();
-        final Point2D.Double coordinates = this.generatePoint(level, image, EntityType.OBSATCLE.getDistanceFactor());
-        final DynamicEntity ob = new Obstacle(coordinates, image, level, EntityType.OBSATCLE);
-        ob.setDistance(worldDimensions.getWidth() - image.getWidth() * EntityType.OBSATCLE.getDistanceFactor());
+        final Point2D.Double coordinates = this.generatePoint(level, image, EntityType.OBSTACLE.getDistanceFactor());
+        final DynamicEntity ob = new Obstacle(coordinates, image, level, EntityType.OBSTACLE);
+        ob.setDistance(worldDimensions.getWidth() - image.getWidth() * EntityType.OBSTACLE.getDistanceFactor());
         return ob;
 
     }
