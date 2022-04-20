@@ -16,13 +16,13 @@ import sound.SoundFactory;
  */
 public class ModelImpl implements Model {
 
+    private final SoundFactory soundFactory;
     private final GameState gameState;
     private final Statistics statistics;
     private final CollisionManager collisionManager;
     private final MarkerManager markerManager;
     private final MissionManager missionManager;
     private final StatisticsUpdater statisticsUpdater;
-    private final SoundFactory soundFactory;
 
     /**
      * Creates a new ModelImpl initially with new {@link GameState}, {@link Statistics}, {@link CollisionManager},
@@ -31,13 +31,13 @@ public class ModelImpl implements Model {
      * 
      */
     public ModelImpl(final SoundFactory soundFactory) {
+        this.soundFactory = soundFactory;
         this.gameState = new GameStateImpl(this.soundFactory);
         this.statistics = new StatisticsImpl();
         this.collisionManager = new CollisionManagerImpl();
         this.markerManager = new MarkerManagerImpl(this.statistics.getLastDeathDistance(), this.statistics.getRecordDistance());
         this.missionManager = new MissionManagerImpl(this);
         this.statisticsUpdater = new StatisticsUpdater(this.statistics, this.markerManager, this.missionManager);
-        this.soundFactory = soundFactory;
     }
 
     /**
