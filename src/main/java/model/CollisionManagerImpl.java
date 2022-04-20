@@ -45,10 +45,8 @@ public final class CollisionManagerImpl implements CollisionManager {
             }
         });
         if (onPlatform) {
-            pl.setOnPlatform(true);
             pl.setLandHeight(platformY);
         } else {
-            pl.setOnPlatform(false);
             pl.setLandHeight(PlayerImpl.LAND);
         }
     }
