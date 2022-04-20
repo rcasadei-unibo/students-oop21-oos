@@ -20,6 +20,8 @@ import sound.SoundFactoryImpl;
 
 class MarkerTest {
 
+    private static final double SCREEN_WIDTH = 854.0;
+    private static final double SCREEN_HEIGHT = 480.0;
     private static final int LAST_DEATH_DISTANCE = 53;
     private static final int RECORD_DISTANCE = 405;
     private static final int DISTANCE_BETWEEN_MARKERS = 10;
@@ -34,7 +36,7 @@ class MarkerTest {
 
     @BeforeEach
     public void init() {
-        final Model model = new ModelImpl(new SoundFactoryImpl());
+        final Model model = new ModelImpl(SCREEN_WIDTH, SCREEN_HEIGHT, new SoundFactoryImpl());
         this.markerManager = new MarkerManagerImpl(LAST_DEATH_DISTANCE, RECORD_DISTANCE);
         this.statistics = model.getStatistics();
     }

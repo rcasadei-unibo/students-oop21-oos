@@ -20,6 +20,8 @@ import sound.SoundFactoryImpl;
 
 class MissionTest {
 
+    private static final double SCREEN_WIDTH = 854.0;
+    private static final double SCREEN_HEIGHT = 480.0;
     private static final int REWARD_AMOUNT = 20;
     private static final int MAX_DISTANCE_MISSION = 1000;
     private static final int MIN_DISTANCE_MISSION = 200;
@@ -35,7 +37,7 @@ class MissionTest {
 
     @BeforeEach
     public void init() {
-        this.model = new ModelImpl(new SoundFactoryImpl());
+        this.model = new ModelImpl(SCREEN_WIDTH, SCREEN_HEIGHT, new SoundFactoryImpl());
         this.missionManager = this.model.getMissionManager();
         this.statistics = this.model.getStatistics();
         this.player = this.model.getGameState().getPlayer();
