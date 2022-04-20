@@ -36,7 +36,7 @@ class MissionTest {
     private Player player;
 
     @BeforeEach
-    public void init() {
+    void init() {
         this.model = new ModelImpl(SCREEN_WIDTH, SCREEN_HEIGHT, new SoundFactoryImpl());
         this.missionManager = this.model.getMissionManager();
         this.statistics = this.model.getStatistics();
@@ -44,14 +44,14 @@ class MissionTest {
     }
 
     @Test
-    public void testCreateMission() {
+    void testCreateMission() {
         final Optional<Mission> mission = this.missionManager.getMission();
         assertTrue(mission.isPresent());
         assertEquals(0, mission.get().getCounter());
     }
 
     @Test
-    public void testDistanceMission() {
+    void testDistanceMission() {
         final Mission mission = new MissionFactoryImpl(this.model).createDistanceMission();
         assertFalse(mission.isCompleted());
         int distance = 0;
@@ -66,7 +66,7 @@ class MissionTest {
     }
 
     @Test
-    public void testCoinMission() {
+    void testCoinMission() {
         final Mission mission = new MissionFactoryImpl(this.model).createCollectedCoinMission();
         assertFalse(mission.isCompleted());
         int coinCounter = 0;
@@ -81,7 +81,7 @@ class MissionTest {
     }
 
     @Test
-    public void testJumpMission() {
+    void testJumpMission() {
         final Mission mission = new MissionFactoryImpl(this.model).createNumberOfJumpMission();
         assertFalse(mission.isCompleted());
         int jumpCounter = 0;
