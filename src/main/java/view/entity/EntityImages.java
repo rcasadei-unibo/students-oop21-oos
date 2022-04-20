@@ -2,6 +2,11 @@ package view.entity;
 
 import javafx.scene.image.Image;
 
+/**
+ * 
+ * Enumeration for entity images path.
+ *
+ */
 public enum EntityImages {
 
     /**
@@ -49,7 +54,7 @@ public enum EntityImages {
      */
     SUPERJUMP("SuperJump.png"); 
 
-    private String path;
+    private final String path;
 
     EntityImages(final String path) {
         this.path = path;
