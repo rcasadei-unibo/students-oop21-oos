@@ -75,7 +75,8 @@ public class ViewImpl extends Application implements View {
      */
     @Override
     public void shop() {
-        new ShopViewImpl(this, this.pane).render();
+        final ShopView shopView = new ShopViewImpl(this, this.pane);
+        shopView.render();
     }
 
     /**
