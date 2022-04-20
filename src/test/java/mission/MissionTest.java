@@ -15,6 +15,7 @@ import model.Statistics;
 import model.mission.Mission;
 import model.mission.MissionFactoryImpl;
 import model.mission.MissionManager;
+import model.player.JumpState;
 import model.player.Player;
 import sound.SoundFactoryImpl;
 
@@ -87,7 +88,7 @@ class MissionTest {
         int jumpCounter = 0;
         while (jumpCounter < MAX_JUMP_NUMBER_MISSION && !mission.isCompleted()) {
             this.player.jump();
-            while (this.player.isJumping()) {
+            while (!this.player.getJumpState().equals(JumpState.NOT_JUMPING)) {
                 this.player.updateJump();
             }
             mission.updateCounter();

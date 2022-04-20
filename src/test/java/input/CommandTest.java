@@ -1,5 +1,6 @@
 package input;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -8,7 +9,8 @@ import org.junit.jupiter.api.Test;
 
 import model.Model;
 import model.ModelImpl;
-import model.Player;
+import model.player.JumpState;
+import model.player.Player;
 import sound.SoundFactoryImpl;
 
 class CommandTest {
@@ -28,8 +30,8 @@ class CommandTest {
     @Test
     void testJump() {
         final Command space = new Space(this.model.getGameState());
-        assertFalse(this.player.isJumping());
+        assertEquals(JumpState.NOT_JUMPING, this.player.getJumpState());
         space.execute();
-        assertTrue(this.player.isJumping());
+        assertEquals(JumpState.UP, this.player.getJumpState());
     }
 }
