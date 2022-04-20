@@ -6,6 +6,7 @@ import javafx.geometry.Dimension2D;
 import model.entity.DynamicEntity;
 import model.generator.EntityGenerator;
 import model.generator.EntityGeneratorImpl;
+import sound.SoundFactory;
 
 /**
  * 
@@ -19,10 +20,11 @@ public class GameStateImpl implements GameState {
 
     /**
      * Creates a new GameStateImpl initially with a new {@link Player} and a new {@link EntityGenerator}.
+     * @param soundFactory the {@link SoundFactory}.
      * 
      */
-    public GameStateImpl() {
-        this.player = new PlayerImpl();
+    public GameStateImpl(final SoundFactory soundFactory) {
+        this.player = new PlayerImpl(soundFactory);
         this.entityGenerator = new EntityGeneratorImpl(new Dimension2D(854, 480));
     }
 

@@ -31,7 +31,7 @@ public class ModelImpl implements Model {
      * 
      */
     public ModelImpl(final SoundFactory soundFactory) {
-        this.gameState = new GameStateImpl();
+        this.gameState = new GameStateImpl(this.soundFactory);
         this.statistics = new StatisticsImpl();
         this.collisionManager = new CollisionManagerImpl();
         this.markerManager = new MarkerManagerImpl(this.statistics.getLastDeathDistance(), this.statistics.getRecordDistance());
