@@ -25,7 +25,6 @@ import model.entity.EntityFactoryImpl;
 import model.entity.SpawnLevel;
 import model.player.JumpState;
 import model.player.Player;
-import model.player.PlayerImpl;
 import sound.SoundFactoryImpl;
 
 class CollisionTest {
@@ -47,8 +46,10 @@ class CollisionTest {
         final JFXPanel jfxPanel = new JFXPanel();
         frame.add(jfxPanel);
     }
+
     @Test
     void testCollisionWithObstacle() {
+        /*Check if, after a collision with an obstacle, the lives counter decrease*/
         final int lives = player.getLives();
         objects.clear();
         objects.add(factory.createObstacle(SpawnLevel.ZERO));
@@ -59,6 +60,7 @@ class CollisionTest {
 
     @Test
     void testCollisionWithPlatform() {
+        /*Check if, after a collision with a platform, the player can jump on the platform*/
         objects.clear();
         objects.add(factory.createPlatform(SpawnLevel.ZERO));
         player.jump();
@@ -67,6 +69,7 @@ class CollisionTest {
 
     @Test
     void testCollisionWithCoin() {
+        /*Check if, after a collision with a coin, the coin counter increase*/
         objects.clear();
         objects.add(factory.createCoin(SpawnLevel.ZERO));
         assertEquals(model.getStatistics().getGameCoins(), 0);
