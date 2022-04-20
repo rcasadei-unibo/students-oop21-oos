@@ -18,9 +18,10 @@ public final class Coin extends AbstractDynamicEntity {
      * @param image the image which identifies the {@link Coin}.
      * @param level the level on which {@link Coin} should spawn.
      * @param type the type which identifies the {@link Coin}.
+     * @param distance distance after that next entity should spawn.
      */
-    public Coin(final Double coordinates, final Image image, final SpawnLevel level, final EntityType type) {
-        super(coordinates, image, level, type);
+    public Coin(final Double coordinates, final Image image, final SpawnLevel level, final EntityType type, final double distance) {
+        super(coordinates, image, level, type, distance);
     }
 
     /**

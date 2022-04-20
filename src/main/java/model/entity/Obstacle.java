@@ -19,9 +19,10 @@ public class Obstacle extends AbstractDynamicEntity {
      * @param image the image identifying an {@link Obstacle}.
      * @param level the level on which {@link Obstacle} should spawn.
      * @param type the type identifying an {@link Obstacle}.
+     * @param distance distance after that next entity should spawn.
      */
-    public Obstacle(final Double coordinates, final Image image, final SpawnLevel level, final EntityType type) {
-        super(coordinates, image, level, type);
+    public Obstacle(final Double coordinates, final Image image, final SpawnLevel level, final EntityType type, final double distance) {
+        super(coordinates, image, level, type, distance);
     }
 
     /**
