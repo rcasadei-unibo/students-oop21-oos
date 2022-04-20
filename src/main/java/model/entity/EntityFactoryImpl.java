@@ -45,9 +45,9 @@ public final class EntityFactoryImpl implements EntityFactory {
 
         final Image image = Math.random() > 0.5 ? EntityImages.OBSTACLE_ONE.getImage() : EntityImages.OBSTACLE_TWO.getImage();
         final Point2D.Double coordinates = this.generatePoint(level, image, EntityType.OBSTACLE.getDistanceFactor());
-        final DynamicEntity ob = new Obstacle(coordinates, image, level, EntityType.OBSTACLE);
-        ob.setDistance(worldDimensions.getWidth() - image.getWidth() * EntityType.OBSTACLE.getDistanceFactor());
-        return ob;
+        final double distance = worldDimensions.getWidth() - image.getWidth() * EntityType.OBSTACLE.getDistanceFactor();
+
+        return new Obstacle(coordinates, image, level, EntityType.OBSTACLE, distance);
 
     }
 
@@ -59,9 +59,9 @@ public final class EntityFactoryImpl implements EntityFactory {
 
         final Image image = EntityImages.PLATFORM.getImage();
         final Point2D.Double coordinates = this.generatePoint(level, image, EntityType.PLATFORM.getDistanceFactor());
-        final DynamicEntity pl = new Platform(coordinates, image, level, EntityType.PLATFORM);
-        pl.setDistance(worldDimensions.getWidth() - image.getWidth());
-        return pl;
+        final double distance = worldDimensions.getWidth() - image.getWidth();
+
+        return new Platform(coordinates, image, level, EntityType.PLATFORM, distance);
 
     }
 
@@ -73,9 +73,8 @@ public final class EntityFactoryImpl implements EntityFactory {
 
         final Image image = EntityImages.COIN.getImage();
         final Point2D.Double coordinates = this.generatePoint(level, image, EntityType.COIN.getDistanceFactor());
-        final DynamicEntity cn = new Coin(coordinates, image, level, EntityType.COIN);
-        cn.setDistance(worldDimensions.getWidth() - image.getWidth() * EntityType.COIN.getDistanceFactor());
-        return cn;
+        final double distance = worldDimensions.getWidth() - image.getWidth() * EntityType.COIN.getDistanceFactor();
+        return new Coin(coordinates, image, level, EntityType.COIN, distance);
 
     }
 
