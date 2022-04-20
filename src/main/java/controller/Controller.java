@@ -50,4 +50,16 @@ public interface Controller {
      * @return the {@link Model}.
      */
     Model getModel();
+
+    /**
+     * Gets the width of the game screen.
+     * @return the width of the game screen.
+     */
+    double getWidth();
+
+    /**
+     * Gets the height of the game screen.
+     * @return the height of the game screen.
+     */
+    double getHeight();
 }

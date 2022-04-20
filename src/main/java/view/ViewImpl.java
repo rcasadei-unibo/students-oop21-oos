@@ -39,15 +39,14 @@ public class ViewImpl extends Application implements View {
         startMenuView.render();
 
         //set stage
-        this.stage.setWidth(854);
-        this.stage.setHeight(480);
+        this.stage.setWidth(this.controller.getWidth());
+        this.stage.setHeight(this.controller.getHeight());
         this.stage.setScene(new Scene(this.pane));
         this.stage.setResizable(false);
         this.stage.setOnCloseRequest(e -> {
             System.exit(0);
         });
         this.stage.show();
-
     }
 
     /**

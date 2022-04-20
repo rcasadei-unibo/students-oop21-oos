@@ -2,6 +2,7 @@ package model;
 
 import java.util.List;
 
+import javafx.geometry.Dimension2D;
 import model.entity.DynamicEntity;
 import model.marker.MarkerManager;
 import model.marker.MarkerManagerImpl;
@@ -27,12 +28,14 @@ public class ModelImpl implements Model {
     /**
      * Creates a new ModelImpl initially with new {@link GameState}, {@link Statistics}, {@link CollisionManager},
      * {@link MarkerManager}, {@link MissionManager}, {@link StatisticsUpdater}.
+     * @param width the width of the game screen.
+     * @param height the height of the game screen.
      * @param soundFactory the {@link SoundFactory}.
      * 
      */
-    public ModelImpl(final SoundFactory soundFactory) {
+    public ModelImpl(final double width, final double height, final SoundFactory soundFactory) {
         this.soundFactory = soundFactory;
-        this.gameState = new GameStateImpl(this.soundFactory);
+        this.gameState = new GameStateImpl(new Dimension2D(width, height), this.soundFactory);
         this.statistics = new StatisticsImpl();
         this.collisionManager = new CollisionManagerImpl();
         this.markerManager = new MarkerManagerImpl(this.statistics.getLastDeathDistance(), this.statistics.getRecordDistance());

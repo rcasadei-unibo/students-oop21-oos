@@ -20,12 +20,13 @@ public class GameStateImpl implements GameState {
 
     /**
      * Creates a new GameStateImpl initially with a new {@link Player} and a new {@link EntityGenerator}.
+     * @param gameDimension the dimension of the game screen.
      * @param soundFactory the {@link SoundFactory}.
      * 
      */
-    public GameStateImpl(final SoundFactory soundFactory) {
+    public GameStateImpl(final Dimension2D gameDimension, final SoundFactory soundFactory) {
         this.player = new PlayerImpl(soundFactory);
-        this.entityGenerator = new EntityGeneratorImpl(new Dimension2D(854, 480));
+        this.entityGenerator = new EntityGeneratorImpl(gameDimension);
     }
 
     /**
