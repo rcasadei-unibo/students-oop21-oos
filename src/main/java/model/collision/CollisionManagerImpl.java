@@ -11,47 +11,54 @@ import model.player.PlayerImpl;
 
 public final class CollisionManagerImpl implements CollisionManager {
 
-    private static final double COLLISION_BOUND = 30.0f;
-    private boolean onPlatform;
+    private static final double COLLISION_BOUND = 15.0f;
     private double platformY;
 
-    public CollisionManagerImpl() {
-        this.onPlatform = false;
-        this.platformY = PlayerImpl.LAND;
-    }
-
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public void playerCollidesWidth(final Player pl, final List<DynamicEntity> objects, final Model model) { 
-        this.onPlatform = false;
+    public void playerCollidesWidth(final Player pl, final List<DynamicEntity> objects, final Model model) {
         this.platformY = PlayerImpl.LAND;
         objects.forEach(e -> {
-            //Dovrebbe essere uguale istanceof o l'enum 
-            if (e.getType() == EntityType.PLATFORM /*instanceof Platform*/) {
-                if (pl.getBounds().getMaxY() <= e.getBounds().getMinY()
-                   && pl.getBounds().getMaxX() >= e.getBounds().getMinX() 
-                   && pl.getBounds().getMinX() <= e.getBounds().getMaxX()) {
-                            onPlatform = true;
-                            platformY = e.getBounds().getMinY();
+            if (e.getType() == EntityType.PLATFORM) {
+                if (isPlayerAbove(pl, e)) {
+                    platformY = e.getBounds().getMinY();
                 }
             } else {
+                final Rectangle2D playerBounds = shrinkBounds(pl.getBounds(), COLLISION_BOUND);
                 if (pl.isShieldActive() && e.getType() == EntityType.OBSATCLE) {
                     e.hit(false);
-                } else if (e.getBounds().intersects(
-                            new Rectangle2D(pl.getBounds().getMinX() + COLLISION_BOUND / 2, 
-                                            pl.getBounds().getMinY() + COLLISION_BOUND / 2, 
-                                            pl.getBounds().getWidth() - COLLISION_BOUND, 
-                                            pl.getBounds().getHeight() - COLLISION_BOUND)) 
-                            && !e.wasHit()) {
-                  e.activateEffect(model);
-                  e.hit(true);
-              }
+                } else if (e.getBounds().intersects(playerBounds) && !e.wasHit()) {
+                    e.activateEffect(model);
+                    e.hit(true);
+                }
             }
         });
-        if (onPlatform) {
-            pl.setLandHeight(platformY);
-        } else {
-            pl.setLandHeight(PlayerImpl.LAND);
-        }
+        pl.setLandHeight(platformY);
+    }
+
+    /**
+     * 
+     * @param player the player that has to be above
+     * @param e the object that has to be below
+     * @return true if player is above e 
+     */
+    private boolean isPlayerAbove(final Player player, final DynamicEntity e) {
+        return player.getBounds().getMaxY() <= e.getBounds().getMinY() 
+                && player.getBounds().getMaxX() >= e.getBounds().getMinX()
+                && player.getBounds().getMinX() <= e.getBounds().getMaxX();
+    }
+
+    /**
+     * 
+     * @param bounds initial bounds
+     * @param amount the amount to shrink each side
+     * @return the modified bounds
+     */
+    private Rectangle2D shrinkBounds(final Rectangle2D bounds, final double amount) {
+        return new Rectangle2D(bounds.getMinX() + amount, bounds.getMinY() + amount, 
+                bounds.getWidth() - amount * 2, bounds.getHeight() - amount * 2);
     }
 
 }
