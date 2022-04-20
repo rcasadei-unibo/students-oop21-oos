@@ -42,7 +42,7 @@ class GeneratorTest {
         entities  = generator.getEntities();
         /*Lines to initializes JavaFx environment, so tests work, otherwise we get
          * "java.lang.RuntimeException: Internal graphics not initialized yet" error */
-        final JFrame frame = new JFrame("Java Swing And JavaFX");
+        final JFrame frame = new JFrame("");
         final JFXPanel jfxPanel = new JFXPanel();
         frame.add(jfxPanel);
     }
