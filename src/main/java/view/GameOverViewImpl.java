@@ -91,7 +91,7 @@ public class GameOverViewImpl implements GameOverView {
         shop.setPrefHeight(SQUARE_WIDTH);
         shop.setGraphic(shopImage);
         shop.setOnAction(e -> {
-            this.view.getController().start();
+            this.view.shop();
         });
 
         final Button exit = new Button();
