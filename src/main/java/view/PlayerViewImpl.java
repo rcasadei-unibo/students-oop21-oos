@@ -1,20 +1,20 @@
 package view;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javafx.geometry.Rectangle2D;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
-import model.Player;
-import model.PlayerImpl;
+import model.player.JumpState;
+import model.player.Player;
+import model.player.PlayerImpl;
 
 public final class PlayerViewImpl implements PlayerView {
 
     private final Pane pane; 
 
-    private static final int TOTAL_MOVEMENTS = 3;
-    private static final int NORMAL = 0;
-    private static final int JUMP = 1;
-    private static final int DOWN = 2;
     private static final byte SPRITE_CHANGE = 40;
     private static final int IMAGE1 = 131;
     private static final int IMAGE2 = 175;
@@ -30,54 +30,53 @@ public final class PlayerViewImpl implements PlayerView {
     //coordinate dello sprite nel png per scegliere l'orso che mi serve
     private int spriteX;
     private int spriteY;
-    private int currentDirection;
+    private JumpState currentDirection;
     private byte currentSprite;
     private byte currentSpriteChange;
 
-    private final int[][] spriteXCoordinates = new int[TOTAL_MOVEMENTS][];
-    private final int[][] spriteYCoordinates = new int[TOTAL_MOVEMENTS][];
+    private final Map<JumpState, int[]> spriteXCoordinates = new HashMap<>();
+    private final Map<JumpState, int[]> spriteYCoordinates = new HashMap<>();
 
-    //il player
     private final Player player;
     private ImageView lastSpriteImage;
 
     public PlayerViewImpl(final Pane pane, final Player pl) {
         this.pane = pane;
         this.player = pl;
-        this.currentDirection = NORMAL;
+        this.currentDirection = JumpState.NOT_JUMPING;
         this.currentSprite = 0;
         this.currentSpriteChange = 0;
         this.imagePath = "Player2giusto.png";
 
-        spriteXCoordinates[NORMAL] = new int[] {IMAGE1, IMAGE2, IMAGE3}; //le coordinata delle prime tre immagini
-        spriteYCoordinates[NORMAL] = new int[] {HEIGHT, HEIGHT, HEIGHT};
-        spriteXCoordinates[JUMP] = new int[] {IMAGE4}; // le coordinata del salto
-        spriteYCoordinates[JUMP] = new int[] {210};
-        spriteXCoordinates[DOWN] = new int[] {IMAGE5}; // la coordinata della discesa
-        spriteYCoordinates[DOWN] = new int[] {HEIGHT};
+        spriteXCoordinates.put(JumpState.NOT_JUMPING, new int[] {IMAGE1, IMAGE2, IMAGE3});
+        spriteYCoordinates.put(JumpState.NOT_JUMPING, new int[] {HEIGHT, HEIGHT, HEIGHT});
+        spriteXCoordinates.put(JumpState.UP, new int[] {IMAGE4});
+        spriteYCoordinates.put(JumpState.UP, new int[] {210});
+        spriteXCoordinates.put(JumpState.DOWN, new int[] {IMAGE5});
+        spriteYCoordinates.put(JumpState.DOWN, new int[] {HEIGHT});
     }
 
     private void animate() {
-        if (this.player.isJumping() && !this.player.isGoingDown() && this.currentDirection != JUMP) {
-            this.changeDirection(JUMP);
-        } else if (!this.player.isJumping() && this.currentDirection != NORMAL) {
-            this.changeDirection(NORMAL);
-        } else if (this.player.isGoingDown() && this.currentDirection != DOWN) {
-            this.changeDirection(DOWN);
+        if (this.player.getJumpState() == JumpState.UP && this.currentDirection != JumpState.UP) {
+            this.changeDirection(JumpState.UP);
+        } else if (this.player.getJumpState() == JumpState.NOT_JUMPING 
+                    && this.currentDirection != JumpState.NOT_JUMPING) {
+            this.changeDirection(JumpState.NOT_JUMPING);
+        } else if (this.player.getJumpState() == JumpState.DOWN && this.currentDirection != JumpState.DOWN) {
+            this.changeDirection(JumpState.DOWN);
         } else {
             this.currentSpriteChange++;
                 if (currentSpriteChange >= SPRITE_CHANGE) {
                         currentSprite = (byte) ((currentSprite + 1) 
-                        % spriteXCoordinates[currentDirection].length);
+                        % spriteXCoordinates.get(currentDirection).length);
                         currentSpriteChange = 0;
                 }
         }
-
-        spriteX = spriteXCoordinates[this.currentDirection][this.currentSprite];
-        spriteY = spriteYCoordinates[this.currentDirection][this.currentSprite];
+        spriteX = spriteXCoordinates.get(this.currentDirection)[this.currentSprite];
+        spriteY = spriteYCoordinates.get(this.currentDirection)[this.currentSprite];
     }
 
-    private void changeDirection(final int dir) {
+    private void changeDirection(final JumpState dir) {
         this.currentDirection = dir;
         this.currentSprite = 0;
         this.currentSpriteChange = 0;

@@ -5,6 +5,8 @@ import java.util.List;
 import javafx.geometry.Rectangle2D;
 import model.entity.DynamicEntity;
 import model.entity.EntityType;
+import model.player.Player;
+import model.player.PlayerImpl;
 
 public final class CollisionManagerImpl implements CollisionManager {
 

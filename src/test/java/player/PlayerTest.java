@@ -7,8 +7,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
 
 import javafx.geometry.Rectangle2D;
-import model.Player;
-import model.PlayerImpl;
+import model.player.Player;
+import model.player.PlayerImpl;
 import sound.SoundFactoryImpl;
 
 public class PlayerTest {
@@ -59,7 +59,7 @@ public class PlayerTest {
 
     @Test
     public void testBounds() {
-        assertEquals(player.getBounds(), new Rectangle2D(PlayerImpl.INITIAL_X,
+        assertEquals(player.getBounds(), new Rectangle2D(PlayerImpl.PLAYER_X,
                                                          PlayerImpl.LAND - PlayerImpl.MAIN_CHARACTER_HEIGHT,
                                                          PlayerImpl.MAIN_CHARACTER_WIDTH, 
                                                          PlayerImpl.MAIN_CHARACTER_HEIGHT));

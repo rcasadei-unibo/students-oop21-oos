@@ -3,8 +3,8 @@ package view;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
-import model.Player;
 import model.Statistics;
+import model.player.Player;
 
 public final class StatisticsViewImpl implements StatisticsView {
 

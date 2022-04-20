@@ -17,7 +17,7 @@ public interface Player {
     /**
      * @return the actual movement the player
      */
-    JumpState getMovement();
+    JumpState getJumpState();
 
     /**
      * @return the number of lives of the player

@@ -6,6 +6,8 @@ import javafx.geometry.Dimension2D;
 import model.entity.DynamicEntity;
 import model.generator.EntityGenerator;
 import model.generator.EntityGeneratorImpl;
+import model.player.Player;
+import model.player.PlayerImpl;
 import sound.SoundFactory;
 
 /**

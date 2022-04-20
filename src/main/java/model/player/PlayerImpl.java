@@ -29,9 +29,7 @@ public final class PlayerImpl implements Player {
     private static final double GRAVITY = 4.5f;
 
     private double y = LAND;
-    //private boolean isJumping;
-    //private boolean isGoingDown;
-    private JumpState movement = JumpState.NOT_JUMPING;
+    private JumpState jumpState = JumpState.NOT_JUMPING;
     private boolean isDoubleJumpActive;
     private double landHeight = LAND;
     private int numLives = 1;
@@ -44,39 +42,45 @@ public final class PlayerImpl implements Player {
         this.jumpSound = soundFactory.createJumpSound();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void jump() {
-        if (movement == JumpState.NOT_JUMPING) {
+        if (jumpState == JumpState.NOT_JUMPING) {
             double jumpHeight = JUMP_HEIGHT;
-            this.movement = JumpState.UP;
+            this.jumpState = JumpState.UP;
             this.jumpCounter++;
             this.jumpSound.play();
             if (this.isDoubleJumpActive) {
                 jumpHeight = jumpHeight * 2;
             }
-            this.finalJumpY = Math.max(this.getHeadY() - jumpHeight, 0);
+            this.finalJumpY = Math.max(this.y - jumpHeight, 0);
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void updateJump() {
-        if (this.movement != JumpState.NOT_JUMPING) {
+        if (this.jumpState != JumpState.NOT_JUMPING) {
             if (this.y <= this.finalJumpY) {
-                this.movement = JumpState.DOWN;
+                this.jumpState = JumpState.DOWN;
             }
-            if (this.movement == JumpState.UP) {
+            if (this.jumpState == JumpState.UP) {
                 this.y = this.y - GRAVITY;
             } else {
                 this.y = this.y + GRAVITY;
             }
             if (this.y >= this.landHeight) {
-                this.movement = JumpState.NOT_JUMPING;
+                this.jumpState = JumpState.NOT_JUMPING;
                 this.y = landHeight;
             }
         }
 
-        if (this.movement == JumpState.NOT_JUMPING && this.y < this.landHeight) {
-            this.movement = JumpState.DOWN;
+        if (this.jumpState == JumpState.NOT_JUMPING && this.y < this.landHeight) {
+            this.jumpState = JumpState.DOWN;
         }
     }
 
@@ -87,46 +91,73 @@ public final class PlayerImpl implements Player {
         return this.y - MAIN_CHARACTER_HEIGHT;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public JumpState getMovement() {
-        return this.movement;
+    public JumpState getJumpState() {
+        return this.jumpState;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int getLives() {
         return this.numLives;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int getJumpCounter() {
         return this.jumpCounter;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Rectangle2D getBounds() {
         return new Rectangle2D(PLAYER_X, this.getHeadY(), MAIN_CHARACTER_WIDTH, MAIN_CHARACTER_HEIGHT);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean isShieldActive() {
         return shieldActive;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void setDoubleJump(final boolean set) {
         this.isDoubleJumpActive = set;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void setLandHeight(final double h) {
         this.landHeight = h;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void setNumberOfLives(final int lives) {
         this.numLives += lives;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void setShield(final boolean active) {
         this.shieldActive = active;

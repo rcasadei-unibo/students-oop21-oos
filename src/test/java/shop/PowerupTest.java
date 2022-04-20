@@ -10,7 +10,6 @@ import org.junit.jupiter.api.Test;
 
 import model.Model;
 import model.ModelImpl;
-import model.PlayerImpl;
 import model.entity.DynamicEntity;
 import model.entity.EntityType;
 import model.entity.SpawnLevel;
@@ -19,6 +18,7 @@ import model.entity.powerup.Mushroom;
 import model.entity.powerup.Shield;
 import model.entity.powerup.Spraybomb;
 import model.entity.powerup.Superjump;
+import model.player.PlayerImpl;
 import sound.SoundFactoryImpl;
 import view.entity.EntityImages;
 

@@ -3,6 +3,7 @@ package model;
 import java.util.List;
 
 import model.entity.DynamicEntity;
+import model.player.Player;
 
 public interface CollisionManager {
 

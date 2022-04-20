@@ -7,6 +7,7 @@ import model.marker.MarkerManager;
 import model.marker.MarkerManagerImpl;
 import model.mission.MissionManager;
 import model.mission.MissionManagerImpl;
+import model.player.Player;
 import sound.SoundFactory;
 
 /**
