@@ -12,40 +12,46 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import model.Statistics;
+import model.StatisticsImpl;
 
 /**
  * Implements the Shop and its methods, which are needed by the player to buy elements.
  *
  */
-public class ShopImpl implements Shop {
+public class ShopModelImpl implements ShopModel {
 
     private static final String SEP = File.separator;
     private static final String FILE_NAME = System.getProperty("user.home") + SEP + "OOS_shopItems.txt";
     private final List<ShopItem> items = new ArrayList<>();
     private List<ShopItem> purchasedItems = new ArrayList<>();
 
-    public ShopImpl() {
+    private final Statistics statistics;
+
+    public ShopModelImpl(final Statistics statistics) {
+
+        this.statistics = statistics;
+
         Stream.of(Skins.values()).forEach(i -> items.add(new ShopItemImpl(i.name(), i.getPrice())));
-        readPurchasedItems();
+        this.readPurchasedItems();
     }
 
     /**
      * @param selectedItem the item selected by the player. 
-     * @param stats the game statistics. 
      */
-    public void shopItemPayment(final ShopItem selectedItem, final Statistics stats) {
-        if (this.checkPayment(selectedItem, stats.getTotalCoins())) {
-            this.purchaseSkin(selectedItem, stats);
+    public void shopItemPayment(final ShopItem selectedItem) {
+        if (this.checkPayment(selectedItem, this.statistics.getTotalCoins())) {
+            this.purchaseSkin(selectedItem);
+            //SALVARE MONETE
         }
     }
 
     /**
      * @param box the mystery box. 
-     * @param stats the game statistics.
      */
-    public void misteryBoxPayment(final MysteryBox box, final Statistics stats) {
-        if (checkMystery(box, stats.getTotalCoins())) {
-            purchaseBox(box, stats);
+    public void misteryBoxPayment(final MysteryBox box) {
+        if (checkMystery(box, this.statistics.getTotalCoins())) {
+            purchaseBox(box);
+            //SALVARE MONETE
         }
     }
 
@@ -57,14 +63,15 @@ public class ShopImpl implements Shop {
         return !selectedItem.isPurchased() && selectedItem.getPrice() <= coins;
     }
 
-    private void purchaseSkin(final ShopItem selectedItem, final Statistics stats) {
+    private void purchaseSkin(final ShopItem selectedItem) {
         selectedItem.purchase();
-        stats.setTotalCoins(stats.getTotalCoins() - selectedItem.getPrice());
+        this.statistics.setTotalCoins(this.statistics.getTotalCoins() - selectedItem.getPrice());
         this.purchasedItems.add(selectedItem);
+        // Qui salvare su mio file OOS_statistics.txt totalCoins
     }
 
-    private void purchaseBox(final MysteryBox box, final Statistics stats) {
-        stats.setTotalCoins(stats.getTotalCoins() - box.getPrice());
+    private void purchaseBox(final MysteryBox box) {
+        this.statistics.setTotalCoins(this.statistics.getTotalCoins() - box.getPrice());
     }
 
     /**
@@ -124,6 +131,11 @@ public class ShopImpl implements Shop {
         } catch (IOException e) {
             purchasedItems = new ArrayList<>(); 
         }
+    }
+
+    @Override
+    public int getTotalCoins() {
+        return this.statistics.getTotalCoins();
     }
 
 }
