@@ -10,7 +10,7 @@ public enum EntityType {
     /**
      * {@link Obstacle}'s type.
      */
-    OBSTACLE(4.8), 
+    OBSTACLE(4.7), 
 
     /**
      * {@link Platform}'s type.
@@ -20,7 +20,7 @@ public enum EntityType {
     /**
      * {@link Coin}'s type.
      */
-    COIN(5.2), 
+    COIN(5.3), 
 
     /**
      * Powerup's type. 
