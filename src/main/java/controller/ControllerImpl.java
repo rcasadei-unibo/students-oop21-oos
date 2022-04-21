@@ -4,6 +4,7 @@ import input.InputObserver;
 import model.Model;
 import model.ModelImpl;
 import sound.Sound;
+import sound.SoundFactory;
 import sound.SoundFactoryImpl;
 import view.View;
 
@@ -18,7 +19,7 @@ public class ControllerImpl implements Controller {
     private final View view;
     private final AnimationTimerImpl timer;
     private final InputObserver obs;
-    private final SoundFactoryImpl soundFactory;
+    private final SoundFactory soundFactory;
     private final Sound soundtrack;
     private final GameInfo gameInfo;
 
