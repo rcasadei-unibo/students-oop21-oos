@@ -125,6 +125,11 @@ public class ShopViewImpl implements ShopView {
             select.setDisable(false);
             select.setOnAction(e -> {
                 this.shopController.getShopModel().setSelected(shopSkins.get(skinsCounter).getName());
+                try {
+                    this.shopController.getShopModel().writeSkinOnFile();
+                } catch (IOException e1) {
+                    System.out.println("Unsaved selected skin");
+                }
                 select.setDisable(true);
             });
         }
