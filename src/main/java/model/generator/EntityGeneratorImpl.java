@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import javafx.geometry.Dimension2D;
 import model.entity.DynamicEntity;
@@ -85,13 +86,13 @@ public final class EntityGeneratorImpl implements EntityGenerator {
         if (counter.get() < POWERUP_RARITY) {
             switch (last.getLevel()) {
                 case ZERO:
-                    this.levelZeroConfig(rand);
+                    this.levelZeroConfig();
                     break;
                 case ONE:
-                    this.levelOneConfig(rand);
+                    this.levelOneConfig();
                     break;
                 case TWO:
-                    this.levelTwoConfig(rand);
+                    this.levelTwoConfig();
                     break;
                 default:
                     break;
@@ -103,63 +104,48 @@ public final class EntityGeneratorImpl implements EntityGenerator {
     }
 
 
-    private void levelZeroConfig(final int rand) {
-        switch (Case.values()[rand]) {
-        case CASE_0:
-            this.entities.addAll(factory.combineObstacleCoin(SpawnLevel.ZERO, SpawnLevel.ONE));
-            this.counter.increment(2);
-            break;
-        case CASE_1:
-            this.entities.addAll(factory.combinePlatformObstacle(SpawnLevel.ONE, SpawnLevel.ZERO));
-            this.counter.increment(2);
-            break;
-        case CASE_2:
-            this.entities.add(factory.createPlatform(SpawnLevel.ONE));
-            this.counter.increment(1);
-            break;
-        default:
-            break;
-        }
+    private void levelZeroConfig() {
+
+        final Stream.Builder<List<DynamicEntity>> builder = Stream.builder();
+        final List<DynamicEntity> entity = builder.add(factory.combineObstacleCoin(SpawnLevel.ZERO, SpawnLevel.ONE))
+                                                  .add(factory.combinePlatformObstacle(SpawnLevel.ONE, SpawnLevel.ZERO))
+                                                  .add(List.of(factory.createPlatform(SpawnLevel.ONE)))
+                                                  .build()
+                                                  .skip(random.nextInt(MAX_CASE))
+                                                  .findFirst()
+                                                  .get();
+        this.entities.addAll(entity);
+        this.counter.increment(entity.size());
 
     }
 
-    private void levelOneConfig(final int rand) {
-        switch (Case.values()[rand]) {
-        case CASE_0:
-            this.entities.addAll(factory.combinePlatformObstacle(SpawnLevel.TWO, SpawnLevel.ZERO));
-            this.counter.increment(1);
-            break;
-        case CASE_1:
-            this.entities.addAll(factory.combinePlatformCoin(SpawnLevel.TWO, SpawnLevel.ONE));
-            this.counter.increment(2);
-            break;
-        case CASE_2:
-            this.entities.add(factory.createObstacle(SpawnLevel.ZERO));
-            this.counter.increment(1);
-            break;
-        default:
-            break;
-        }
+    private void levelOneConfig() {
+
+        final Stream.Builder<List<DynamicEntity>> builder = Stream.builder();
+        final List<DynamicEntity> entity = builder.add(factory.combinePlatformObstacle(SpawnLevel.TWO, SpawnLevel.ZERO))
+                                                  .add(factory.combinePlatformCoin(SpawnLevel.TWO, SpawnLevel.ONE))
+                                                  .add(List.of(factory.createObstacle(SpawnLevel.ZERO)))
+                                                  .build()
+                                                  .skip(random.nextInt(MAX_CASE))
+                                                  .findFirst()
+                                                  .get();
+        this.entities.addAll(entity);
+        this.counter.increment(entity.size());
+
     }
 
-    private void levelTwoConfig(final int rand) {
-        switch (Case.values()[rand]) {
-        case CASE_0:
-            this.entities.addAll(factory.combinePlatformCoin(SpawnLevel.ONE, SpawnLevel.TWO));
-            this.counter.increment(2);
-            break;
-        case CASE_1:
-            this.entities.addAll(factory.combinePlatformObstacle(SpawnLevel.ONE, SpawnLevel.ZERO));
-            this.counter.increment(2);
-            break;
-        case CASE_2:
-            this.entities.add(factory.createCoin(SpawnLevel.ONE));
-            this.counter.increment(1);
-            break;
+    private void levelTwoConfig() {
 
-        default:
-            break;
-        }
+        final Stream.Builder<List<DynamicEntity>> builder = Stream.builder();
+        final List<DynamicEntity> entity = builder.add(factory.combinePlatformCoin(SpawnLevel.ONE, SpawnLevel.TWO))
+                                                  .add(factory.combinePlatformObstacle(SpawnLevel.ONE, SpawnLevel.ZERO))
+                                                  .add(List.of(factory.createCoin(SpawnLevel.ONE)))
+                                                  .build()
+                                                  .skip(random.nextInt(MAX_CASE))
+                                                  .findFirst()
+                                                  .get();
+        this.entities.addAll(entity);
+        this.counter.increment(entity.size());
     }
 
     private void removeEntity(final Predicate<DynamicEntity> filterCondition) {
@@ -173,10 +159,6 @@ public final class EntityGeneratorImpl implements EntityGenerator {
     private boolean checkPosition() {
         final DynamicEntity last = entities.get(entities.size() - 1);
         return last.getBounds().getMinX() <= last.getDistance();
-    }
-
-    private enum Case {
-        CASE_0, CASE_1, CASE_2;
     }
 
     private class Counter {
