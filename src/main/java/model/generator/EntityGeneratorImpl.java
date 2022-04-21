@@ -38,8 +38,8 @@ public final class EntityGeneratorImpl implements EntityGenerator {
     public EntityGeneratorImpl(final Dimension2D worldDimensions) {
 
         this.factory = new EntityFactoryImpl(worldDimensions);
-        this.counter = new Counter();
         this.entities = new ArrayList<>();
+        this.counter = new Counter();
         this.speedX = INITIAL_SPEEDX;
         this.random = new Random();
 
@@ -79,8 +79,11 @@ public final class EntityGeneratorImpl implements EntityGenerator {
         this.removeEntity(e -> e.isOutofScreen());
     }
 
+    /**
+     * Add a new entities' configuration to the entities list.
+     */
     private void addEntity() {
-        final int rand = random.nextInt(MAX_CASE);
+
         final DynamicEntity last = this.entities.get(entities.size() - 1);
 
         if (counter.get() < POWERUP_RARITY) {
@@ -98,56 +101,68 @@ public final class EntityGeneratorImpl implements EntityGenerator {
                     break;
             }
         } else {
-            this.entities.add(factory.createPowerup(SpawnLevel.values()[rand]));
+            this.entities.add(factory.createPowerup(SpawnLevel.values()[random.nextInt(MAX_CASE)]));
             this.counter.reset();
         }
     }
 
-
+    /**
+     * Add a new entities' configuration to the entities' list, starting from level zero. 
+     */
     private void levelZeroConfig() {
 
         final Stream.Builder<List<DynamicEntity>> builder = Stream.builder();
-        final List<DynamicEntity> entity = builder.add(factory.combineObstacleCoin(SpawnLevel.ZERO, SpawnLevel.ONE))
+        final List<DynamicEntity> newConfig = builder.add(factory.combineObstacleCoin(SpawnLevel.ZERO, SpawnLevel.ONE))
                                                   .add(factory.combinePlatformObstacle(SpawnLevel.ONE, SpawnLevel.ZERO))
                                                   .add(List.of(factory.createPlatform(SpawnLevel.ONE)))
                                                   .build()
                                                   .skip(random.nextInt(MAX_CASE))
                                                   .findFirst()
                                                   .get();
-        this.entities.addAll(entity);
-        this.counter.increment(entity.size());
+        this.entities.addAll(newConfig);
+        this.counter.increment(newConfig.size());
 
     }
 
+    /**
+     * Add a new entities' configuration to the entities' list, starting from level one. 
+     */
     private void levelOneConfig() {
 
         final Stream.Builder<List<DynamicEntity>> builder = Stream.builder();
-        final List<DynamicEntity> entity = builder.add(factory.combinePlatformObstacle(SpawnLevel.TWO, SpawnLevel.ZERO))
+        final List<DynamicEntity> newConfig = builder.add(factory.combinePlatformObstacle(SpawnLevel.TWO, SpawnLevel.ZERO))
                                                   .add(factory.combinePlatformCoin(SpawnLevel.TWO, SpawnLevel.ONE))
                                                   .add(List.of(factory.createObstacle(SpawnLevel.ZERO)))
                                                   .build()
                                                   .skip(random.nextInt(MAX_CASE))
                                                   .findFirst()
                                                   .get();
-        this.entities.addAll(entity);
-        this.counter.increment(entity.size());
+        this.entities.addAll(newConfig);
+        this.counter.increment(newConfig.size());
 
     }
 
+    /**
+     * Add a new entities' configuration to the entities' list, starting from level two. 
+     */
     private void levelTwoConfig() {
 
         final Stream.Builder<List<DynamicEntity>> builder = Stream.builder();
-        final List<DynamicEntity> entity = builder.add(factory.combinePlatformCoin(SpawnLevel.ONE, SpawnLevel.TWO))
+        final List<DynamicEntity> newConfig = builder.add(factory.combinePlatformCoin(SpawnLevel.ONE, SpawnLevel.TWO))
                                                   .add(factory.combinePlatformObstacle(SpawnLevel.ONE, SpawnLevel.ZERO))
                                                   .add(List.of(factory.createCoin(SpawnLevel.ONE)))
                                                   .build()
                                                   .skip(random.nextInt(MAX_CASE))
                                                   .findFirst()
                                                   .get();
-        this.entities.addAll(entity);
-        this.counter.increment(entity.size());
+        this.entities.addAll(newConfig);
+        this.counter.increment(newConfig.size());
     }
 
+    /**
+     * Remove the filtered entities from the entities list. 
+     * @param filterCondition the condition used to remove the entities from the list. 
+     */
     private void removeEntity(final Predicate<DynamicEntity> filterCondition) {
 
         this.entities.removeAll(entities.stream()
@@ -156,11 +171,20 @@ public final class EntityGeneratorImpl implements EntityGenerator {
 
     }
 
+    /**
+     * Check if a new entity could spawn, according to the last entity's distance.
+     * @return true if the entity could spawn, false otherwise.
+     */
     private boolean checkPosition() {
         final DynamicEntity last = entities.get(entities.size() - 1);
         return last.getBounds().getMinX() <= last.getDistance();
     }
 
+    /**
+     * 
+     * Simple counter used to count the entities added to the list.
+     *
+     */
     private class Counter {
 
         private int count;
