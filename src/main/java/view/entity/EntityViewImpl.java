@@ -38,7 +38,7 @@ public final class EntityViewImpl implements EntityView {
     }
 
     /**
-     * 
+     * Create a new {@link ImageView} from the specified entity.
      * @param entity the entity whose image we want to create.
      * @return the ImageView representing the entity.
      */

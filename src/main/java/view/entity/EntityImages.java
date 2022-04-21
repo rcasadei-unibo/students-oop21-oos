@@ -10,7 +10,7 @@ import javafx.scene.image.Image;
 public enum EntityImages {
 
     /**
-     * Obstacle's image (hydrant).
+     * Obstacle's image (Hydrant).
      */
     OBSTACLE_ONE("Hydrant.png"),
 
@@ -30,7 +30,7 @@ public enum EntityImages {
     PLATFORM("Platform.png"),
 
     /**
-     * Extralife powerup's image. 
+     * Extra Life powerup's image. 
      */
     EXTRALIFE("ExtraLife.png"), 
 
@@ -45,21 +45,29 @@ public enum EntityImages {
     SHIELD("Shield.png"), 
 
     /**
-     * Spraybomb powerup's image. 
+     * SprayBomb powerup's image. 
      */
     SPRAYBOMB("SprayBomb.png"), 
 
     /**
-     * Superjump powerup's image. 
+     * SuperJump powerup's image. 
      */
     SUPERJUMP("SuperJump.png"); 
 
     private final String path;
 
+    /**
+     * 
+     * @param path the path corresponding to the image.
+     */
     EntityImages(final String path) {
         this.path = path;
     }
 
+    /**
+     * Get a new instance of Image from the specified path.
+     * @return new image identifying the entity.
+     */
     public Image getImage() {
         return new Image(this.path);
     }

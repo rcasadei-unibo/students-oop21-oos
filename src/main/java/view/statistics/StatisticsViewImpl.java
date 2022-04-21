@@ -15,6 +15,7 @@ public final class StatisticsViewImpl implements StatisticsView {
 
     private static final int FONT_SIZE = 18;
     private static final int TEXT_XY = 25;
+
     private final Statistics statistics;
     private final Player player;
     private final Pane pane;
