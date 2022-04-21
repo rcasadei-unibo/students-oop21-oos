@@ -9,6 +9,7 @@ import model.player.Player;
 public interface CollisionManager {
 
     /**
+     * Checks all the collisions with the player.
      * @param pl the Player
      * @param objects the list of Objects
      * @param model the Model
