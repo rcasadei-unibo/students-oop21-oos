@@ -21,13 +21,16 @@ public class Mushroom extends AbstractDynamicEntity {
         mushroomTimer = new EffectTimer(); 
     }
 
+    /**
+     * Activates the Mushroom effect.
+     */
     @Override
-    public void activateEffect(final Model model) {
+    public final void activateEffect(final Model model) {
         Coin.setCoinValue(DOUBLECOIN);
-        mushroomTask(model); 
+        mushroomTask(); 
     }
 
-    private void mushroomTask(final Model model) {
+    private void mushroomTask() {
         final TimerTask task = new TimerTask() {
             @Override
             public void run() {

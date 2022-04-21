@@ -15,8 +15,11 @@ public class Spraybomb extends AbstractDynamicEntity {
         super(coordinates, image, level, type, distance);
     }
 
+    /**
+     * Activates the Spraybomb effect.
+     */
     @Override
-    public void activateEffect(final Model model) {
+    public final void activateEffect(final Model model) {
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
