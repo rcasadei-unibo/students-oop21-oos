@@ -19,7 +19,7 @@ public final class StartMenuViewImpl implements StartMenuView {
     private static final int FONT_SIZE = 18;
     private static final int BUTTON_WIDTH = 150;
     private static final int ALL_BUTTON_X = 340;
-    private static final int START_BUTTON_Y = 250;
+    private static final int START_BUTTON_Y = 300;
     private static final int EXIT_BUTTON_Y = 350;
 
     private final View view;
