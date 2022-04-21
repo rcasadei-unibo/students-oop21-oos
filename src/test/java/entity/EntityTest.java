@@ -52,19 +52,20 @@ class EntityTest {
 
 
     private EntityFactory factory;
-    private Model model;
     private GameInfo info;
+    private Model model;
 
     @BeforeEach
-    void setUp() {
-        info = new GameInfo();
-        this.factory = new EntityFactoryImpl(new Dimension2D(info.getWidth(), info.getHeight()));
-        this.model = new ModelImpl(info.getWidth(), info.getHeight(), new SoundFactoryImpl());
+    void setUp() { 
         /*Lines to initializes JavaFx environment, so tests work, otherwise we get
          * "java.lang.RuntimeException: Internal graphics not initialized yet" error */
         final JFrame frame = new JFrame("");
         final JFXPanel jfxPanel = new JFXPanel();
         frame.add(jfxPanel);
+
+        info = new GameInfo();
+        this.factory = new EntityFactoryImpl(new Dimension2D(info.getWidth(), info.getHeight()));
+        this.model = new ModelImpl(info.getWidth(), info.getHeight(), new SoundFactoryImpl());
     }
 
     @Test
@@ -87,7 +88,6 @@ class EntityTest {
         final double initialValue = model.getStatistics().getGameCoins();
         coin.activateEffect(model);
         assertTrue(model.getStatistics().getGameCoins() > initialValue);
-
     }
 
     @Test
