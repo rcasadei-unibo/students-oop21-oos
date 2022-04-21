@@ -40,7 +40,7 @@ public final class PlayerImpl implements Player {
 
     private static final double GRAVITY = 4.5f;
     private static final String SEP = File.separator;
-    private static final String FILE_NAME = System.getProperty("user.home") + SEP + "OOS_playerSkins.txt";
+    private static final String FILE_NAME = System.getProperty("user.home") + SEP + "OOS_selectedSkin.txt";
 
     private double y = LAND;
     private JumpState jumpState = JumpState.NOT_JUMPING;
@@ -111,7 +111,7 @@ public final class PlayerImpl implements Player {
         try (BufferedReader br = Files.newBufferedReader(Paths.get(FILE_NAME))) {
             return br.readLine();
         } catch (IOException e) {
-           return "PlayerUltimate.png";
+           return "Player.png";
         }
     }
 
