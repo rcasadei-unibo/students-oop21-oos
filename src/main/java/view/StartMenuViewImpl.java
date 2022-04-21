@@ -69,6 +69,9 @@ public final class StartMenuViewImpl implements StartMenuView {
         shop.setTextAlignment(TextAlignment.CENTER);
         shop.setFont(new Font("Arial", FONT_SIZE));
         shop.setText("SHOP");
+        shop.setOnAction(e -> {
+            this.view.shop();
+        });
  
         this.pane.getChildren().add(start);
         this.pane.getChildren().add(shop);
