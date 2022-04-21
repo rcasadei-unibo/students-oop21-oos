@@ -43,7 +43,6 @@ public class StatisticsUpdater implements Runnable {
     @Override
     public void run() {
         this.statistics.update();
-        //System.out.println("Distance: " + this.statistics.getDistance());
         this.markerManager.check(this.statistics.getDistance());
     }
 
