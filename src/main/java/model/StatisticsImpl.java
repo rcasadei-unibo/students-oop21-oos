@@ -40,9 +40,9 @@ public class StatisticsImpl implements Statistics {
         final List<Integer> list = this.readStatisticsFromFile().stream()
                 .map(s -> Integer.parseInt(s))
                 .collect(Collectors.toList());
-        this.recordDistance = list.get(0);
+        this.totalCoins = list.get(0);
         this.lastDeathDistance = list.get(1);
-        this.totalCoins = list.get(2);
+        this.recordDistance = list.get(2);
     }
 
     /**
@@ -129,7 +129,7 @@ public class StatisticsImpl implements Statistics {
         this.lastDeathDistance = this.actualDistance;
         this.totalCoins += this.gameCoins;
 
-        final List<Integer> list = List.of(this.recordDistance, this.lastDeathDistance, this.totalCoins);
+        final List<Integer> list = List.of(this.totalCoins, this.lastDeathDistance, this.recordDistance);
         try (BufferedWriter bw = Files.newBufferedWriter(Paths.get(FILE_NAME))) {
             list.stream().map(e -> Integer.toString(e)).forEach(s -> {
                 try {
