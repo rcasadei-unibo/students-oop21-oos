@@ -1,5 +1,7 @@
 package controller;
 
+import java.io.IOException;
+
 import model.shop.ShopModel;
 
 public interface ShopController {
@@ -13,5 +15,7 @@ public interface ShopController {
     int increaseSkinCounter();
 
     int decreaseSkinCounter();
+
+    void close() throws IOException;
 
 }

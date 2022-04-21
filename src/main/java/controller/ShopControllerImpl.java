@@ -1,5 +1,7 @@
 package controller;
 
+import java.io.IOException;
+
 import model.Statistics;
 import model.shop.ShopModel;
 import model.shop.ShopModelImpl;
@@ -16,16 +18,25 @@ public class ShopControllerImpl implements ShopController {
         this.shopModel = new ShopModelImpl(statistics);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void render() {
         this.shopView.render();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ShopModel getShopModel() {
         return this.shopModel;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int increaseSkinCounter() {
         imageIndex++; 
@@ -35,6 +46,9 @@ public class ShopControllerImpl implements ShopController {
         return imageIndex;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int decreaseSkinCounter() {
         imageIndex--; 
@@ -44,9 +58,21 @@ public class ShopControllerImpl implements ShopController {
         return imageIndex;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int getTotalCoins() {
         return this.shopModel.getTotalCoins();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void close() throws IOException {
+        this.shopModel.saveShopItem();
+        this.shopModel.writeSkinOnFile();
     }
 
 }
