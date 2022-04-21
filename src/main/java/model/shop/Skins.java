@@ -5,15 +5,20 @@ package model.shop;
  *
  */
 public enum Skins {
+
+    /**
+     * 
+     */
+    PLAYER("Player.png", 0),
     /**
      * Programmer skin and its price.
      */
-    PROGRAMMER("Programmer", 50), 
+    PROGRAMMER("Programmer.png", 50), 
 
     /**
      * Dinosaur skin and its price. 
      */
-    DINOSAUR("Dinosaur", 100); 
+    DINOSAUR("DinoSkin.png", 100); 
 
     private final int price; 
     private final String name; 
@@ -25,5 +30,9 @@ public enum Skins {
 
     public int getPrice() {
         return price;
+    }
+
+    public String getSkinName() {
+        return name;
     }
 }
