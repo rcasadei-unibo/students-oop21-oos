@@ -29,8 +29,10 @@ import view.statistics.StatisticsViewImpl;
  *
  */
 public class GameViewImpl implements GameView {
+
     private static final double GAME_SCREEN_WIDTH = 854.0;
     private static final double GAME_SCREEN_HEIGHT = 445.0;
+
     private final Pane pane;
     private final PlayerView playerView;
     private final EntityView entityView;
@@ -75,8 +77,8 @@ public class GameViewImpl implements GameView {
     public void render() {
         this.pane.getChildren().clear();
         this.markerView.render();
-        this.playerView.render();
         this.entityView.render();
+        this.playerView.render();
         this.missionView.render();
         this.statView.render();
     }
