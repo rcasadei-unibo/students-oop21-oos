@@ -19,7 +19,7 @@ public class MissionManagerImpl implements MissionManager {
      */
     public MissionManagerImpl(final Model model) {
         super();
-        final MissionFactoryImpl missionFactory = new MissionFactoryImpl(model);
+        final MissionFactory missionFactory = new MissionFactoryImpl(model);
         this.mission = Optional.of(missionFactory.createMission());
     }
 
