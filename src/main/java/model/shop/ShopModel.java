@@ -3,8 +3,6 @@ package model.shop;
 import java.io.IOException;
 import java.util.List;
 
-import model.Statistics;
-
 public interface ShopModel {
 
     /**
@@ -15,9 +13,9 @@ public interface ShopModel {
 
     /**
      * If the player has enough money. 
-     * @param box
+     * @return the result string.
      */
-    void misteryBoxPayment(MysteryBox box); 
+    String misteryBoxPayment(); 
 
     void printItems(); 
 
@@ -40,10 +38,25 @@ public interface ShopModel {
 
     /**
      * 
-     * @return the saved purchased items. 
      */
-    void readPurchasedItems(); 
+    //void readPurchasedItems(); 
 
+    /**
+     * 
+     * @return the total coins.
+     */
     int getTotalCoins();
+
+    boolean checkMystery(MysteryBox box, int coins);
+
+    boolean checkPayment(ShopItem selectedItem, int coins);
+
+    void writeSkinOnFile() throws IOException;
+
+
+    boolean isSelected(String name);
+
+    void setSelected(String name);
+
 
 }
