@@ -7,19 +7,17 @@ import org.junit.jupiter.api.Test;
 
 import model.Statistics;
 import model.StatisticsImpl;
-import model.shop.Shop;
-import model.shop.ShopImpl;
-import model.shop.ShopItem;
-import model.shop.ShopItemImpl;
+import model.shop.ShopModel;
+import model.shop.ShopModelImpl;
 
 public class ShopTest {
 
-    private Shop shop; 
+    private ShopModel shop; 
     private Statistics stats; 
 
     @BeforeAll
     public final void prepare() {
-        shop = new ShopImpl(); 
+        shop = new ShopModelImpl(stats); 
         stats = new StatisticsImpl(); 
     }
 
@@ -31,7 +29,6 @@ public class ShopTest {
     @Test
     public final void testEnoughMoney() {
         Integer moneyGained = 10000; 
-        shop.shopItemPayment(shop.getItems().get(0), stats);
+        shop.shopItemPayment(shop.getItems().get(0));
     }
-    
 }
