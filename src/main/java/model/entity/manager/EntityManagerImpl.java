@@ -68,6 +68,9 @@ public final class EntityManagerImpl implements EntityManager {
     public void updateList() {
         this.removeEntity(e -> e.wasHit() && (e.getType() == EntityType.POWERUP || e.getType() == EntityType.COIN));
 
+        this.entities.forEach(e -> e.updatePosition(speedX));
+        this.removeEntity(e -> e.isOutofScreen()); 
+
         if (this.entities.isEmpty()) {
             this.entities.addAll(factory.combineAll(SpawnLevel.ONE, SpawnLevel.ZERO, SpawnLevel.TWO));
             counter.increment(3);
@@ -75,8 +78,6 @@ public final class EntityManagerImpl implements EntityManager {
             this.addEntity();
         }
 
-        this.entities.forEach(e -> e.updatePosition(speedX));
-        this.removeEntity(e -> e.isOutofScreen());
     }
 
     /**
