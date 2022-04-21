@@ -9,6 +9,8 @@ import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
  
@@ -21,6 +23,13 @@ public final class StartMenuViewImpl implements StartMenuView {
     private static final int ALL_BUTTON_X = 340;
     private static final int START_BUTTON_Y = 300;
     private static final int EXIT_BUTTON_Y = 350;
+    private static final String FAMILY_FONT_NAME = "Arial";
+    private static final int TITLE_FONT_SIZE = 90;
+    private static final int TITLE_X = 330;
+    private static final int TITLE_Y = 150;
+    private static final int SUBTITLE_FONT_SIZE = 45;
+    private static final int SUBTITLE_X = 20;
+    private static final int SUBTITLE_Y = 210;
 
     private final View view;
     private final Stage stage;
@@ -69,10 +78,21 @@ public final class StartMenuViewImpl implements StartMenuView {
         exit.setOnAction(e -> {
             stage.close();
         });
- 
+
+        final Text title = new Text("OOS");
+        title.setFont(Font.font(FAMILY_FONT_NAME, FontWeight.EXTRA_BOLD, TITLE_FONT_SIZE));
+        title.setX(TITLE_X);
+        title.setY(TITLE_Y);
+
+        final Text subtitle = new Text("OLLIE ORIENTED SKATEBOARDING");
+        subtitle.setFont(Font.font(FAMILY_FONT_NAME, FontWeight.EXTRA_BOLD, SUBTITLE_FONT_SIZE));
+        subtitle.setX(SUBTITLE_X);
+        subtitle.setY(SUBTITLE_Y);
+
         this.pane.getChildren().add(start);
         this.pane.getChildren().add(exit);
- 
+        this.pane.getChildren().add(title);
+        this.pane.getChildren().add(subtitle);
     }
  
 }
