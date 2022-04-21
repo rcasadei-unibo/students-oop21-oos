@@ -11,8 +11,8 @@ import model.entity.EntityType;
 
 public class Spraybomb extends AbstractDynamicEntity {
 
-    public Spraybomb(final Double coordinates, final Image image, final SpawnLevel level, final EntityType type) {
-        super(coordinates, image, level, type);
+    public Spraybomb(final Double coordinates, final Image image, final SpawnLevel level, final EntityType type, final double distance) {
+        super(coordinates, image, level, type, distance);
     }
 
     @Override

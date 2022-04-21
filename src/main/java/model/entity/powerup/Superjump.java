@@ -14,8 +14,8 @@ public final class Superjump extends AbstractDynamicEntity {
     private static final boolean ACTIVATESUPERJUMP = true; 
     private final EffectTimer jumpTimer; 
 
-    public Superjump(final Double coordinates, final Image image, final SpawnLevel level, final EntityType type) {
-        super(coordinates, image, level, type);
+    public Superjump(final Double coordinates, final Image image, final SpawnLevel level, final EntityType type, final double distance) {
+        super(coordinates, image, level, type, distance);
         jumpTimer = new EffectTimer(); 
     }
 

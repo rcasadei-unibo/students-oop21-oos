@@ -10,8 +10,8 @@ import model.entity.EntityType;
 
 public class ExtraLife extends AbstractDynamicEntity {
 
-    public ExtraLife(final Double coordinates, final Image image, final SpawnLevel level, final EntityType type) {
-        super(coordinates, image, level, type);
+    public ExtraLife(final Double coordinates, final Image image, final SpawnLevel level, final EntityType type, final double distance) {
+        super(coordinates, image, level, type, distance);
     }
 
     @Override

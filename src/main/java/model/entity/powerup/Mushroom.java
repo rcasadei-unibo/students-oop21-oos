@@ -16,8 +16,8 @@ public class Mushroom extends AbstractDynamicEntity {
     private static final int DOUBLECOIN = 2; 
     private static final int STDCOIN = 1; 
 
-    public Mushroom(final Double coordinates, final Image image, final SpawnLevel level, final EntityType type) {
-        super(coordinates, image, level, type);
+    public Mushroom(final Double coordinates, final Image image, final SpawnLevel level, final EntityType type, final double distance) {
+        super(coordinates, image, level, type, distance);
         mushroomTimer = new EffectTimer(); 
     }
 

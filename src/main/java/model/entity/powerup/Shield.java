@@ -14,8 +14,8 @@ public final class Shield extends AbstractDynamicEntity {
     private static final boolean ACTIVATESHIELD = true; 
     private final EffectTimer shieldTimer; 
 
-    public Shield(final Double coordinates, final Image image, final SpawnLevel level, final EntityType type) {
-        super(coordinates, image, level, type);
+    public Shield(final Double coordinates, final Image image, final SpawnLevel level, final EntityType type, final double distance) {
+        super(coordinates, image, level, type, distance);
         shieldTimer = new EffectTimer(); 
     }
 
