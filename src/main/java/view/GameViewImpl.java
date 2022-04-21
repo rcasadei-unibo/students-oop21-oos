@@ -18,6 +18,8 @@ import view.marker.MarkerView;
 import view.marker.MarkerViewImpl;
 import view.mission.MissionView;
 import view.mission.MissionViewImpl;
+import view.player.PlayerView;
+import view.player.PlayerViewImpl;
 import view.statistics.StatisticsView;
 import view.statistics.StatisticsViewImpl;
 

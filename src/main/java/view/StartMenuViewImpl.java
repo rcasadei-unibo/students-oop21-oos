@@ -11,6 +11,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
+import model.Statistics;
  
 public final class StartMenuViewImpl implements StartMenuView {
 
@@ -26,7 +27,13 @@ public final class StartMenuViewImpl implements StartMenuView {
     private final View view;
     private final Stage stage;
     private final Pane pane;
- 
+
+    /**
+     * Creates a new StartMenuViewImpl.
+     * @param view the {@link View} of the application.
+     * @param stage the {@link Stage}.
+     * @param pane the {@link Pane}.
+     */
     public StartMenuViewImpl(final View view, final Stage stage, final Pane pane) {
         super();
         this.view = view;
@@ -37,6 +44,9 @@ public final class StartMenuViewImpl implements StartMenuView {
         this.pane.setBackground(new Background(background));
     }
  
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void render() {
         final Button start = new Button();

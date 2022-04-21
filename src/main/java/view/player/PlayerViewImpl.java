@@ -1,16 +1,20 @@
-package view;
+package view.player;
 
 import java.util.HashMap;
 import java.util.Map;
 
 import javafx.geometry.Rectangle2D;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import model.player.JumpState;
 import model.player.Player;
 import model.player.PlayerImpl;
 
+/**
+ * 
+ * Class that render the Player during the game.
+ *
+ */
 public final class PlayerViewImpl implements PlayerView {
 
     private static final byte SPRITE_CHANGE = 40;
@@ -34,13 +38,16 @@ public final class PlayerViewImpl implements PlayerView {
     private int spriteY;
     private ImageView spriteImage;
 
+    /**
+     * @param pane the pane where to draw the entity. 
+     * @param pl the Player to render. 
+     */
     public PlayerViewImpl(final Pane pane, final Player pl) {
         this.pane = pane;
         this.player = pl;
         this.currentState = JumpState.NOT_JUMPING;
         this.currentSprite = 0;
         this.currentSpriteChange = 0;
-
         spriteXCoordinates.put(JumpState.NOT_JUMPING, new int[] {IMAGE1, IMAGE2, IMAGE3});
         spriteYCoordinates.put(JumpState.NOT_JUMPING, new int[] {HEIGHT, HEIGHT, HEIGHT});
         spriteXCoordinates.put(JumpState.UP, new int[] {IMAGE4});
@@ -50,7 +57,7 @@ public final class PlayerViewImpl implements PlayerView {
     }
 
     /**
-     * This method changes the image based on the JumpState, and animate the NOT_JUMPING
+     * Changes the image based on the JumpState, and animate the NOT_JUMPING
      * state with three different images.
      */
     private void animate() {
@@ -91,6 +98,11 @@ public final class PlayerViewImpl implements PlayerView {
         this.pane.getChildren().add(this.spriteImage);
     }
 
+    /**
+     * Create the Image of the player.
+     * @param pl the Player
+     * @return the right ImageView of the Player
+     */
     private ImageView createImage(final Player pl) {
         final ImageView image = new ImageView(pl.getImage());
         image.setViewport(new Rectangle2D(spriteX, spriteY, IMAGE_WIDTH, IMAGE_HEIGHT));
