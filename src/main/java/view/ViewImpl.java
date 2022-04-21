@@ -74,10 +74,8 @@ public class ViewImpl extends Application implements View {
      */
     @Override
     public void shop() {
-        System.out.println("inizio shop");
         final Statistics statistics = this.controller.getModel().getStatistics();
         final ShopView shopView = new ShopViewImpl(this, this.pane, statistics);
-        System.out.println("Inizio eseguo render");
         shopView.render();
     }
 
