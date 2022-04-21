@@ -11,22 +11,22 @@ public interface EntityFactory {
 
     /**
      * Create a new {@link Obstacle}'s instance.
-     * @param level the level on which {@link Obstacle} spawn
-     * @return a new {@link Obstacle} 's instance 
+     * @param level the level on which {@link Obstacle} spawn.
+     * @return a new {@link Obstacle} 's instance.
      */
     DynamicEntity createObstacle(SpawnLevel level);
 
     /**
      * Create a new {@link Platform}'s instance.
-     * @param level the level on which {@link Platform} spawn
-     * @return a new {@link Platform} 's instance 
+     * @param level the level on which {@link Platform} spawn.
+     * @return a new {@link Platform} 's instance.
      */
     DynamicEntity createPlatform(SpawnLevel level);
 
     /**
      * Create a new {@link Coin}'s instance.
-     * @param level the level on which {@link Coin} spawn
-     * @return a new {@link Coin} 's instance 
+     * @param level the level on which {@link Coin} spawn.
+     * @return a new {@link Coin} 's instance. 
      */
     DynamicEntity createCoin(SpawnLevel level);
 
@@ -64,9 +64,9 @@ public interface EntityFactory {
     List<DynamicEntity> combineAll(SpawnLevel platformLevel, SpawnLevel obstacleLevel, SpawnLevel coinLevel);
 
     /**
-     * Create a new Powerup.
-     * @param level the level on which the powerup spawns.
-     * @return a new Powerup instance.
+     * Create a new PowerUp.
+     * @param level the level on which the PowerUp should spawns.
+     * @return a new PowerUp's instance.
      */
     DynamicEntity createPowerup(SpawnLevel level); 
 

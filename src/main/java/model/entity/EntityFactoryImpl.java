@@ -15,6 +15,7 @@ import model.entity.powerup.Shield;
 import model.entity.powerup.Spraybomb;
 import model.entity.powerup.Superjump;
 import view.entity.EntityImages;
+
 /**
  * 
  * Factory Method for {@link DynamicEntity}.
@@ -22,10 +23,11 @@ import view.entity.EntityImages;
  */
 public final class EntityFactoryImpl implements EntityFactory {
 
-    private static final double LAND_HEIGHT = 40;
+    private static final double LAND_HEIGHT = 40.0f;
+    private static final int POWERUPS = 5; 
+
     private final Dimension2D worldDimensions;
     private final Random rand = new Random(); 
-    private static final int POWERUPS = 5; 
 
     /**
      * 
@@ -231,8 +233,15 @@ public final class EntityFactoryImpl implements EntityFactory {
         return new Superjump(coordinates, image, level, EntityType.POWERUP, distance);
     }
 
+    /**
+     * Generate the coordinates of the entity, according to given properties. 
+     * @param level the level on which entity should spawn.
+     * @param image the image identifying the entity.
+     * @param distanceFactor property of the entity that describe the multiplicative factor.
+     * @return a new {@link Double} identifying the coordinates of the entity. 
+     */
     private Point2D.Double generatePoint(final SpawnLevel level, final Image image, final double distanceFactor) {
-        final double x = worldDimensions.getWidth() * level.getSpawnX() + image.getWidth() * distanceFactor;
+        final double x = worldDimensions.getWidth() + image.getWidth() * distanceFactor;
         final double y = worldDimensions.getHeight() * level.getSpawnY() - image.getHeight();
         return new Point2D.Double(x, y);
     }

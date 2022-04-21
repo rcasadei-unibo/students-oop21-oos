@@ -6,18 +6,22 @@ import model.Model;
 
 /**
  * 
- * Class identifying a Game's Coin. 
+ * Class identifying a game's Coin. 
  *
  */
 public final class Coin extends AbstractDynamicEntity {
 
+    /**
+     * Value of every coin instance.
+     */
     private static int coinValue = 1; 
+
     /**
      * 
      * @param coordinates the coordinates of the {@link Coin} on the screen.
-     * @param image the image which identifies the {@link Coin}.
+     * @param image the image identifying the {@link Coin}.
      * @param level the level on which {@link Coin} should spawn.
-     * @param type the type which identifies the {@link Coin}.
+     * @param type the type identifying the {@link Coin}.
      * @param distance distance after that next entity should spawn.
      */
     public Coin(final Double coordinates, final Image image, final SpawnLevel level, final EntityType type, final double distance) {

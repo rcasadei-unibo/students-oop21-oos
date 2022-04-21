@@ -18,7 +18,7 @@ public interface EntityGenerator {
     List<DynamicEntity> getEntities();
 
     /**
-     * 
+     * Set the speedX of all the entities currently on the game.
      * @param speedX the speed of the entities.
      */
     void setSpeedX(double speedX);

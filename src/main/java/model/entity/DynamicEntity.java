@@ -6,50 +6,50 @@ import model.Model;
 
 /**
  * 
- * Interface that identify an entity that moves on the screen.
+ * Interface that describe an entity moving on the screen.
  *
  */
 public interface DynamicEntity {
 
     /**
-     * Updates the entity position on the screen.
-     * @param speedX the speed by which entity should move.
+     * Update the entity position on the screen.
+     * @param speedX entity's speedX.
      * */
     void updatePosition(double speedX);
 
     /**
      * Returns the entity Bounding Box.
-     * @return a new Rectangle2D that represents the coordinates and the dimension of the entity.
+     * @return a new Rectangle2D representing the coordinates and the dimension of the entity.
      */
     Rectangle2D getBounds();
 
     /**
-     * Check if the entity is out of the screen.
+     * Check if the entity is out of the game screen.
      * @return true if the entity is out of the screen, false otherwise.
      */
     boolean isOutofScreen();
 
     /**
-     * Get the image defining the entity.
-     * @return the image corresponding to the entity
+     * Get the image that identifies the entity.
+     * @return the image corresponding to the entity.
      */
     Image getImage();
 
     /**
-     * 
-     * @return the level on which entity spawn. 
+     * Get the level on which the entity spawn.
+     * @return the level on which the entity spawn. 
      */
     SpawnLevel getLevel();
 
     /**
-     * 
-     * @return the type that identify the entity.
+     * Get the type that identifies the entity.
+     * @return the type identifying the entity.
      */
     EntityType getType();
 
     /**
-     * 
-     * @return the distance of the next entity
+     * Get the distance after that next entity should spawn.
+     * @return the distance after that next entity should spawn.
      */
     double getDistance();
 
@@ -60,7 +60,7 @@ public interface DynamicEntity {
     void hit(boolean hit);
 
     /**
-     * 
+     * Return state of the hit field.
      * @return true if the entity collided with the player, false otherwise.
      */
     boolean wasHit();

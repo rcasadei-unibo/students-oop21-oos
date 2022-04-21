@@ -6,10 +6,10 @@ import model.Model;
 
 /**
  * 
- * Class identifying a Game's Obstacle.
+ * Class identifying a game's Obstacle.
  *
  */
-public class Obstacle extends AbstractDynamicEntity {
+public final class Obstacle extends AbstractDynamicEntity {
 
     private static final int DOWN_LIFE = -1;
 
@@ -28,10 +28,10 @@ public class Obstacle extends AbstractDynamicEntity {
     /**
      * Method called when an {@link Obstacle} collides with the player, it decreases 
      * player's lives. 
-     * @param model the model that  the actual game state. 
+     * @param model the model that the actual game state. 
      */
     @Override
-    public final void activateEffect(final Model model) {
+    public void activateEffect(final Model model) {
         model.getGameState().getPlayer().setNumberOfLives(DOWN_LIFE);
     }
 }

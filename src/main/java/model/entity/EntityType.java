@@ -1,4 +1,5 @@
 package model.entity;
+
 /**
  * 
  * Enumeration defining different types of entities.
@@ -7,19 +8,19 @@ package model.entity;
 public enum EntityType {
 
     /**
-     * Obstacle's type.
+     * {@link Obstacle}'s type.
      */
-    OBSTACLE(4.7), 
+    OBSTACLE(4.8), 
 
     /**
-     * Platform's type.
+     * {@link Platform}'s type.
      */
     PLATFORM(0.0), 
 
     /**
-     * Coin's type.
+     * {@link Coin}'s type.
      */
-    COIN(5.3), 
+    COIN(5.2), 
 
     /**
      * Powerup's type. 

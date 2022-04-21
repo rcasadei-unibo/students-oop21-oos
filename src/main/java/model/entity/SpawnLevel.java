@@ -7,40 +7,30 @@ package model.entity;
  *
  */
 public enum SpawnLevel {
+
     /**
      * Land level.
      */
-    ZERO(1.0, 1.0), 
+    ZERO(1.0), 
 
     /**
      * First level.
      */
-    ONE(1.0, 0.75),
+    ONE(0.75),
 
     /**
      * Second level.
      */
-    TWO(1.0, 0.5);
+    TWO(0.5);
 
-    private final double spawnX;
     private final double spawnY;
 
     /**
      * 
-     * @param spawnX the X coordinate of the level.
      * @param spawnY the Y coordinate of the level.
      */
-    SpawnLevel(final double spawnX, final double spawnY) {
-        this.spawnX = spawnX;
+    SpawnLevel(final double spawnY) {
         this.spawnY = spawnY;
-    }
-
-    /**
-     * 
-     * @return the X coordinate of the level.
-     */
-    public double getSpawnX() {
-        return spawnX;
     }
 
     /**

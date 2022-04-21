@@ -6,7 +6,7 @@ import model.Model;
 
 /**
  * 
- * Class identifying a Game's Platform.
+ * Class identifying a game's Platform.
  *
  */
 public final class Platform extends AbstractDynamicEntity {

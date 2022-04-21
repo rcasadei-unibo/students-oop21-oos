@@ -25,20 +25,20 @@ public abstract class AbstractDynamicEntity implements DynamicEntity {
     /**
      * 
      * @param coordinates the coordinates of the entity on the screen.
-     * @param image the image that identifies the entity.
+     * @param image the image identifying the entity.
      * @param level the level on which the entity spawn.
-     * @param type the type that identifies the entity.
+     * @param type the type identifying the entity.
      * @param distance the distance after that next entity should spawn.
      */
     public AbstractDynamicEntity(final Point2D.Double coordinates, final Image image, final SpawnLevel level, final EntityType type, final double distance) {
 
+        this.dimensions = new Dimension2D(image.getWidth(), image.getHeight());
         this.coordinates = coordinates;
         this.distance = distance;
         this.image = image;
         this.level = level;
         this.type = type;
         this.hit = false;
-        this.dimensions = new Dimension2D(image.getWidth(), image.getHeight());
 
     }
 
