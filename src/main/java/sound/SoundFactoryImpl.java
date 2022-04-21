@@ -43,7 +43,33 @@ public class SoundFactoryImpl implements SoundFactory {
 
     private Sound createSound(final SoundType soundType) {
         final AudioClip audioClip = new AudioClip(this.getClass().getResource(soundType.toString()).toExternalForm());
-        return new SoundImpl(audioClip);
+        return new Sound() {
+
+            /**
+             * {@inheritDoc}
+             */
+            @Override
+            public void play() {
+                audioClip.play();
+            }
+
+            /**
+             * {@inheritDoc}
+             */
+            @Override
+            public void stop() {
+                audioClip.stop();
+            }
+
+            /**
+             * {@inheritDoc}
+             */
+            @Override
+            public boolean isPlaying() {
+                return audioClip.isPlaying();
+            }
+
+        };
     }
 
 }
