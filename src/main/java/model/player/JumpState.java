@@ -1,7 +1,7 @@
 package model.player;
 /**
  * 
- * Enumeration defining different types of movements.
+ * Enumeration defining different states of a jump.
  *
  */
 public enum JumpState {
