@@ -1,8 +1,8 @@
 package model.generator;
 
+import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -28,7 +28,7 @@ public final class EntityGeneratorImpl implements EntityGenerator {
     private final List<DynamicEntity> entities;
     private final EntityFactory factory;
     private final Counter counter;
-    private final Random random; 
+    private final SecureRandom random; 
     private double speedX;
 
     /**
@@ -41,7 +41,7 @@ public final class EntityGeneratorImpl implements EntityGenerator {
         this.entities = new ArrayList<>();
         this.counter = new Counter();
         this.speedX = INITIAL_SPEEDX;
-        this.random = new Random();
+        this.random = new SecureRandom();
 
     }
 
