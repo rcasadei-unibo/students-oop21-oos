@@ -2,7 +2,7 @@ package model.shop;
 
 import java.util.Random;
 
-import model.Statistics;
+import model.statistic.Statistics;
 
 public class MysteryBoxImpl implements MysteryBox {
 

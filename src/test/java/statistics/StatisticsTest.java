@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import model.Model;
 import model.ModelImpl;
-import model.Statistics;
+import model.statistic.Statistics;
 import sound.SoundFactoryImpl;
 
 class StatisticsTest {

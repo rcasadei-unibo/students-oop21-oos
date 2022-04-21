@@ -22,8 +22,8 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
-import model.Statistics;
 import model.shop.ShopItem;
+import model.statistic.Statistics;
 
 public class ShopViewImpl implements ShopView {
 

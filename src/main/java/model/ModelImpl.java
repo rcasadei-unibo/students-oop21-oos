@@ -11,6 +11,9 @@ import model.marker.MarkerManagerImpl;
 import model.mission.MissionManager;
 import model.mission.MissionManagerImpl;
 import model.player.Player;
+import model.statistic.Statistics;
+import model.statistic.StatisticsImpl;
+import model.statistic.StatisticsUpdater;
 import sound.SoundFactory;
 
 /**

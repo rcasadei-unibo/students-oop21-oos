@@ -3,8 +3,8 @@ package view.statistics;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
-import model.Statistics;
 import model.player.Player;
+import model.statistic.Statistics;
 
 /**
  * 

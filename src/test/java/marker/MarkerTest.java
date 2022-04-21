@@ -13,11 +13,11 @@ import org.junit.jupiter.api.Test;
 import javafx.embed.swing.JFXPanel;
 import model.Model;
 import model.ModelImpl;
-import model.Statistics;
 import model.marker.MarkerFactory;
 import model.marker.MarkerFactoryImpl;
 import model.marker.MarkerManager;
 import model.marker.MarkerManagerImpl;
+import model.statistic.Statistics;
 import sound.SoundFactoryImpl;
 
 class MarkerTest {

@@ -2,9 +2,9 @@ package controller;
 
 import java.io.IOException;
 
-import model.Statistics;
 import model.shop.ShopModel;
 import model.shop.ShopModelImpl;
+import model.statistic.Statistics;
 import view.ShopView;
 
 public class ShopControllerImpl implements ShopController {

@@ -5,7 +5,7 @@ import controller.ControllerImpl;
 import input.InputObserver;
 import input.InputObserverImpl;
 import model.Model;
-import model.Statistics;
+import model.statistic.Statistics;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;

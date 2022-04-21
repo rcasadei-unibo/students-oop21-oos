@@ -2,6 +2,8 @@ package model;
 
 import model.marker.MarkerManager;
 import model.mission.MissionManager;
+import model.statistic.Statistics;
+import model.statistic.StatisticsUpdater;
 import sound.SoundFactory;
 
 /**

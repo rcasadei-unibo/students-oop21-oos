@@ -6,8 +6,8 @@ import java.util.function.Predicate;
 import java.util.function.Supplier;
 
 import model.Model;
-import model.Statistics;
 import model.player.Player;
+import model.statistic.Statistics;
 
 /**
  * 

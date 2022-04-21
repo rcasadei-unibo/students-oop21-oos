@@ -1,6 +1,6 @@
 package model.shop;
 
-import model.Statistics;
+import model.statistic.Statistics;
 
 public interface MysteryBox {
 

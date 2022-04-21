@@ -5,10 +5,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import model.Statistics;
-import model.StatisticsImpl;
 import model.shop.ShopModel;
 import model.shop.ShopModelImpl;
+import model.statistic.Statistics;
+import model.statistic.StatisticsImpl;
 
 public class ShopTest {
 

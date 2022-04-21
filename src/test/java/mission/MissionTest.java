@@ -11,12 +11,12 @@ import org.junit.jupiter.api.Test;
 
 import model.Model;
 import model.ModelImpl;
-import model.Statistics;
 import model.mission.Mission;
 import model.mission.MissionFactoryImpl;
 import model.mission.MissionManager;
 import model.player.JumpState;
 import model.player.Player;
+import model.statistic.Statistics;
 import sound.SoundFactoryImpl;
 
 class MissionTest {
