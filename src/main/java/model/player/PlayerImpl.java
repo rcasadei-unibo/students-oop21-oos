@@ -11,6 +11,11 @@ import javafx.scene.image.Image;
 import sound.Sound;
 import sound.SoundFactory;
 
+/**
+ * 
+ * Implementation of {@link Player}.
+ *
+ */
 public final class PlayerImpl implements Player {
     /**
      * Width of the sprite.
@@ -32,7 +37,7 @@ public final class PlayerImpl implements Player {
      * How much does the player jump.
      */
     public static final double JUMP_HEIGHT = 160.0f;
-    /*The speed of the jump*/
+
     private static final double GRAVITY = 4.5f;
     private static final String SEP = File.separator;
     private static final String FILE_NAME = System.getProperty("user.home") + SEP + "OOS_playerSkins.txt";
@@ -48,6 +53,9 @@ public final class PlayerImpl implements Player {
     private double finalJumpY;
     private final Image image;
 
+    /**
+     * @param soundFactory the SoundFactory
+     */
     public PlayerImpl(final SoundFactory soundFactory) {
         this.jumpSound = soundFactory.createJumpSound();
         this.image = new Image(readImagePathFromFile());
@@ -97,6 +105,7 @@ public final class PlayerImpl implements Player {
 
     /**
      * Reads the image path from file.
+     * @return a String with the imagePath
      */
     private String readImagePathFromFile() {
         try (BufferedReader br = Files.newBufferedReader(Paths.get(FILE_NAME))) {

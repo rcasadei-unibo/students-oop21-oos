@@ -3,6 +3,11 @@ package model.player;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.image.Image;
 
+/**
+ * 
+ * Class identifying the Player.
+ *
+ */
 public interface Player {
 
     /**
@@ -16,7 +21,7 @@ public interface Player {
     void updateJump();
 
     /**
-     * @return the actual movement the player
+     * @return the actual jump state of the player
      */
     JumpState getJumpState();
 
@@ -59,7 +64,7 @@ public interface Player {
 
     /**
      * Sets the number of lives of the player.
-     * @param lives the new number of lives
+     * @param lives the new number of lives to add
      */
     void setNumberOfLives(int lives);
 

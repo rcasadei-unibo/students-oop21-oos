@@ -5,7 +5,11 @@ import java.util.List;
 import model.Model;
 import model.entity.DynamicEntity;
 import model.player.Player;
-
+/**
+ * 
+ * Interface that manages all the collisions with the Player.
+ *
+ */
 public interface CollisionManager {
 
     /**

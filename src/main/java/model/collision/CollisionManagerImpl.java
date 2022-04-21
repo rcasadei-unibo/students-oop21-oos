@@ -8,7 +8,11 @@ import model.entity.DynamicEntity;
 import model.entity.EntityType;
 import model.player.Player;
 import model.player.PlayerImpl;
-
+/**
+ * 
+ * Implementation of {@link CollisionManager}.
+ *
+ */
 public final class CollisionManagerImpl implements CollisionManager {
 
     private static final double COLLISION_BOUND = 15.0f;
