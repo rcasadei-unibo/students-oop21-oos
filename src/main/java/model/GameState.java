@@ -32,7 +32,7 @@ public interface GameState {
 
     /**
      * Updates the {@link GameState} data.
-     * Updates {@link Player} and {@link EntityGenerator}.
+     * Updates {@link Player} and {@link EntityManager}.
      * 
      */
     void update();

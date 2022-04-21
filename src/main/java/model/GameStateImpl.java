@@ -4,8 +4,8 @@ import java.util.List;
 
 import javafx.geometry.Dimension2D;
 import model.entity.DynamicEntity;
-import model.generator.EntityGenerator;
-import model.generator.EntityGeneratorImpl;
+import model.entity.manager.EntityManager;
+import model.entity.manager.EntityManagerImpl;
 import model.player.Player;
 import model.player.PlayerImpl;
 import sound.SoundFactory;
@@ -18,17 +18,17 @@ import sound.SoundFactory;
 public class GameStateImpl implements GameState {
 
     private final Player player;
-    private final EntityGenerator entityGenerator;
+    private final EntityManager entityManager;
 
     /**
-     * Creates a new GameStateImpl initially with a new {@link Player} and a new {@link EntityGenerator}.
+     * Creates a new GameStateImpl initially with a new {@link Player} and a new {@link EntityManager}.
      * @param gameDimension the dimension of the game screen.
      * @param soundFactory the {@link SoundFactory}.
      * 
      */
     public GameStateImpl(final Dimension2D gameDimension, final SoundFactory soundFactory) {
         this.player = new PlayerImpl(soundFactory);
-        this.entityGenerator = new EntityGeneratorImpl(gameDimension);
+        this.entityManager = new EntityManagerImpl(gameDimension);
     }
 
     /**
@@ -44,7 +44,7 @@ public class GameStateImpl implements GameState {
      */
     @Override
     public List<DynamicEntity> getEntities() {
-        return this.entityGenerator.getEntities();
+        return this.entityManager.getEntities();
     }
 
     /**
@@ -61,7 +61,7 @@ public class GameStateImpl implements GameState {
     @Override
     public void update() {
         this.player.updateJump();
-        this.entityGenerator.updateList();
+        this.entityManager.updateList();
     }
 
     /**
@@ -69,7 +69,7 @@ public class GameStateImpl implements GameState {
      */
     @Override
     public void setVelocity(final double difficulty) {
-        this.entityGenerator.setSpeedX(difficulty);
+        this.entityManager.setSpeedX(difficulty);
     }
 
 }

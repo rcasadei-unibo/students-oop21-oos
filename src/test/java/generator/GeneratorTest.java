@@ -15,11 +15,11 @@ import controller.GameInfo;
 import javafx.embed.swing.JFXPanel;
 import javafx.geometry.Dimension2D;
 import model.entity.DynamicEntity;
-import model.entity.EntityFactory;
-import model.entity.EntityFactoryImpl;
 import model.entity.SpawnLevel;
-import model.generator.EntityGenerator;
-import model.generator.EntityGeneratorImpl;
+import model.entity.factory.EntityFactory;
+import model.entity.factory.EntityFactoryImpl;
+import model.entity.manager.EntityManager;
+import model.entity.manager.EntityManagerImpl;
 
 
 class GeneratorTest {
@@ -28,7 +28,7 @@ class GeneratorTest {
     private static final int MIN_ENTITIES = 3;
     private static final int RESULT_ONE = 5;
 
-    private EntityGenerator generator;
+    private EntityManager generator;
     private List<DynamicEntity> entities;
     private EntityFactory factory;
     private GameInfo info;
@@ -37,7 +37,7 @@ class GeneratorTest {
     void setUp() {
         info = new GameInfo();
         final Dimension2D dimension = new Dimension2D(info.getWidth(), info.getHeight());
-        generator = new EntityGeneratorImpl(dimension);
+        generator = new EntityManagerImpl(dimension);
         factory = new EntityFactoryImpl(dimension);
         entities  = generator.getEntities();
         /*Lines to initializes JavaFx environment, so tests work, otherwise we get

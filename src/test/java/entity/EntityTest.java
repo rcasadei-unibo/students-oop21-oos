@@ -16,10 +16,10 @@ import javafx.geometry.Rectangle2D;
 import model.Model;
 import model.ModelImpl;
 import model.entity.DynamicEntity;
-import model.entity.EntityFactory;
-import model.entity.EntityFactoryImpl;
 import model.entity.EntityType;
 import model.entity.SpawnLevel;
+import model.entity.factory.EntityFactory;
+import model.entity.factory.EntityFactoryImpl;
 import sound.SoundFactoryImpl;
 import view.entity.EntityImages;
 
