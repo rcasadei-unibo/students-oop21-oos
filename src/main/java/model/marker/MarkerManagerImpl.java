@@ -55,7 +55,7 @@ public class MarkerManagerImpl implements MarkerManager {
      * {@inheritDoc}
      */
     @Override
-    public void check(final int distance) {
+    public void checkCreateMarker(final int distance) {
         if (this.isCommonMarkerToBeCreated(distance)) {
             this.markers.add(Optional.of(this.markerFactory.createCommonMarker(Integer.toString(this.approximateDistance()))));
         }

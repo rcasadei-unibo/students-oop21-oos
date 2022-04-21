@@ -77,7 +77,7 @@ class MarkerTest {
     void testLastDeathMarker() {
         int distance = 0;
         while (distance <= LAST_DEATH_DISTANCE * 2) {
-            this.markerManager.check(distance);
+            this.markerManager.checkCreateMarker(distance);
             this.statistics.update();
             distance = this.statistics.getDistance();
         }
@@ -91,7 +91,7 @@ class MarkerTest {
     void testRecordMarker() {
         int distance = 0;
         while (distance <= RECORD_DISTANCE * 2) {
-            this.markerManager.check(distance);
+            this.markerManager.checkCreateMarker(distance);
             this.statistics.update();
             distance = this.statistics.getDistance();
         }

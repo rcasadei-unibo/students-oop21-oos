@@ -22,7 +22,7 @@ public interface MarkerManager {
      * @param distance the covered distance by player.
      * 
      */
-    void check(int distance);
+    void checkCreateMarker(int distance);
 
     /**
      * Updates {@link Marker}s' positions of the given amount.
