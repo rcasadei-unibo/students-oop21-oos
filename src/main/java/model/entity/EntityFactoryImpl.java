@@ -134,7 +134,9 @@ public final class EntityFactoryImpl implements EntityFactory {
     }
 
 
-
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public DynamicEntity createPowerup(final SpawnLevel level) {
 
@@ -164,6 +166,11 @@ public final class EntityFactoryImpl implements EntityFactory {
         return powerup; 
     }
 
+    /**
+     * Creates the Extralife powerup.
+     * @param level the level where the powerup spawns.
+     * @return the powerup.
+     */
     private DynamicEntity createExtralife(final SpawnLevel level) {
 
         final Image image = EntityImages.EXTRALIFE.getImage(); 
@@ -172,6 +179,11 @@ public final class EntityFactoryImpl implements EntityFactory {
         return new ExtraLife(coordinates, image, level, EntityType.POWERUP, distance);
     }
 
+    /**
+     * Creates the Mushroom powerup.
+     * @param level the level where the powerup spawns.
+     * @return the powerup.
+     */
     private DynamicEntity createMushroom(final SpawnLevel level) {
 
         final Image image = EntityImages.MUSHROOM.getImage(); 
@@ -180,6 +192,11 @@ public final class EntityFactoryImpl implements EntityFactory {
         return new Mushroom(coordinates, image, level, EntityType.POWERUP, distance);
     }
 
+    /**
+     * Creates the Shield powerup.
+     * @param level the level where the powerup spawns.
+     * @return the powerup.
+     */
     private DynamicEntity createShield(final SpawnLevel level) {
 
         final Image image = EntityImages.SHIELD.getImage(); 
@@ -188,6 +205,11 @@ public final class EntityFactoryImpl implements EntityFactory {
         return new Shield(coordinates, image, level, EntityType.POWERUP, distance);
     }
 
+    /**
+     * Creates the Spraybomb powerup.
+     * @param level the level where the powerup spawns.
+     * @return the powerup.
+     */
     private DynamicEntity createSpraybomb(final SpawnLevel level) {
 
         final Image image = EntityImages.SPRAYBOMB.getImage(); 
@@ -196,6 +218,11 @@ public final class EntityFactoryImpl implements EntityFactory {
         return new Spraybomb(coordinates, image, level, EntityType.POWERUP, distance);
     }
 
+    /**
+     * Creates the Superjump powerup.
+     * @param level the level where the powerup spawns.
+     * @return the powerup.
+     */
     private DynamicEntity createSuperjump(final SpawnLevel level) {
 
         final Image image = EntityImages.SUPERJUMP.getImage(); 

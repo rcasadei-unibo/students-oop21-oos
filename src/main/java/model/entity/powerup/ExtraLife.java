@@ -14,8 +14,11 @@ public class ExtraLife extends AbstractDynamicEntity {
         super(coordinates, image, level, type, distance);
     }
 
+    /**
+     * Activates the Extralife effect.
+     */
     @Override
-    public void activateEffect(final Model model) {
+    public final void activateEffect(final Model model) {
         model.getGameState().getPlayer().setNumberOfLives(1);
     }
 

@@ -9,7 +9,7 @@ import model.entity.AbstractDynamicEntity;
 import model.entity.SpawnLevel;
 import model.entity.EntityType;
 
-public final class Superjump extends AbstractDynamicEntity {
+public class Superjump extends AbstractDynamicEntity {
 
     private static final boolean ACTIVATESUPERJUMP = true; 
     private final EffectTimer jumpTimer; 
@@ -19,8 +19,11 @@ public final class Superjump extends AbstractDynamicEntity {
         jumpTimer = new EffectTimer(); 
     }
 
+    /**
+     * Activates the Superjump effect.
+     */
     @Override
-    public void activateEffect(final Model model) {
+    public final void activateEffect(final Model model) {
         model.getGameState().getPlayer().setDoubleJump(ACTIVATESUPERJUMP);
         jumpTask(model);
     }
