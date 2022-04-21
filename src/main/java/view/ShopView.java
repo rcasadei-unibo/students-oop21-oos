@@ -1,6 +1,6 @@
 package view;
 
-import model.shop.Shop;
+import model.shop.ShopModel;
 
 public interface ShopView {
 

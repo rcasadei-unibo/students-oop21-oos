@@ -3,6 +3,8 @@ package view;
 import java.util.ArrayList;
 import java.util.List;
 
+import controller.ShopController;
+import controller.ShopControllerImpl;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Alert.AlertType;
@@ -20,21 +22,17 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import model.Statistics;
-import model.StatisticsImpl;
-import model.shop.Shop;
-import model.shop.ShopImpl;
 import model.shop.ShopItem;
 
 public class ShopViewImpl implements ShopView {
 
     private final View view; 
-    private final Pane pane; 
-    private final Shop shop; 
-    private final Statistics stats; 
+    private final Pane pane;
     private Image shopWallpaper; 
-    private List<ImageView> skins = new ArrayList<>(); 
-    private List<ShopItem> shopSkins; 
-    private int skinsCounter; 
+    private final List<ImageView> skins = new ArrayList<>(); 
+    private final List<ShopItem> shopSkins; 
+    private int skinsCounter;
+    private final ShopController shopController; 
 
     private static final int FONT_SIZE = 18; 
     private static final int BUTTON_WIDTH = 130; 
@@ -59,19 +57,20 @@ public class ShopViewImpl implements ShopView {
     private static final int COINS_X = 10;
     private static final int COINS_Y = 30; 
 
-    public ShopViewImpl(final View view, final Pane pane) {
+    public ShopViewImpl(final View view, final Pane pane, final Statistics statistics) {
         super(); 
         this.view = view; 
-        this.pane = pane; 
-        this.stats = new StatisticsImpl(); 
-        this.shop = new ShopImpl(); 
+        this.pane = pane;
+        this.shopController = new ShopControllerImpl(this, statistics);
         skinsCounter = 0;
-        shopSkins = this.shop.getItems(); 
+        shopSkins = this.shopController.getShopModel().getItems();
     }
 
     @Override
     public void render() {
-
+        System.out.println("Eseguo");
+        this.pane.getChildren().clear();
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////
         final ImageView title = new ImageView(new Image("Shop.png"));
         title.setLayoutX(SHOPTITLE_X);
         title.setLayoutY(0); 
@@ -85,8 +84,9 @@ public class ShopViewImpl implements ShopView {
         dinoSkin.setLayoutY(SKIN_Y);
 
         skins.add(programmerSkin); 
-        skins.add(dinoSkin); 
-
+        skins.add(dinoSkin);
+        /////////////////////////////////////////////////////////////////////////////////////////////
+        //CAMBIA
         final Button buy = new Button(); 
         buy.setLayoutX(BUTTON_X);
         buy.setLayoutY(BUY_BUTTON_Y);
@@ -95,10 +95,10 @@ public class ShopViewImpl implements ShopView {
         buy.setFont(new Font("Arial", FONT_SIZE));
         buy.setText("BUY"); 
         buy.setOnAction(e -> {
-            shop.shopItemPayment(shopSkins.get(skinsCounter), stats); 
-            System.out.println(stats.getTotalCoins()); 
+            this.shopController.getShopModel().shopItemPayment(shopSkins.get(skinsCounter)); 
+            System.out.println(this.shopController.getShopModel().getTotalCoins()); 
             renderCoins(); 
-            //SALVARE
+            shopController.render(); 
         });
 
         final Button select = new Button(); 
@@ -109,10 +109,11 @@ public class ShopViewImpl implements ShopView {
         select.setFont(new Font("Arial", FONT_SIZE));
         select.setText("SELECT"); 
         select.setOnAction(e -> {
-            select.setText("SELECTED"); 
-            //SALVARE
+            select.setText("SELECTED");
+            //mettere la skin
         });
 
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
         final ImageView dxArr = new ImageView(); 
         dxArr.setImage(new Image("ArrowDx.png"));
         dxArr.setFitHeight(SQUARE_HEIGTH); 
@@ -139,7 +140,9 @@ public class ShopViewImpl implements ShopView {
         dxArrow.setPrefWidth(SQUARE_WIDTH);
         dxArrow.setGraphic(dxArr); 
         dxArrow.setOnAction(e -> {
-            increaseSkinCounter(); 
+            this.pane.getChildren().remove(skins.get(skinsCounter));
+            skinsCounter = this.shopController.increaseSkinCounter();
+            this.pane.getChildren().add(skins.get(skinsCounter));
         });
 
         final Button sxArrow = new Button(); 
@@ -148,7 +151,9 @@ public class ShopViewImpl implements ShopView {
         sxArrow.setPrefWidth(SQUARE_WIDTH);
         sxArrow.setGraphic(sxArr);
         sxArrow.setOnAction(e -> {
-            decreaseSkinCounter(); 
+            this.pane.getChildren().remove(skins.get(skinsCounter));
+            skinsCounter = this.shopController.decreaseSkinCounter();
+            this.pane.getChildren().add(skins.get(skinsCounter));
         });
 
         final Button startGame = new Button(); 
@@ -159,8 +164,8 @@ public class ShopViewImpl implements ShopView {
         startGame.setOnAction(e -> {
             pane.getChildren().clear(); 
             this.view.getController().start();
-            //SALVARE
         });
+
 
         final Button mysteryBox = new Button(); 
         mysteryBox.setLayoutX(MYSTBOX_X);
@@ -168,7 +173,7 @@ public class ShopViewImpl implements ShopView {
         mysteryBox.setPrefWidth(MYSTBOX_HEIGHT);
         mysteryBox.setGraphic(mysteryBoxIm);
         mysteryBox.setOnAction(e -> {
-            //PAGAMENTO MYSTERYBOX
+            //shop.misteryBoxPayment(null, null); 
             final Alert alert = new Alert(AlertType.INFORMATION); 
             alert.setTitle("Premio"); 
             alert.setHeaderText(null); 
@@ -178,7 +183,7 @@ public class ShopViewImpl implements ShopView {
         });
 
         //INDICATORE MONETE
-        renderCoins();
+        this.renderCoins();
 
         final Rectangle rectangle = new Rectangle(345, 120, 120, 170); 
         rectangle.setFill(Color.LIGHTPINK);
@@ -204,33 +209,14 @@ public class ShopViewImpl implements ShopView {
         this.pane.getChildren().add(mysteryBox); 
 
         this.pane.setBackground(new Background(shopBackground));
-
     }
 
     private void renderCoins() {
-        final Text coins = new Text("Coins: " + stats.getTotalCoins()); 
+        final Text coins = new Text("Coins: " + this.shopController.getTotalCoins()); 
         coins.setFont(new Font("Arial", FONT_SIZE));
         coins.setLayoutX(COINS_X);
         coins.setLayoutY(COINS_Y);
         this.pane.getChildren().add(coins); 
-    }
-
-    private void increaseSkinCounter() {
-        this.pane.getChildren().remove(skins.get(skinsCounter));
-        skinsCounter++; 
-        if (skinsCounter >= skins.size()) {
-            skinsCounter = 0; 
-        }
-        this.pane.getChildren().add(skins.get(skinsCounter));
-    }
-
-    private void decreaseSkinCounter() {
-        this.pane.getChildren().remove(skins.get(skinsCounter));
-        skinsCounter--; 
-        if (skinsCounter < 0) {
-            skinsCounter = skins.size() - 1; 
-        }
-        this.pane.getChildren().add(skins.get(skinsCounter)); 
     }
 
 }
