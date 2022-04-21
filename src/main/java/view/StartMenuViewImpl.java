@@ -11,7 +11,6 @@ import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
-import model.Statistics;
  
 public final class StartMenuViewImpl implements StartMenuView {
 
@@ -20,8 +19,7 @@ public final class StartMenuViewImpl implements StartMenuView {
     private static final int FONT_SIZE = 18;
     private static final int BUTTON_WIDTH = 150;
     private static final int ALL_BUTTON_X = 340;
-    private static final int START_BUTTON_Y = 250;
-    private static final int SHOP_BUTTON_Y = 300;
+    private static final int START_BUTTON_Y = 300;
     private static final int EXIT_BUTTON_Y = 350;
 
     private final View view;
@@ -72,19 +70,7 @@ public final class StartMenuViewImpl implements StartMenuView {
             stage.close();
         });
  
-        final Button shop = new Button();
-        shop.setLayoutX(ALL_BUTTON_X);
-        shop.setLayoutY(SHOP_BUTTON_Y);
-        shop.setPrefWidth(BUTTON_WIDTH);
-        shop.setTextAlignment(TextAlignment.CENTER);
-        shop.setFont(new Font("Arial", FONT_SIZE));
-        shop.setText("SHOP");
-        shop.setOnAction(e -> {
-            this.view.shop();
-        });
- 
         this.pane.getChildren().add(start);
-        this.pane.getChildren().add(shop);
         this.pane.getChildren().add(exit);
  
     }
