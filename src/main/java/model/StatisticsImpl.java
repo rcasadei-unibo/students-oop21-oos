@@ -19,6 +19,7 @@ public class StatisticsImpl implements Statistics {
     private static final String SEP = File.separator;
     private static final String FILE_NAME = System.getProperty("user.home") + SEP + "OOS_statistics.txt";
     private static final double DIFFICULTY_FACTOR = 1.010;
+    private static final double MAX_DIFFICULTY = 15.0;
 
     private double difficulty;
     private int gameCoins;
@@ -159,7 +160,7 @@ public class StatisticsImpl implements Statistics {
      * 
      */
     private void increaseDifficulty() {
-        this.difficulty = this.difficulty * DIFFICULTY_FACTOR;
+        this.difficulty = this.difficulty <= MAX_DIFFICULTY ? this.difficulty * DIFFICULTY_FACTOR : this.difficulty;
     }
 
     /**
