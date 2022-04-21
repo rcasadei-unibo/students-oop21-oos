@@ -8,6 +8,7 @@ import model.Model;
 import model.statistic.Statistics;
 import javafx.application.Application;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
@@ -101,7 +102,8 @@ public class ViewImpl extends Application implements View {
     @Override
     public void start(final Stage stage) throws Exception {
         this.stage = stage;
-        this.stage.setTitle("OOS");
+        this.stage.setTitle("Ollie Oriented SkateBoarding");
+        this.stage.getIcons().add(new Image("SkaterIcon.png"));
         this.startMenu();
     }
 
