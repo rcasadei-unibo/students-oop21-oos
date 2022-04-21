@@ -12,7 +12,6 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import model.Statistics;
-import model.StatisticsImpl;
 
 /**
  * Implements the Shop and its methods, which are needed by the player to buy elements.

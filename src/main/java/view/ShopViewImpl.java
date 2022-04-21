@@ -168,7 +168,7 @@ public class ShopViewImpl implements ShopView {
         mysteryBox.setPrefWidth(MYSTBOX_HEIGHT);
         mysteryBox.setGraphic(mysteryBoxIm);
         mysteryBox.setOnAction(e -> {
-            //shop.misteryBoxPayment(null, null); 
+            //PAGAMENTO MYSTERYBOX
             final Alert alert = new Alert(AlertType.INFORMATION); 
             alert.setTitle("Premio"); 
             alert.setHeaderText(null); 
