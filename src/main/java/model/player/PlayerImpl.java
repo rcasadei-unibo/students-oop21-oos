@@ -1,6 +1,15 @@
 package model.player;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import javafx.geometry.Rectangle2D;
+import javafx.scene.image.Image;
 import sound.Sound;
 import sound.SoundFactory;
 
@@ -27,6 +36,8 @@ public final class PlayerImpl implements Player {
     public static final double JUMP_HEIGHT = 160.0f;
     /*The speed of the jump*/
     private static final double GRAVITY = 4.5f;
+    private static final String SEP = File.separator;
+    private static final String FILE_NAME = System.getProperty("user.home") + SEP + "OOS_playerSkins.txt";
 
     private double y = LAND;
     private JumpState jumpState = JumpState.NOT_JUMPING;
@@ -37,9 +48,11 @@ public final class PlayerImpl implements Player {
     private int jumpCounter;
     private final Sound jumpSound;
     private double finalJumpY;
+    private final Image image;
 
     public PlayerImpl(final SoundFactory soundFactory) {
         this.jumpSound = soundFactory.createJumpSound();
+        this.image = new Image(readImagePathFromFile());
     }
 
     /**
@@ -85,6 +98,17 @@ public final class PlayerImpl implements Player {
     }
 
     /**
+     * Reads the image path from file.
+     */
+    private String readImagePathFromFile() {
+        try (BufferedReader br = Files.newBufferedReader(Paths.get(FILE_NAME))) {
+            return br.readLine();
+        } catch (IOException e) {
+           return "PlayerUltimate.png";
+        }
+    }
+
+    /**
      * @return the y of player's head
      */
     private double getHeadY() {
@@ -121,6 +145,14 @@ public final class PlayerImpl implements Player {
     @Override
     public Rectangle2D getBounds() {
         return new Rectangle2D(PLAYER_X, this.getHeadY(), MAIN_CHARACTER_WIDTH, MAIN_CHARACTER_HEIGHT);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Image getImage() {
+        return this.image;
     }
 
     /**
