@@ -47,6 +47,8 @@ class PowerupTest {
     private static final double SPRAYBOMB_WIDTH = 20; 
     private static final int EXPECTED_COINS = 2; 
     private static final long POWERUP_TIME = 11_000L; 
+    private static final double DOUBLE_JUMP = 1.5; 
+    private static final double GRAVITY = 4.5; 
 
     private Model model; 
     private GameInfo info; 
@@ -54,12 +56,12 @@ class PowerupTest {
 
     @BeforeEach
     void prepare() { 
-        info = new GameInfo();
-        model = new ModelImpl(info.getWidth(), info.getHeight(), new SoundFactoryImpl()); 
-        factory = new EntityFactoryImpl(new Dimension2D(info.getWidth(), info.getHeight())); 
         final JFrame frame = new JFrame(); 
         final JFXPanel jfxpanel = new JFXPanel(); 
         frame.add(jfxpanel); 
+        info = new GameInfo();
+        model = new ModelImpl(info.getWidth(), info.getHeight(), new SoundFactoryImpl()); 
+        factory = new EntityFactoryImpl(new Dimension2D(info.getWidth(), info.getHeight())); 
     }
 
     @Test
@@ -88,7 +90,7 @@ class PowerupTest {
         while (!player.getJumpState().equals(JumpState.DOWN)) {
             player.updateJump();
         }
-        assertEquals(player.getBounds().getMinY(), 1, plY - (PlayerImpl.JUMP_HEIGHT * 2));
+        assertEquals(player.getBounds().getMinY(), plY - (PlayerImpl.JUMP_HEIGHT * DOUBLE_JUMP), GRAVITY);
     }
 
     @Test
