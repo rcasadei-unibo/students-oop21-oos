@@ -18,11 +18,6 @@ public interface ShopModel {
     String misteryBoxPayment(); 
 
     /**
-     * Print all of the items of the Shop. 
-     */
-    void printItems(); 
-
-    /**
      * Gets all of the items in the shop.
      * @return the items of the shop.
      */

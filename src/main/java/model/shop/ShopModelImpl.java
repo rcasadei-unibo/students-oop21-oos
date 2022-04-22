@@ -115,13 +115,6 @@ public class ShopModelImpl implements ShopModel {
     }
 
     /**
-     *
-     */
-    public void printItems() {
-        items.forEach(i -> System.out.println("Name: " + i.getName() + ", price: " + i.getPrice()));
-    }
-
-    /**
      * {@inheritDoc}
      */
     public List<ShopItem> getItems() {
