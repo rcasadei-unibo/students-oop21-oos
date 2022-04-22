@@ -1,7 +1,6 @@
 package entity.manager;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
@@ -32,7 +31,6 @@ class ManagerTest {
 
     private EntityManager generator;
     private EntityFactory factory;
-    private GameInfo info;
 
     @BeforeEach
     void setUp() {
@@ -42,7 +40,7 @@ class ManagerTest {
         final JFXPanel jfxPanel = new JFXPanel();
         frame.add(jfxPanel);
 
-        info = new GameInfo();
+        final GameInfo info = new GameInfo();
         final Dimension2D dimension = new Dimension2D(info.getWidth(), info.getHeight());
         generator = new EntityManagerImpl(dimension);
         factory = new EntityFactoryImpl(dimension);
