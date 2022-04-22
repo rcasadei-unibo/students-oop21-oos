@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import java.awt.geom.Point2D;
-import java.util.concurrent.CountDownLatch;
 
 import javax.swing.JFrame;
 
