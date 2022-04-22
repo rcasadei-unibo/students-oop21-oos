@@ -11,8 +11,8 @@ public class MysteryBoxImpl implements MysteryBox {
 
     private static final int BOX_PRICE = 200; 
     private static final int PRIZES_NUM = 3; 
-    private static final int MONEY_PRIZE1 = 500; 
-    private static final int MONEY_PRIZE2 = 1000; 
+    private static final int MONEY_PRIZE1 = 300; 
+    private static final int MONEY_PRIZE2 = 150; 
 
     public MysteryBoxImpl() {
         this.price = BOX_PRICE; 
