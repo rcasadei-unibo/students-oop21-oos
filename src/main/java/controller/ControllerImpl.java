@@ -91,6 +91,7 @@ public class ControllerImpl implements Controller {
         this.soundtrack.play();
         this.setup();
         this.timer.start();
+        this.timer.setRunning(true);
         this.model.getStatisticsUpdater().start();
     }
 
@@ -102,8 +103,19 @@ public class ControllerImpl implements Controller {
         this.soundtrack.stop();
         this.soundFactory.createGameOverSound().play();
         this.timer.stop();
+        this.timer.setRunning(false);
         this.model.getStatisticsUpdater().stop();
         this.view.gameOver();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void saveOnClose() {
+        if (this.timer.isRunning()) {
+            this.stop();
+        }
     }
 
     /**

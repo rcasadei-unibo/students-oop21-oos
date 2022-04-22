@@ -46,6 +46,12 @@ public interface Controller {
     void stop();
 
     /**
+     * Saves data when {@link View} is closed.
+     *
+     */
+    void saveOnClose();
+
+    /**
      * Gets the {@link Model}.
      * @return the {@link Model}.
      */
@@ -62,4 +68,5 @@ public interface Controller {
      * @return the height of the game screen.
      */
     double getHeight();
+
 }

@@ -11,6 +11,7 @@ import javafx.animation.AnimationTimer;
 public class AnimationTimerImpl extends AnimationTimer {
 
     private final Controller controller;
+    private boolean running;
 
     /**
      * Creates a new AnimationTimerImpl.
@@ -18,6 +19,7 @@ public class AnimationTimerImpl extends AnimationTimer {
      */
     public AnimationTimerImpl(final Controller controller) {
         this.controller = controller;
+        this.running = false;
     }
 
     /**
@@ -28,6 +30,22 @@ public class AnimationTimerImpl extends AnimationTimer {
         this.controller.processInput();
         this.controller.update();
         this.controller.render();
+    }
+
+    /**
+     * Checks if AnimationTimerImpl is running.
+     * @return true if AnimationTimerImpl is Running, false otherwise.
+     */
+    public boolean isRunning() {
+        return this.running;
+    }
+
+    /**
+     * Sets if AnimationTimerImpl is running or not.
+     * @param value value has to be true is running, false otherwise. 
+     */
+    public void setRunning(final boolean value) {
+        this.running = value;
     }
 
 }

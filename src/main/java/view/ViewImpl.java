@@ -45,7 +45,8 @@ public class ViewImpl extends Application implements View {
         this.stage.setScene(new Scene(this.pane));
         this.stage.setResizable(false);
         this.stage.setOnCloseRequest(e -> {
-            System.exit(0);
+            this.controller.saveOnClose();
+            this.stage.close();
         });
         this.stage.show();
     }
