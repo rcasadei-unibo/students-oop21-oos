@@ -37,7 +37,6 @@ public class StatisticsImpl implements Statistics {
         this.difficulty = 2;
         this.actualDistance = 0;
         this.gameCoins = 0;
-
         final List<Integer> list = this.readStatisticsFromFile().stream()
                 .map(s -> Integer.parseInt(s))
                 .collect(Collectors.toList());

@@ -2,7 +2,7 @@ package input;
 
 /**
  * 
- * Interface of command result of a keyboard input.
+ * Interface that identifies a command, result of a keyboard input.
  *
  */
 public interface Command {

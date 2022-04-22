@@ -6,6 +6,7 @@ import javafx.geometry.Dimension2D;
 import javafx.scene.image.Image;
 
 /**
+ * 
  * A simple Marker.
  * Implements {@link Marker}.
  *

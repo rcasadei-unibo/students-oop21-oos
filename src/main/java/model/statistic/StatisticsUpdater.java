@@ -23,7 +23,7 @@ public class StatisticsUpdater implements Runnable {
     private final MissionManager missionManager;
 
     /**
-     * Creates a new StatisticsUpdater with given {@link Statistics} and {@link MarkerManager}.
+     * Creates a new StatisticsUpdater with given {@link Statistics}, {@link MarkerManager} and {@link MissionManager}.
      * @param statistics the {@link Statistics} to update.
      * @param markerManager the {@link MarkerManager}.
      * @param missionManager the {@link MissionManager}.

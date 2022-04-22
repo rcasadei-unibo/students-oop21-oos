@@ -109,7 +109,6 @@ public class ModelImpl implements Model {
         final Player player = this.gameState.getPlayer();
         final List<DynamicEntity> entities = this.gameState.getEntities();
         this.collisionManager.playerCollidesWidth(player, entities, this);
-
         this.gameState.setVelocity(this.statistics.getDifficulty());
     }
 

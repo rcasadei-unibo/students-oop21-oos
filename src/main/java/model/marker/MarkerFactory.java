@@ -1,6 +1,7 @@
 package model.marker;
 
 /**
+ * 
  * A factory of {@link Marker}.
  *
  */

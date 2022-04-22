@@ -2,7 +2,7 @@ package controller;
 
 /**
  * 
- * Class that hold the game informations.
+ * Class that holds the game informations.
  *
  */
 public class GameInfo {

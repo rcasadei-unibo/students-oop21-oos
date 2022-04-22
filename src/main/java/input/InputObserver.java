@@ -4,7 +4,7 @@ import java.util.Set;
 
 /**
  * 
- * Interface of an observer of the {@link GameViewImpl} to detect input.
+ * Interface of an observer of the {@link GameViewImpl}, used to detect input.
  *
  */
 public interface InputObserver {

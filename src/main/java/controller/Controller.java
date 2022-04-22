@@ -34,7 +34,7 @@ public interface Controller {
     void render();
 
     /**
-     * Start the game loop.
+     * Starts the game loop.
      * 
      */
     void start();
