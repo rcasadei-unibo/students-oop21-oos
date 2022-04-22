@@ -13,6 +13,10 @@ public class ShopControllerImpl implements ShopController {
     private final ShopModel shopModel;
     private int imageIndex;
 
+    /**
+     * @param shopView the shop menu. 
+     * @param statistics the statistics of the game. 
+     */
     public ShopControllerImpl(final ShopView shopView, final Statistics statistics) {
         this.shopView = shopView;
         this.shopModel = new ShopModelImpl(statistics);

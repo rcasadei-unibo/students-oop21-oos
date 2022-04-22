@@ -3,7 +3,7 @@ package view;
 public interface ShopView {
 
     /**
-     * Create the view for the shop menu.
+     * Creates the view for the shop menu.
      */
     void render(); 
 
