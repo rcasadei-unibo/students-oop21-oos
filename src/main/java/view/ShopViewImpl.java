@@ -77,7 +77,7 @@ public class ShopViewImpl implements ShopView {
         title.setLayoutX(SHOPTITLE_X);
         title.setLayoutY(0); 
 
-        final ImageView playerSkin = new ImageView(new Image("Player.png")); 
+        final ImageView playerSkin = new ImageView(new Image("PlayerSkin.png")); 
         playerSkin.setLayoutX(SKIN_X);
         playerSkin.setLayoutY(SKIN_Y);
 

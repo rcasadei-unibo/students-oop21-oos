@@ -33,7 +33,6 @@ public class ShopModelImpl implements ShopModel {
 
         this.statistics = statistics;
         this.mysteryBox = new MysteryBoxImpl();
-        System.out.println(Skins.values().length);
         Stream.of(Skins.values()).forEach(i -> items.add(new ShopItemImpl(i.getSkinName(), i.getPrice())));
         this.readPurchasedItems();
         try {
@@ -41,8 +40,7 @@ public class ShopModelImpl implements ShopModel {
         } catch (IOException e) {
             this.selectedSkin = this.findShopItemFromString("Player.png");
         }
-        System.out.println(this.selectedSkin.getName());
-
+        this.purchasedItems.add(this.findShopItemFromString("Player.png")); 
     }
 
     /**
