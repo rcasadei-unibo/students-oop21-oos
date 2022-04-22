@@ -18,7 +18,7 @@ public enum Skins {
     /**
      * Dinosaur skin and its price. 
      */
-    DINOSAUR("DinoSkin.png", 100); 
+    DINOSAUR("Dinosaur.png", 100); 
 
     private final int price; 
     private final String name; 
