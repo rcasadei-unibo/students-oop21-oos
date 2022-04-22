@@ -29,6 +29,10 @@ public class ShopModelImpl implements ShopModel {
 
     private final Statistics statistics;
 
+    /**
+     * 
+     * @param statistics the game statistics. 
+     */
     public ShopModelImpl(final Statistics statistics) {
 
         this.statistics = statistics;
@@ -44,7 +48,7 @@ public class ShopModelImpl implements ShopModel {
     }
 
     /**
-     * @param selectedItem the item selected by the player. 
+     * {@inheritDoc}
      */
     public void shopItemPayment(final ShopItem selectedItem) {
         if (this.checkPayment(selectedItem, this.statistics.getTotalCoins())) {
@@ -53,7 +57,7 @@ public class ShopModelImpl implements ShopModel {
     }
 
     /**
-     * 
+     * {@inheritDoc}
      */
     @Override
     public String misteryBoxPayment() {
@@ -65,7 +69,7 @@ public class ShopModelImpl implements ShopModel {
     }
 
     /**
-     * 
+     * {@inheritDoc}
      */
     @Override
     public boolean checkMystery(final MysteryBox box, final int coins) {
@@ -73,13 +77,17 @@ public class ShopModelImpl implements ShopModel {
     }
 
     /**
-     * 
+     * {@inheritDoc}
      */
     @Override
     public boolean checkPayment(final ShopItem selectedItem, final int coins) {
         return !this.purchasedItems.contains(selectedItem) && selectedItem.getPrice() <= coins;
     }
 
+    /**
+     * Purchases the selected skin updating the player's total coins. 
+     * @param selectedItem
+     */
     private void purchaseSkin(final ShopItem selectedItem) {
         selectedItem.purchase();
         this.statistics.setTotalCoins(this.statistics.getTotalCoins() - selectedItem.getPrice());
@@ -91,6 +99,10 @@ public class ShopModelImpl implements ShopModel {
         }
     }
 
+    /**
+     * Purchases the MysteryBox updating the player's total coins.
+     * @param box the MysteryBox.
+     */
     private void purchaseBox(final MysteryBox box) {
         if (this.checkMystery(box, this.statistics.getTotalCoins())) {
             this.statistics.setTotalCoins(this.statistics.getTotalCoins() - box.getPrice());
@@ -145,6 +157,9 @@ public class ShopModelImpl implements ShopModel {
         }
     }
 
+    /**
+     * Reads the purchased items from file. 
+     */
     private void readPurchasedItems() {
         try (BufferedReader br = Files.newBufferedReader(Paths.get(FILE_NAME))) {
             final List<String> filesItems = br.lines().collect(Collectors.toList()); 
@@ -180,6 +195,11 @@ public class ShopModelImpl implements ShopModel {
         }
     }
 
+    /**
+     * Reads from file which is the selected skin. 
+     * @return the selected skins. 
+     * @throws IOException
+     */
     private ShopItem readSelectedSkin() throws IOException {
         try (BufferedReader br = Files.newBufferedReader(Paths.get(SELECTED_SKIN_FILE_NAME))) {
             String stringName;
@@ -193,6 +213,11 @@ public class ShopModelImpl implements ShopModel {
 
     }
 
+    /**
+     * Finds the selected ShopItem from its name. 
+     * @param name the name of the ShopItem. 
+     * @return the ShopItem.
+     */
     private ShopItem findShopItemFromString(final String name) {
         return this.items.stream()
                 .filter(it -> it.getName().equals(name))

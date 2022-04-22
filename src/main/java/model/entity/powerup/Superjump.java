@@ -14,13 +14,20 @@ public class Superjump extends AbstractDynamicEntity {
     private static final boolean ACTIVATESUPERJUMP = true; 
     private final EffectTimer jumpTimer; 
 
+    /**
+     * @param coordinates the coordinates of the powerup. 
+     * @param image the image of the powerup. 
+     * @param level the level on which spawns the powerup. 
+     * @param type the type of the DynamicEntity. 
+     * @param distance the distance where the next powerup will spawn. 
+     */
     public Superjump(final Double coordinates, final Image image, final SpawnLevel level, final EntityType type, final double distance) {
         super(coordinates, image, level, type, distance);
         jumpTimer = new EffectTimer(); 
     }
 
     /**
-     * Activates the Superjump effect.
+     * Activates the Superjump effect which doubles the jump heigth. 
      */
     @Override
     public final void activateEffect(final Model model) {
@@ -28,6 +35,10 @@ public class Superjump extends AbstractDynamicEntity {
         jumpTask(model);
     }
 
+    /**
+     * Restore initial parameters after a specific time. 
+     * @param model the game model. 
+     */
     private void jumpTask(final Model model) {
         final TimerTask task = new TimerTask() {
             @Override

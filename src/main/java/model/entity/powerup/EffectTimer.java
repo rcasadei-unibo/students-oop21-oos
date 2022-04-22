@@ -12,6 +12,10 @@ public class EffectTimer {
         time = new Timer(); 
     }
 
+    /**
+     * Schedules the powerup task for execution after a specified time. 
+     * @param powerupTask the powerup scheduled task. 
+     */
     public final void scheduleTask(final TimerTask powerupTask) {
 
         time.schedule(powerupTask, DELAY);
