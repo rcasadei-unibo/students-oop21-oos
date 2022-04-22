@@ -30,13 +30,11 @@ import sound.SoundFactoryImpl;
 class CollisionTest {
 
     private static final int DISTANCE = 1000;
-    private final GameInfo info = new GameInfo();
-    private final CollisionManager manager = new CollisionManagerImpl();
-    private final Dimension2D dimension = new Dimension2D(info.getWidth(), info.getHeight());
-    private final EntityFactory factory = new EntityFactoryImpl(dimension);
-    private final List<DynamicEntity> objects = new ArrayList<>();
-    private final Model model = new ModelImpl(info.getWidth(), info.getHeight(), new SoundFactoryImpl());
-    private final Player player = model.getGameState().getPlayer();
+    private CollisionManager manager;
+    private EntityFactory factory;
+    private List<DynamicEntity> objects;
+    private Model model;
+    private Player player;
 
     @BeforeEach
     void setUp() {
@@ -45,6 +43,13 @@ class CollisionTest {
         final JFrame frame = new JFrame("Java Swing And JavaFX");
         final JFXPanel jfxPanel = new JFXPanel();
         frame.add(jfxPanel);
+        final GameInfo info = new GameInfo();
+        this.manager = new CollisionManagerImpl();
+        final Dimension2D dimension = new Dimension2D(info.getWidth(), info.getHeight());
+        this.factory = new EntityFactoryImpl(dimension);
+        this.objects = new ArrayList<>();
+        this.model = new ModelImpl(info.getWidth(), info.getHeight(), new SoundFactoryImpl());
+        this.player = model.getGameState().getPlayer();
     }
 
     @Test
