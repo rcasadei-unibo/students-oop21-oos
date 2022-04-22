@@ -84,7 +84,6 @@ public class MissionFactoryImpl implements MissionFactory {
     private Mission createGeneralised(final Predicate<Integer> goal, final Supplier<Integer> supplier, final String quest) {
         return new Mission() {
 
-            private final Predicate<Integer> predicate = goal;
             private int counter;
 
             /**
@@ -92,7 +91,7 @@ public class MissionFactoryImpl implements MissionFactory {
              */
             @Override
             public boolean isCompleted() {
-                return this.predicate.test(this.counter);
+                return goal.test(this.counter);
             }
 
             /**
