@@ -36,13 +36,13 @@ class MarkerTest {
 
     @BeforeEach
     public void init() {
-        final Model model = new ModelImpl(SCREEN_WIDTH, SCREEN_HEIGHT, new SoundFactoryImpl());
-        this.markerManager = new MarkerManagerImpl(LAST_DEATH_DISTANCE, RECORD_DISTANCE);
-        this.statistics = model.getStatistics();
         // Initialize JavaFX environment
         final JFrame frame = new JFrame();
         final JFXPanel jfxPanel = new JFXPanel();
         frame.add(jfxPanel);
+        final Model model = new ModelImpl(SCREEN_WIDTH, SCREEN_HEIGHT, new SoundFactoryImpl());
+        this.markerManager = new MarkerManagerImpl(LAST_DEATH_DISTANCE, RECORD_DISTANCE);
+        this.statistics = model.getStatistics();
     }
 
     @Test

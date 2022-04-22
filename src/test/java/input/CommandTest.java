@@ -2,9 +2,12 @@ package input;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import javax.swing.JFrame;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import javafx.embed.swing.JFXPanel;
 import model.Model;
 import model.ModelImpl;
 import model.player.JumpState;
@@ -21,6 +24,10 @@ class CommandTest {
 
     @BeforeEach
     void init() {
+        // Initialize JavaFX environment
+        final JFrame frame = new JFrame();
+        final JFXPanel jfxPanel = new JFXPanel();
+        frame.add(jfxPanel);
         this.model = new ModelImpl(SCREEN_WIDTH, SCREEN_HEIGHT, new SoundFactoryImpl());
         this.player = this.model.getGameState().getPlayer();
     }
