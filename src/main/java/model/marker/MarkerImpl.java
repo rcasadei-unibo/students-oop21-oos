@@ -24,7 +24,7 @@ public class MarkerImpl implements Marker {
      * @param image the image of the marker.
      * @param text the notice of the marker.
      */
-    public MarkerImpl(final Double coordinates, final Image image, final String text) {
+    public MarkerImpl(final Point2D.Double coordinates, final Image image, final String text) {
         super();
         this.coordinates = coordinates;
         this.image = image;
