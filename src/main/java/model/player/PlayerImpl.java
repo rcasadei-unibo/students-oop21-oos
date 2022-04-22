@@ -37,7 +37,7 @@ public final class PlayerImpl implements Player {
      * How much does the player jump.
      */
     public static final double JUMP_HEIGHT = 160.0f;
-
+    private static final double DOUBLE_JUMP = 1.5f;
     private static final double GRAVITY = 4.5f;
     private static final String SEP = File.separator;
     private static final String FILE_NAME = System.getProperty("user.home") + SEP + "OOS_selectedSkin.txt";
@@ -72,7 +72,7 @@ public final class PlayerImpl implements Player {
             this.jumpCounter++;
             this.jumpSound.play();
             if (this.isDoubleJumpActive) {
-                jumpHeight = jumpHeight * 2;
+                jumpHeight = jumpHeight * DOUBLE_JUMP;
             }
             this.finalJumpY = Math.max(this.y - jumpHeight, 0);
         }
