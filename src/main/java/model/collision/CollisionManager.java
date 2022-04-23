@@ -15,7 +15,7 @@ public interface CollisionManager {
     /**
      * Checks all the collisions with the player.
      * @param pl the Player
-     * @param objects the list of Objects
+     * @param objects the actual list of Entity
      * @param model the Model
      */
     void playerCollidesWidth(Player pl, List<DynamicEntity> objects, Model model);

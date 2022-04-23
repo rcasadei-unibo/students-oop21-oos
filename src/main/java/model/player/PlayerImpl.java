@@ -54,6 +54,7 @@ public final class PlayerImpl implements Player {
     private final Image image;
 
     /**
+     * Creates the Player.
      * @param soundFactory the SoundFactory
      */
     public PlayerImpl(final SoundFactory soundFactory) {

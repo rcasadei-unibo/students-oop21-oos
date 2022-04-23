@@ -7,7 +7,7 @@ package view.player;
 public interface PlayerView {
 
     /**
-     * Show the Player.
+     * Shows the Player.
      */
     void render();
 }
