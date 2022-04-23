@@ -1,8 +1,8 @@
 package model.entity.factory;
 
 import java.awt.geom.Point2D;
+import java.security.SecureRandom;
 import java.util.List;
-import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -33,7 +33,7 @@ public final class EntityFactoryImpl implements EntityFactory {
     private static final int POWERUPS = 5; 
 
     private final Dimension2D worldDimensions;
-    private final Random rand = new Random(); 
+    private final SecureRandom rand;
 
     /**
      * 
@@ -42,7 +42,7 @@ public final class EntityFactoryImpl implements EntityFactory {
     public EntityFactoryImpl(final Dimension2D worldDimensions) {
 
         this.worldDimensions = new Dimension2D(worldDimensions.getWidth(), worldDimensions.getHeight() - LAND_HEIGHT);
-
+        this.rand = new SecureRandom();
     }
 
     /**
