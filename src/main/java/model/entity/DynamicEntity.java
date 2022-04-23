@@ -71,9 +71,4 @@ public interface DynamicEntity {
      */
     void onCollision(Model model);
 
-    /**
-     * Defines the sequence of instruction that represents the entity's effect.
-     * @param model the actual state of the game. 
-     */
-    void activateEffect(Model model);
 }
