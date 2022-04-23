@@ -26,7 +26,7 @@ public class Spraybomb extends AbstractDynamicEntity {
      * Activates the Spraybomb effect which deletes all of the obstacles present on the map at the pickup time. 
      */
     @Override
-    public final void activateEffect(final Model model) {
+    protected final void activateEffect(final Model model) {
         Platform.runLater(new Runnable() {
             @Override
             public void run() {

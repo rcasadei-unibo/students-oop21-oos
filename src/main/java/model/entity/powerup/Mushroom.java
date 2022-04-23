@@ -32,7 +32,7 @@ public class Mushroom extends AbstractDynamicEntity {
      * Activates the Mushroom effect changing coins' value from 1 to 2.
      */
     @Override
-    public final void activateEffect(final Model model) {
+    protected final void activateEffect(final Model model) {
         Coin.setCoinValue(DOUBLECOIN);
         mushroomTask(); 
     }

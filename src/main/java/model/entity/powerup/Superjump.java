@@ -30,7 +30,7 @@ public class Superjump extends AbstractDynamicEntity {
      * Activates the Superjump effect which doubles the jump heigth. 
      */
     @Override
-    public final void activateEffect(final Model model) {
+    protected final void activateEffect(final Model model) {
         model.getGameState().getPlayer().setDoubleJump(ACTIVATESUPERJUMP);
         jumpTask(model);
     }

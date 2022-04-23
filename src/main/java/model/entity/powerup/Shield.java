@@ -30,7 +30,7 @@ public final class Shield extends AbstractDynamicEntity {
      * Activates the Shield effect which allows the player not to die whenever he hits an obstacle. 
      */
     @Override
-    public void activateEffect(final Model model) {
+    protected void activateEffect(final Model model) {
         model.getGameState().getPlayer().setShield(ACTIVATESHIELD);
         shieldTask(model); 
     }
