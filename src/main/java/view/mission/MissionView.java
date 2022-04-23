@@ -2,13 +2,13 @@ package view.mission;
 
 /**
  * 
- * Interface of the {@link Missions}s' view.
+ * Interface of the mission's view.
  *
  */
 public interface MissionView {
 
     /**
-     * Renders the {@link Mission}.
+     * Renders the mission.
      * 
      */
     void render();

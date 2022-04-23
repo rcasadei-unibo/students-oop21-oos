@@ -10,31 +10,31 @@ import controller.Controller;
 public interface View {
 
     /**
-     * Creates and renders the {@link StartMenuView} of the application.
+     * Creates and renders the StartMenuView of the application.
      * 
      */
     void startMenu();
 
     /**
-     * Creates and renders the {@link GameView} of the application.
+     * Creates and renders the GameView of the application.
      * 
      */
     void game();
 
     /**
-     * Creates and renders the {@link GameOverView} of the application.
+     * Creates and renders the GameOverView of the application.
      * 
      */
     void gameOver();
 
     /**
-     * Creates and renders the {@link ShopView} of the application.
+     * Creates and renders the ShopView of the application.
      * 
      */
     void shop();
 
     /**
-     * Renders the {@link GameView} during the game loop.
+     * Renders the GameView during the game loop.
      */
     void render();
 

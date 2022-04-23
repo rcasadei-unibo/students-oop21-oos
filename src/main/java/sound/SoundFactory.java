@@ -9,7 +9,7 @@ public interface SoundFactory {
 
     /**
      * 
-     * @return a {@link Sound} that plays the game's soundtrack.
+     * @return a {@link Sound} that plays the game's music.
      */
     Sound createGameSoundtrack();
 

@@ -28,7 +28,7 @@ public interface Controller {
     void update();
 
     /**
-     * Renders the {@link View}.
+     * Renders the view.
      * 
      */
     void render();
@@ -46,7 +46,7 @@ public interface Controller {
     void stop();
 
     /**
-     * Saves data when {@link View} is closed.
+     * Saves data when the view is closed.
      *
      */
     void saveOnClose();

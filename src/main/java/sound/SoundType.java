@@ -23,14 +23,14 @@ public enum SoundType {
      */
     GAME_OVER("/sounds/GameOver.mp3"),
     /**
-     * The game's soundtrack.
+     * The game's music sound.
      */
     GAME_SOUNDTRACK("/sounds/GameSoundtrack.mp3");
 
     private final String string;
 
     /**
-     * 
+     * Creates a new SoundType.
      * @param string the path of the sound.
      */
     SoundType(final String string) {

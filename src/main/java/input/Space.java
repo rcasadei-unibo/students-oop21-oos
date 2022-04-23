@@ -4,7 +4,7 @@ import model.GameState;
 
 /**
  * 
- * Command for {@link Player}'s jump.
+ * Command for Player's jump.
  * Implements {@link Command} interface.
  *
  */
@@ -14,7 +14,7 @@ public class Space implements Command {
 
     /**
      * Creates a new Space command.
-     * @param gameState the {@link GameState} of the {@link Model}.
+     * @param gameState the {@link GameState} of the model.
      */
     public Space(final GameState gameState) {
         this.gameState = gameState;
