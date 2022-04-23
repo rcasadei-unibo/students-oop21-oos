@@ -86,7 +86,7 @@ class EntityTest {
         assertTrue(coin.isOutofScreen());
         /*Test coins' effect*/
         final double initialValue = model.getStatistics().getGameCoins();
-        coin.activateEffect(model);
+        coin.onCollision(model);
         assertTrue(model.getStatistics().getGameCoins() > initialValue);
     }
 
@@ -132,7 +132,7 @@ class EntityTest {
         assertTrue(obstacle.isOutofScreen());
         /*Test obstacles effect*/
         final double initialValue = model.getGameState().getPlayer().getLives();
-        obstacle.activateEffect(model);
+        obstacle.onCollision(model);
         assertEquals(model.getGameState().getPlayer().getLives(), initialValue - 1);
     }
 }
