@@ -72,7 +72,7 @@ class PowerupTest {
         final DynamicEntity extralife = new ExtraLife(coordinates, image, SpawnLevel.ONE, EntityType.POWERUP, distance); 
         assertEquals(extralife.getBounds(), new Rectangle2D(X, Y, EXTRALIFE_WIDTH, POWERUP_HEIGHT));
         final int lives = model.getGameState().getPlayer().getLives(); 
-        extralife.activateEffect(model);
+        extralife.onCollision(model);
         assertEquals(model.getGameState().getPlayer().getLives(), lives + 1);
     }
 
@@ -83,7 +83,7 @@ class PowerupTest {
         final double distance = info.getWidth() - image.getWidth() * EntityType.POWERUP.getDistanceFactor();
         final DynamicEntity superjump = new Superjump(coordinates, image, SpawnLevel.ONE, EntityType.POWERUP, distance); 
         assertEquals(superjump.getBounds(), new Rectangle2D(X, Y, SUPERJUMP_WIDTH, POWERUP_HEIGHT));
-        superjump.activateEffect(model);
+        superjump.onCollision(model);
         final Player player = model.getGameState().getPlayer(); 
         final double plY = player.getBounds().getMinY(); 
         player.jump();
@@ -100,10 +100,10 @@ class PowerupTest {
         final double distance = info.getWidth() - image.getWidth() * EntityType.POWERUP.getDistanceFactor();
         final DynamicEntity mushroom = new Mushroom(coordinates, image, SpawnLevel.ONE, EntityType.POWERUP, distance); 
         assertEquals(mushroom.getBounds(), new Rectangle2D(X, Y, MUSHROOM_WIDTH, POWERUP_HEIGHT));
-        mushroom.activateEffect(model);
+        mushroom.onCollision(model);
         final DynamicEntity coin = factory.createCoin(SpawnLevel.ONE); 
         final int numcoins = model.getStatistics().getGameCoins(); 
-        coin.activateEffect(model);
+        coin.onCollision(model);
         assertEquals(model.getStatistics().getGameCoins(), numcoins + EXPECTED_COINS);
     }
 
@@ -114,7 +114,7 @@ class PowerupTest {
         final double distance = info.getWidth() - image.getWidth() * EntityType.POWERUP.getDistanceFactor();
         final DynamicEntity shield = new Shield(coordinates, image, SpawnLevel.ONE, EntityType.POWERUP, distance);
         assertEquals(shield.getBounds(), new Rectangle2D(X, Y, SHIELD_WIDTH, POWERUP_HEIGHT));
-        shield.activateEffect(model);
+        shield.onCollision(model);
         assertTrue(model.getGameState().getPlayer().isShieldActive());
         try {
             Thread.sleep(POWERUP_TIME);
@@ -132,7 +132,7 @@ class PowerupTest {
         final double distance = info.getWidth() - image.getWidth() * EntityType.POWERUP.getDistanceFactor();
         final DynamicEntity spraybomb = new Spraybomb(coordinates, image, SpawnLevel.ONE, EntityType.POWERUP, distance);
         assertEquals(spraybomb.getBounds(), new Rectangle2D(X, Y, SPRAYBOMB_WIDTH, POWERUP_HEIGHT));
-        spraybomb.activateEffect(model);
+        spraybomb.onCollision(model);
         assertEquals(model.getGameState().getEntities().size(), 0);
     }
 
