@@ -1,13 +1,13 @@
 package model.shop;
 
-import java.util.Random;
+import java.security.SecureRandom;
 
 import model.statistic.Statistics;
 
 public class MysteryBoxImpl implements MysteryBox {
 
     private final int price; 
-    private final Random rand = new Random(); 
+    private final SecureRandom rand = new SecureRandom(); 
 
     private static final int BOX_PRICE = 200; 
     private static final int PRIZES_NUM = 3; 
