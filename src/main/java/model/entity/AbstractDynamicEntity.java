@@ -117,6 +117,15 @@ public abstract class AbstractDynamicEntity implements DynamicEntity {
      * {@inheritDoc}
      */
     @Override
+    public final void onCollision(final Model model) {
+       this.hit(true);
+       this.activateEffect(model);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public abstract void activateEffect(Model model);
 
 }

@@ -66,7 +66,13 @@ public interface DynamicEntity {
     boolean wasHit();
 
     /**
-     * Activate the effect related to the entity, when it collides with the player. 
+     * Method called when an entity collide with the player.
+     * @param model the actual state of the game.
+     */
+    void onCollision(Model model);
+
+    /**
+     * Defines the sequence of instruction that represents the entity's effect.
      * @param model the actual state of the game. 
      */
     void activateEffect(Model model);
