@@ -34,7 +34,7 @@ public final class Coin extends AbstractDynamicEntity {
      * @param model the model that represents the actual game state.
      */
     @Override
-    public void activateEffect(final Model model) {
+    protected void activateEffect(final Model model) {
         model.getStatistics().increaseCoin(coinValue);
         model.getSoundFactory().createCoinCollectedSound().play();
     }

@@ -31,7 +31,7 @@ public final class Obstacle extends AbstractDynamicEntity {
      * @param model the model that the actual game state. 
      */
     @Override
-    public void activateEffect(final Model model) {
+    protected void activateEffect(final Model model) {
         model.getGameState().getPlayer().setNumberOfLives(DOWN_LIFE);
     }
 }
