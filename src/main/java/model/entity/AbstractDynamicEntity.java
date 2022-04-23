@@ -123,9 +123,9 @@ public abstract class AbstractDynamicEntity implements DynamicEntity {
     }
 
     /**
-     * {@inheritDoc}
+     * Defines the sequence of action that represents the entity's effect. 
+     * @param model the actual state of the game.
      */
-    @Override
-    public abstract void activateEffect(Model model);
+    protected abstract void activateEffect(Model model);
 
 }
