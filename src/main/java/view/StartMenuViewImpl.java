@@ -26,10 +26,13 @@ public final class StartMenuViewImpl implements StartMenuView {
     private static final String FAMILY_FONT_NAME = "Arial";
     private static final int TITLE_FONT_SIZE = 90;
     private static final int TITLE_X = 330;
-    private static final int TITLE_Y = 150;
+    private static final int TITLE_Y = 130;
     private static final int SUBTITLE_FONT_SIZE = 45;
     private static final int SUBTITLE_X = 20;
-    private static final int SUBTITLE_Y = 210;
+    private static final int SUBTITLE_Y = 190;
+    private static final int INSTRUCTION_FONT_SIZE = 25;
+    private static final int INSTRUCTIONS_X = 270;
+    private static final int INSTRUCTIONS_Y = 240;
 
     private final View view;
     private final Stage stage;
@@ -89,10 +92,16 @@ public final class StartMenuViewImpl implements StartMenuView {
         subtitle.setX(SUBTITLE_X);
         subtitle.setY(SUBTITLE_Y);
 
+        final Text instructions = new Text("Press SPACEBAR to jump");
+        instructions.setFont(Font.font(FAMILY_FONT_NAME, FontWeight.EXTRA_BOLD, INSTRUCTION_FONT_SIZE));
+        instructions.setX(INSTRUCTIONS_X);
+        instructions.setY(INSTRUCTIONS_Y);
+
         this.pane.getChildren().add(start);
         this.pane.getChildren().add(exit);
         this.pane.getChildren().add(title);
         this.pane.getChildren().add(subtitle);
+        this.pane.getChildren().add(instructions);
     }
  
 }
