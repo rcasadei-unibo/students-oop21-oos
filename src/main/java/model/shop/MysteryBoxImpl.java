@@ -34,14 +34,14 @@ public class MysteryBoxImpl implements MysteryBox {
         switch (random) {
             case 0: 
                 stats.setTotalCoins(stats.getTotalCoins() + MONEY_PRIZE1);
-                message = "Congratulation! You won 500 coins!"; 
+                message = "Congratulation! You won 300 coins!"; 
                 break; 
             case 1: 
                 message = "You can't always be lucky, you've just paid for nothing"; 
                 break; 
             case 2: 
                 stats.setTotalCoins(stats.getTotalCoins() + MONEY_PRIZE2);
-                message = "Yeah! You've just gained 1000 coins!!!"; 
+                message = "Yeah! You've just gained 150 coins!!!"; 
                 break; 
             default: 
                 message = "Error: selected prize does not exist"; 
