@@ -8,17 +8,17 @@ package model.entity;
 public enum EntityType {
 
     /**
-     * {@link Obstacle}'s type.
+     * Obstacle's type.
      */
     OBSTACLE(4.7), 
 
     /**
-     * {@link Platform}'s type.
+     * Platform's type.
      */
     PLATFORM(0.0), 
 
     /**
-     * {@link Coin}'s type.
+     * Coin's type.
      */
     COIN(5.3), 
 
@@ -31,7 +31,7 @@ public enum EntityType {
 
     /**
      * 
-     * @param distanceFactor the distance of an entity from the last in the {@link DynamicEntity} list. 
+     * @param distanceFactor the distance of an entity from the last in the DynamicEntity list. 
      */
     EntityType(final double distanceFactor) {
         this.distanceFactor = distanceFactor;
