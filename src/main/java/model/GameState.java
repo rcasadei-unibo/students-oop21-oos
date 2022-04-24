@@ -31,8 +31,8 @@ public interface GameState {
     boolean isGameOver();
 
     /**
-     * Updates the {@link GameState} data.
-     * Updates {@link Player} and {@link EntityManager}.
+     * Updates the GameState data.
+     * Updates Player and EntityManager.
      * 
      */
     void update();

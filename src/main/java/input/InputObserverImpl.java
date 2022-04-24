@@ -5,8 +5,7 @@ import java.util.Set;
 
 /**
  * 
- * An input observer of the {@link GameViewImpl}.
- * Implements {@link InputOsberver} interface.
+ * Implementation of {@link InputObserver} interface.
  *
  */
 public class InputObserverImpl implements InputObserver {

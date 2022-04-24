@@ -21,7 +21,7 @@ public class GameStateImpl implements GameState {
     private final EntityManager entityManager;
 
     /**
-     * Creates a new GameStateImpl initially with a new {@link Player} and a new {@link EntityManager}.
+     * Creates a new GameStateImpl initially with a new Player and a new EntityManager.
      * @param gameDimension the dimension of the game screen.
      * @param soundFactory the {@link SoundFactory}.
      * 

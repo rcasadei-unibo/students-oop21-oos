@@ -17,7 +17,7 @@ public interface Statistics {
 
     /**
      * Increases the number of collected coins by given value.
-     * @param value
+     * @param value the amount of coins to add.
      */
     void increaseCoin(int value);
 

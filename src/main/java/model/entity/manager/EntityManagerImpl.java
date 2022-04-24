@@ -66,6 +66,7 @@ public final class EntityManagerImpl implements EntityManager {
      */
     @Override
     public void updateList() {
+
         this.removeEntity(e -> e.wasHit() && (e.getType() == EntityType.POWERUP || e.getType() == EntityType.COIN));
 
         this.entities.forEach(e -> e.updatePosition(speedX));
@@ -114,12 +115,12 @@ public final class EntityManagerImpl implements EntityManager {
 
         final Stream.Builder<List<DynamicEntity>> builder = Stream.builder();
         final List<DynamicEntity> newConfig = builder.add(factory.combineObstacleCoin(SpawnLevel.ZERO, SpawnLevel.ONE))
-                                                  .add(factory.combinePlatformObstacle(SpawnLevel.ONE, SpawnLevel.ZERO))
-                                                  .add(List.of(factory.createPlatform(SpawnLevel.ONE)))
-                                                  .build()
-                                                  .skip(random.nextInt(MAX_CASE))
-                                                  .findFirst()
-                                                  .get();
+                                                     .add(factory.combinePlatformObstacle(SpawnLevel.ONE, SpawnLevel.ZERO))
+                                                     .add(List.of(factory.createPlatform(SpawnLevel.ONE)))
+                                                     .build()
+                                                     .skip(random.nextInt(MAX_CASE))
+                                                     .findFirst()
+                                                     .get();
         this.entities.addAll(newConfig);
         this.counter.increment(newConfig.size());
 
@@ -132,12 +133,12 @@ public final class EntityManagerImpl implements EntityManager {
 
         final Stream.Builder<List<DynamicEntity>> builder = Stream.builder();
         final List<DynamicEntity> newConfig = builder.add(factory.combinePlatformObstacle(SpawnLevel.TWO, SpawnLevel.ZERO))
-                                                  .add(factory.combinePlatformCoin(SpawnLevel.TWO, SpawnLevel.ONE))
-                                                  .add(List.of(factory.createObstacle(SpawnLevel.ZERO)))
-                                                  .build()
-                                                  .skip(random.nextInt(MAX_CASE))
-                                                  .findFirst()
-                                                  .get();
+                                                     .add(factory.combinePlatformCoin(SpawnLevel.TWO, SpawnLevel.ONE))
+                                                     .add(List.of(factory.createObstacle(SpawnLevel.ZERO)))
+                                                     .build()
+                                                     .skip(random.nextInt(MAX_CASE))
+                                                     .findFirst()
+                                                     .get();
         this.entities.addAll(newConfig);
         this.counter.increment(newConfig.size());
 
@@ -150,12 +151,12 @@ public final class EntityManagerImpl implements EntityManager {
 
         final Stream.Builder<List<DynamicEntity>> builder = Stream.builder();
         final List<DynamicEntity> newConfig = builder.add(factory.combinePlatformCoin(SpawnLevel.ONE, SpawnLevel.TWO))
-                                                  .add(factory.combinePlatformObstacle(SpawnLevel.ONE, SpawnLevel.ZERO))
-                                                  .add(List.of(factory.createCoin(SpawnLevel.ONE)))
-                                                  .build()
-                                                  .skip(random.nextInt(MAX_CASE))
-                                                  .findFirst()
-                                                  .get();
+                                                     .add(factory.combinePlatformObstacle(SpawnLevel.ONE, SpawnLevel.ZERO))
+                                                     .add(List.of(factory.createCoin(SpawnLevel.ONE)))
+                                                     .build()
+                                                     .skip(random.nextInt(MAX_CASE))
+                                                     .findFirst()
+                                                     .get();
         this.entities.addAll(newConfig);
         this.counter.increment(newConfig.size());
     }
@@ -206,4 +207,5 @@ public final class EntityManagerImpl implements EntityManager {
             return this.count;
         }
     }
+
 }
