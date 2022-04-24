@@ -23,8 +23,8 @@ public class MarkerManagerImpl implements MarkerManager {
 
     /**
      * Creates a new MarkerManagerImpl.
-     * @param lastDeathDistance the distance reached in the last run, given by {@link Statistics}.
-     * @param recordDistance the record distance, given by {@link Statistics}.
+     * @param lastDeathDistance the distance reached in the last run.
+     * @param recordDistance the record distance.
      */
     public MarkerManagerImpl(final int lastDeathDistance, final int recordDistance) {
         super();
@@ -92,7 +92,7 @@ public class MarkerManagerImpl implements MarkerManager {
     }
 
     /**
-     * Calculate the distance that common {@link Marker}s must notify. 
+     * Calculate the distance that common {@link Marker} must notify. 
      * @return the approximate distance.
      */
     private int approximateDistance() {
@@ -100,7 +100,7 @@ public class MarkerManagerImpl implements MarkerManager {
     }
 
     /**
-     * Calculate the spawn distance that special {@link Marker}s must to use. 
+     * Calculate the spawn distance that special {@link Marker} must to use. 
      * @param distance the covered distance.
      * @return the spawn distance.
      */

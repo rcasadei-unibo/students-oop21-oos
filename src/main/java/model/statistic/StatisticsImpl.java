@@ -20,6 +20,7 @@ public class StatisticsImpl implements Statistics {
     private static final String FILE_NAME = System.getProperty("user.home") + SEP + "OOS_statistics.txt";
     private static final double DIFFICULTY_FACTOR = 1.010;
     private static final double MAX_DIFFICULTY = 15.0;
+    private static final int LIST_SAVED_DATA_SIZE = 3;
 
     private double difficulty;
     private int gameCoins;
@@ -38,7 +39,7 @@ public class StatisticsImpl implements Statistics {
         this.actualDistance = 0;
         this.gameCoins = 0;
         final List<Integer> list = this.readStatisticsFromFile().stream()
-                .map(s -> Integer.parseInt(s))
+                .map(s -> this.convertStringToInt(s))
                 .collect(Collectors.toList());
         this.totalCoins = list.get(0);
         this.lastDeathDistance = list.get(1);
@@ -147,8 +148,13 @@ public class StatisticsImpl implements Statistics {
      */
     @Override
     public List<String> readStatisticsFromFile() {
+        List<String> list;
         try (BufferedReader br = Files.newBufferedReader(Paths.get(FILE_NAME))) {
-            return br.lines().collect(Collectors.toList());
+            list = br.lines().collect(Collectors.toList());
+            if (list.size() != LIST_SAVED_DATA_SIZE) {
+                return List.of("0", "0", "0");
+            }
+            return list;
         } catch (IOException e) {
             return List.of("0", "0", "0");
         }
@@ -168,6 +174,19 @@ public class StatisticsImpl implements Statistics {
      */
     private void increaseDistance() {
         this.actualDistance += this.difficulty;
+    }
+
+    /**
+     * Converts string in integer. 
+     * @param s the string.
+     * @return the conversion of s in integer or a default value if s is not a number string.
+     */
+    private int convertStringToInt(final String s) {
+        try {
+            return Integer.parseInt(s);
+        } catch (NumberFormatException e) {
+            return 0;
+        }
     }
 
 }

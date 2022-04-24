@@ -2,13 +2,13 @@ package view.marker;
 
 /**
  * 
- * Interface of the {@link Marker}s' view.
+ * Interface of the markers' view.
  *
  */
 public interface MarkerView {
 
     /**
-     * Renders the {@link Marker}s.
+     * Renders the markers.
      * 
      */
     void render();

@@ -31,6 +31,7 @@ public interface ShopModel {
 
     /**
      * Saves the Shop Items on file.
+     * @throws IOException if occurs problem during the writing.
      */
     void saveShopItem() throws IOException;
 
@@ -58,7 +59,7 @@ public interface ShopModel {
 
     /**
      * Writes the skin's name on file. 
-     * @throws IOException
+     * @throws IOException if occurs problem during the writing.
      */
     void writeSkinOnFile() throws IOException;
 

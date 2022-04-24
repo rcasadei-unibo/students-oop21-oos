@@ -82,6 +82,7 @@ public final class EntityFactoryImpl implements EntityFactory {
         final Image image = EntityImages.COIN.getImage();
         final Point2D.Double coordinates = this.generatePoint(level, image, EntityType.COIN.getDistanceFactor());
         final double distance = worldDimensions.getWidth() - image.getWidth() * EntityType.COIN.getDistanceFactor();
+
         return new Coin(coordinates, image, level, EntityType.COIN, distance);
 
     }
@@ -94,9 +95,9 @@ public final class EntityFactoryImpl implements EntityFactory {
 
         final Stream.Builder<DynamicEntity> builder = Stream.builder();
         return builder.add(this.createObstacle(obstacleLevel))
-                     .add(this.createPlatform(platformLevel))
-                     .build()
-                     .collect(Collectors.toList());
+                      .add(this.createPlatform(platformLevel))
+                      .build()
+                      .collect(Collectors.toList());
 
     }
 
@@ -108,9 +109,9 @@ public final class EntityFactoryImpl implements EntityFactory {
 
         final Stream.Builder<DynamicEntity> builder = Stream.builder();
         return builder.add(this.createCoin(coinLevel))
-                     .add(this.createPlatform(platformLevel))
-                     .build()
-                     .collect(Collectors.toList());
+                      .add(this.createPlatform(platformLevel))
+                      .build()
+                      .collect(Collectors.toList());
     }
 
     /**
@@ -121,9 +122,9 @@ public final class EntityFactoryImpl implements EntityFactory {
 
         final Stream.Builder<DynamicEntity> builder = Stream.builder();
         return builder.add(this.createCoin(coinLevel))
-                     .add(this.createObstacle(obstacleLevel))
-                     .build()
-                     .collect(Collectors.toList());
+                      .add(this.createObstacle(obstacleLevel))
+                      .build()
+                      .collect(Collectors.toList());
 
     }
 

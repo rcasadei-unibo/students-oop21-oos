@@ -37,7 +37,7 @@ public interface ShopController {
 
     /**
      * Saves everything on file. 
-     * @throws IOException
+     * @throws IOException if occurs problem during the writing.
      */
     void close() throws IOException;
 

@@ -32,8 +32,7 @@ public class ModelImpl implements Model {
     private final StatisticsUpdater statisticsUpdater;
 
     /**
-     * Creates a new ModelImpl initially with new {@link GameState}, {@link Statistics}, {@link CollisionManager},
-     * {@link MarkerManager}, {@link MissionManager}, {@link StatisticsUpdater}.
+     * Creates a new ModelImpl.
      * @param width the width of the game screen.
      * @param height the height of the game screen.
      * @param soundFactory the {@link SoundFactory}.

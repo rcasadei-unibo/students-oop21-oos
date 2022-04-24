@@ -34,8 +34,7 @@ public final class CollisionManagerImpl implements CollisionManager {
                 if (pl.isShieldActive() && e.getType() == EntityType.OBSTACLE) {
                     e.hit(false);
                 } else if (e.getBounds().intersects(playerBounds) && !e.wasHit()) {
-                    e.activateEffect(model);
-                    e.hit(true);
+                    e.onCollision(model);
                 }
             }
         });
